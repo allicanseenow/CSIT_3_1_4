@@ -1,0 +1,19 @@
+{
+  "name": "csit314",
+  "version": "1.0.0",
+  "description": "Project management subject",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allicanseenow/CSIT_3_1_4.git"
+  },
+  "author": "Trung",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/allicanseenow/CSIT_3_1_4/issues"
+  },
+  "homepage": "https://github.com/allicanseenow/CSIT_3_1_4#readme"
+}
