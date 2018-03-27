@@ -46,6 +46,16 @@ module.exports = {
         ]
       },
       {
+        test: /\.scss$/,
+        use: [{
+          loader: "style-loader" // creates style nodes from JS strings
+        }, {
+          loader: "css-loader" // translates CSS into CommonJS
+        }, {
+          loader: "sass-loader" // compiles Sass to CSS
+        }]
+      },
+      {
         test: /\.png$/,
         use: [
           {
@@ -65,6 +75,9 @@ module.exports = {
     ]
   },
   devServer: {
-    historyApiFallback: true
+    contentBase: path.join(__dirname, "dist"),
+    historyApiFallback: true,
+    compress: true,
+    port: 9000
   }
 };
