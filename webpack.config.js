@@ -71,9 +71,27 @@ module.exports = {
         use: [
           { loader: "file-loader" }
         ]
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|svg)$/,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 10000
+            }
+          }
+        ]
       }
     ]
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
+    })
+
+  ],
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     historyApiFallback: true,
