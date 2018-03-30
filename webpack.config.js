@@ -1,8 +1,10 @@
 
 var path = require('path');
 var webpack = require('webpack');
+require('dotenv').load();
 
 module.exports = {
+  mode: process.env.NODE_ENV,
   context: path.resolve(__dirname, 'Client'),
   entry: {
     javascript: './app.js',
@@ -96,6 +98,25 @@ module.exports = {
     contentBase: path.join(__dirname, "dist"),
     historyApiFallback: true,
     compress: true,
-    port: 9000
+    port: process.env.PORT || 9000,
+    proxy: {
+      "/api": {
+        target: 'https://1scope.com',
+        changeOrigin: true,
+        secure: true,
+        // bypass: function(req, res, proxyOptions) {
+        //   if (req.headers.accept.indexOf("html") !== -1) {
+        //     console.log("Skipping proxy for browser request.");
+        //     return "/index.html";
+        //   }
+        // }
+      }
+    },
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": "true",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+    },
   }
 };

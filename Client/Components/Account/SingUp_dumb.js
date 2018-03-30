@@ -48,20 +48,36 @@ export default class Signup_Component extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     if (this.isValid()) {
+      let token
+      if (typeof document !== 'undefined' && document.querySelector('meta[name="csrf-token"]')) token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+
+      const defaultHeaders = {
+        'x-csrf-token': token,
+      }
       this.setState({ errors: {}, isLoading: true });
-      axios.get('https://1scope.com/api/v2/disciplines', {
-        headers: {
-          'Access-Control-Allow-Origin': 'http://localhost:9000',
-          'Access-Control-Allow-Credentials': true,
-          'Access-Control-Allow-Headers': 'X-Requested-With,Content-Disposition,Content-Type,Content-Description,Content-Range,X-CSRF-Token,Authorization',
-        },
-      }).then((res) => {
-        console.log('axios reposnse', res);
-      }, (err) => {
-        this.setState({ errors: err, isLoading: false });
-      })
+
     }
   };
+
+  componentDidMount() {
+    axios.get('http://localhost:9000/api/v2/disciplines', {
+      // headers: {
+      //   "Access-Control-Allow-Origin": "https://1scope.com",
+      //   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      //   "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+      // },
+      // proxy: {
+      //   host: '127.0.0.1',
+      //   port: 9001,
+      // },
+      // withCredentials: true
+    }).then((res) => {
+      console.log('axios reposnse', res);
+    })
+      .catch(err => {
+        console.log('err is ', err);
+      })
+  }
 
   render(){
     const { errors } = this.state;
