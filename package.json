@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "a": "webpack-dev-server --hot --inline --colors --progress",
+    "prod": "NODE_ENV=production npm run a",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
