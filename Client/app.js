@@ -4,18 +4,15 @@ import 'bootstrap/dist/css/bootstrap-theme.css';
 import React, { Component } from 'react';
 import createHistory from "history/createBrowserHistory"
 import { render }             from 'react-dom';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Router, Switch, Route, Link } from "react-router-dom";
 
 
 import Header from './Components/Header';
 import Home from './Components/Home';
 
-
 const history = createHistory()
 
-
-
-// import './CSS/app.scss';
+import './app.scss';
 // import './CSS/headerfix.scss';
 // import './CSS/overwrite.scss';
 // import './CSS/bootstrap.scss';

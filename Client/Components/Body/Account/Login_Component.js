@@ -14,7 +14,7 @@ export default class Login_Component extends Component {
               <input type="password" id="inputPassword" className="form-control" placeholder="Password" required />
                 <div id="remember" className="checkbox">
                   <Label>
-                    <input type="checkbox" value="remember-me" /> Remember me
+                    <input type="checkbox" value="remember-me" /> <span>Remember me</span>
                   </Label>
                 </div>
                 {/*<button className="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>*/}

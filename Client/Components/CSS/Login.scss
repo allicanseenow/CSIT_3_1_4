@@ -6,12 +6,11 @@
  */
 body, html {
   height: 100%;
-  background-repeat: no-repeat;
-  background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+  background-repeat: repeat;
 }
 
 .card-container.card {
-  max-width: 350px;
+  max-width: 490px;
   padding: 40px 40px;
 }
 
@@ -138,4 +137,11 @@ body, html {
 .forgot-password:active,
 .forgot-password:focus{
   color: rgb(12, 97, 33);
+}
+
+.bankDetail-wrapper {
+  border: 1px dashed #ddd;
+  box-shadow: 0 0 0 3px #fff, 0 0 0 5px #ddd, 0 0 0 10px #fff, 0 0 2px 10px #eee;
+  margin: 33px -15px;
+  padding: 10px 15px;
 }

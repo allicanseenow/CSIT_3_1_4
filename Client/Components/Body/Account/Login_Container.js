@@ -1,6 +1,5 @@
 import React, { Component }                                       from 'react';
 import LoginFormm                                                 from './Login_Component';
-import './Login.scss';
 
 export default class Login_Container extends Component {
   render() {
