@@ -52,7 +52,7 @@ export function validateSecondPageRegister(data) {
     errors.dob = 'This field is required';
   }
   else if (!moment(data.dob, 'DD-MM-YYYY', true).isValid()){
-    errors.dob = 'Wrong format date';
+    errors.dob = 'Wrong date format';
   }
   if (_.isEmpty(data.cardHolderName)) {
     errors.cardHolderName = 'This field is required';

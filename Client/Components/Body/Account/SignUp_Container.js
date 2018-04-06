@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SignupForm           from './SignUp_Component';
+import { Consumer }         from '../../../context';
 
 export default class SignupPage extends React.Component {
   render() {
@@ -7,12 +8,18 @@ export default class SignupPage extends React.Component {
     return (
       <div className="row">
         <div className="col-md-6 col-md-offset-3">
-          <SignupForm
-            isUserExists={isUserExists}
-            userSignupRequest={userSignupRequest}
-            addFlashMessage={addFlashMessage} />
+          <Consumer>
+            {context => (
+              <SignupForm
+                isUserExists={isUserExists}
+                userSignupRequest={userSignupRequest}
+                addFlashMessage={addFlashMessage}
+                {...context}
+              />
+            )}
+          </Consumer>
         </div>
       </div>
-    );
+  );
   }
-}
+  }

@@ -11,7 +11,7 @@ export default class TextFieldGroup extends PureComponent {
     placeholder: PropTypes.string,
     type: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    checkUserExists: PropTypes.func,
+    onBlur: PropTypes.func,
   };
 
   static defaultProps = {
@@ -20,14 +20,14 @@ export default class TextFieldGroup extends PureComponent {
   };
 
   render() {
-    const { field, value, label, error, placeholder, type, onChange, checkUserExists } = this.props;
+    const { field, value, label, error, placeholder, type, onChange, onBlur } = this.props;
     return (
       <div className={ classnames('form-group', {'has-error': error })}>
         <label className="control-label">{label}</label>
         <input
           type={type}
           onChange={onChange}
-          onBlur={checkUserExists}
+          onBlur={onBlur}
           value={value}
           name={field}
           placeholder={placeholder}

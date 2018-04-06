@@ -98,9 +98,17 @@ module.exports = {
     historyApiFallback: true,
     compress: true,
     port: process.env.PORT || 9000,
+    /*
+      Enable this 'proxy' if we want to bypass CSRF blocking
+      EG: If this port is 9000, when we access a link from 'localhost:9000/api'
+        http://localhost:9000/api/v2/disciplines
+      It will actually redirect user to 'target/api'
+       'https://1scope.com'
+     */
     proxy: {
       "/api": {
-        target: 'https://1scope.com',
+        target: 'http://localhost:8080',
+        pathRewrite: {"^/api" : ""},
         changeOrigin: true,
         secure: true,
         // bypass: function(req, res, proxyOptions) {

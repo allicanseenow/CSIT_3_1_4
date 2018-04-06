@@ -45,6 +45,17 @@ export default class Signup_Component extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  onBlur = (event) => {
+    if (_.isEmpty(event.target.value)) {
+      const newErr = _.merge(this.state.errors, { [event.target.name]: 'This field is required' });
+      this.setState({ errors: newErr });
+    }
+    else {
+      const newErr = _.merge(this.state.errors, { [event.target.name]: '' });
+      this.setState({ errors: newErr });
+    }
+  };
+
   onSubmit = (event) => {
     event.preventDefault();
     if (this.isValid()) {
@@ -58,6 +69,45 @@ export default class Signup_Component extends Component {
 
     }
     console.log('submit')
+    const { username, password, firstName, lastName, dob, licenseNumber, cardHolderName, cardNumber, cardExpiryDate } = this.state;
+    axios.post('/api/account', {
+      // headers: {
+      //   "Access-Control-Allow-Origin": "https://1scope.com",
+      //   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      //   "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+      // },
+      // proxy: {
+      //   host: '127.0.0.1',
+      //   port: 9001,
+      // },
+      // withCredentials: true
+      data: {
+        username: username,
+        password: password,
+        driverLicense: licenseNumber,
+        firstname: firstName,
+        "lastname": lastName,
+        "dob": dob,
+        "creditCard": {
+          "cardholder": cardHolderName,
+          "cardNumber": cardNumber,
+          "expiryDate": cardExpiryDate}
+      },
+    }, {
+      transformRequest: [function (data, headers) {
+        console.log('stringfyify ----', JSON.stringify(data.data));
+        console.log('stringfyify ----', data);
+        return JSON.stringify(data.data);
+      }],
+    }).then((res) => {
+      console.log('axios reposnse', res);
+    })
+      .catch(err => {
+        console.log('err is ', err);
+      })
+      .finally(() => {
+        this.setState({ isLoading: false });
+      })
   };
 
   onClickNextStep = () => {
@@ -113,9 +163,9 @@ export default class Signup_Component extends Component {
     )
   };
 
-  renderTextFieldGroup = (field, value, label, onChange, error, placeholder, type) => {
+  renderTextFieldGroup = (field, value, label, onChange, onBlur, error, placeholder, type) => {
     return (
-      <TextFieldGroup key={`TextFieldGroup-${field}`} field={field} value={value} label={label} onChange={onChange} error={error} type={type} placeholder={placeholder}/>
+      <TextFieldGroup key={`TextFieldGroup-${field}`} field={field} value={value} label={label} onChange={onChange} onBlur={onBlur} error={error} type={type} placeholder={placeholder}/>
     )
   };
 
@@ -123,27 +173,27 @@ export default class Signup_Component extends Component {
     const { username, errors, email, password, cardHolderName, cardNumber, cardExpiryDate, passwordConfirmation, firstName, lastName, licenseNumber, dob } = this.state;
     const formBody = [
       (<div>
-        { this.renderTextFieldGroup("username", username, "Username", this.onChange, errors.username) }
-        { this.renderTextFieldGroup("email", email, "Email", this.onChange, errors.email) }
-        { this.renderTextFieldGroup("password", password, "Password", this.onChange, errors.password, null, "password") }
-        { this.renderTextFieldGroup("passwordConfirmation", passwordConfirmation, "Password Confirmation", this.onChange, errors.passwordConfirmation, null, "password") }
+        { this.renderTextFieldGroup("username", username, "Username", this.onChange, this.onBlur, errors.username) }
+        { this.renderTextFieldGroup("email", email, "Email", this.onChange, this.onBlur, errors.email) }
+        { this.renderTextFieldGroup("password", password, "Password", this.onChange, this.onBlur, errors.password, null, "password") }
+        { this.renderTextFieldGroup("passwordConfirmation", passwordConfirmation, "Password Confirmation", this.onChange, this.onBlur, errors.passwordConfirmation, null, "password") }
       </div>),
       (<div>
-        { this.renderTextFieldGroup("firstName", firstName, "First Name", this.onChange, errors.firstName) }
-        { this.renderTextFieldGroup("lastName", lastName, "Last Name", this.onChange, errors.lastName) }
-        { this.renderTextFieldGroup("dob", dob, "Date of Birth", this.onChange, errors.dob, "DD-MM-YY") }
-        { this.renderTextFieldGroup("licenseNumber", licenseNumber, "Driver license Number", this.onChange, errors.licenseNumber) }
+        { this.renderTextFieldGroup("firstName", firstName, "First Name", this.onChange, this.onBlur, errors.firstName) }
+        { this.renderTextFieldGroup("lastName", lastName, "Last Name", this.onChange, this.onBlur, errors.lastName) }
+        { this.renderTextFieldGroup("dob", dob, "Date of Birth", this.onChange, this.onBlur, errors.dob, "DD-MM-YY") }
+        { this.renderTextFieldGroup("licenseNumber", licenseNumber, "Driver license Number", this.onChange, this.onBlur, errors.licenseNumber) }
         <Grid className="bankDetail-wrapper" fluid>
           <Row>
             <Col md={8} sm={12}>
-              { this.renderTextFieldGroup("cardNumber", cardNumber, "Card Number", this.onChange, errors.cardNumber) }
+              { this.renderTextFieldGroup("cardNumber", cardNumber, "Card Number", this.onChange, this.onBlur, errors.cardNumber) }
             </Col>
             <Col md={4} sm={12}>
-              { this.renderTextFieldGroup("cardExpiryDate", cardExpiryDate, "Expiry Date", this.onChange, errors.cardExpiryDate, "MM-YYYY") }
+              { this.renderTextFieldGroup("cardExpiryDate", cardExpiryDate, "Expiry Date", this.onChange, this.onBlur, errors.cardExpiryDate, "MM-YYYY") }
             </Col>
           </Row>
           <Row>
-            <Col sm={12}>{ this.renderTextFieldGroup("cardHolderName", cardHolderName, "Name on the credit card", this.onChange, errors.cardHolderName) }</Col>
+            <Col sm={12}>{ this.renderTextFieldGroup("cardHolderName", cardHolderName, "Name on the credit card", this.onChange, this.onBlur, errors.cardHolderName) }</Col>
           </Row>
         </Grid>
       </div>),
@@ -178,29 +228,12 @@ export default class Signup_Component extends Component {
    */
 
   componentDidMount() {
-    axios.get('http://localhost:9000/api/v2/disciplines', {
-      // headers: {
-      //   "Access-Control-Allow-Origin": "https://1scope.com",
-      //   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-      //   "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
-      // },
-      // proxy: {
-      //   host: '127.0.0.1',
-      //   port: 9001,
-      // },
-      // withCredentials: true
-    }).then((res) => {
-      console.log('axios reposnse', res);
-    })
-      .catch(err => {
-        console.log('err is ', err);
-      })
+
   }
-
-
 
   render(){
     const { errors, step } = this.state;
+    console.log('props here is ----Sign', this.props)
     return (
       <div className="card card-container">
         <form onSubmit={this.onSubmit}>

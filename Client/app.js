@@ -1,11 +1,10 @@
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
-import React, { Component } from 'react';
+import React, { Component, createContext } from 'react';
 import createHistory from "history/createBrowserHistory"
 import { render }             from 'react-dom';
 import { Router, Switch, Route, Link } from "react-router-dom";
-
 
 import Header from './Components/Header';
 import Home from './Components/Home';

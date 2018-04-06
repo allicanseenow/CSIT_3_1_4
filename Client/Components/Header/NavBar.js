@@ -6,7 +6,7 @@ import {withRouter} from 'react-router-dom';
 
 class CustomNavBar extends Component {
   render() {
-    console.log('This.props', this.props)
+    console.log('This.props in navBar.js', this.props)
     return (
       <Navbar fixedTop inverse collapseOnSelect>
         <Navbar.Header>
