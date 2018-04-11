@@ -1,8 +1,5 @@
-import axios                    from 'axios';
 import React, { Component }     from 'react';
-import PropTypes                from 'prop-types';
 import _                        from 'lodash';
-import classnames               from 'classnames';
 import { Grid, Row, Col, Button, FormGroup }            from 'react-bootstrap';
 import TextFieldGroup           from '../../Utility/TextFieldGroup';
 import { validateRegister }        from '../../Utility/Validator';
@@ -10,10 +7,6 @@ import { validateRegister }        from '../../Utility/Validator';
 import SteppingDot              from '../../RecyclableComponents/SteppingDot';
 
 export default class Signup_Component extends Component {
-  static propTypes = {
-
-  };
-
   state = {
     username: '',
     email: '',
