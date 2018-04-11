@@ -2,43 +2,119 @@ import React, { Component }                                       from 'react';
 import { Link }                                                   from 'react-router-dom';
 import { NavDropdown, Navbar, Nav, MenuItem, NavItem, Badge }     from 'react-bootstrap'
 import { LinkContainer }                                          from 'react-router-bootstrap';
-import {withRouter} from 'react-router-dom';
+import { withRouter }                                             from 'react-router-dom';
+import PropTypes                                                  from "prop-types";
 
 class CustomNavBar extends Component {
+  static propTypes = {
+    username: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    loggedIn: PropTypes.bool.isRequired,
+  };
+
+  logOutAction = () => {
+    localStorage.removeItem('localToken');
+    window.location = "/";
+  };
+
+  renderRenterBar = () => {
+    return (
+      <Nav key="Profile">
+        <NavDropdown title={this.props.username} id="basic-nav-dropdown">
+          <LinkContainer to="/profile"><MenuItem>Profile</MenuItem></LinkContainer>
+          <LinkContainer to="/change-password"><MenuItem>Change password</MenuItem></LinkContainer>
+          <LinkContainer to="/change-email"><MenuItem>Change email</MenuItem></LinkContainer>
+          <MenuItem onSelect={this.logOutAction}>Logout</MenuItem>
+        </NavDropdown>
+      </Nav>
+    )
+  };
+
+  renderOwnerBar = () => {
+    return (
+      <Nav key="Profile">
+        <NavDropdown title={this.props.username} id="basic-nav-dropdown">
+          <LinkContainer to="/profile"><MenuItem>Profile</MenuItem></LinkContainer>
+          <LinkContainer to="/change-password"><MenuItem>Change password</MenuItem></LinkContainer>
+          <LinkContainer to="/change-email"><MenuItem>Change email</MenuItem></LinkContainer>
+          <MenuItem onSelect={this.logOutAction}>Logout</MenuItem>
+        </NavDropdown>
+      </Nav>
+    )
+  };
+
+  renderAdminBar = () => {
+    return (
+      <Nav key="Profile">
+        <NavDropdown title={this.props.username} id="basic-nav-dropdown">
+          <LinkContainer to="/profile"><MenuItem>Profile</MenuItem></LinkContainer>
+          <LinkContainer to="/change-password"><MenuItem>Change password</MenuItem></LinkContainer>
+          <LinkContainer to="/change-email"><MenuItem>Change email</MenuItem></LinkContainer>
+          <MenuItem onSelect={this.logOutAction}>Logout</MenuItem>
+        </NavDropdown>
+      </Nav>
+    )
+  };
+
+  renderNotRegisteredUserBar = () => {
+    return (
+      <Nav key="NonRegistered">
+        <LinkContainer key={0} to="/about"><NavItem name="About">About</NavItem></LinkContainer>
+        <LinkContainer key={1} to="/register"><NavItem name="Join now">Join now</NavItem></LinkContainer>,
+        <LinkContainer key={2} to="/login"><NavItem name="Log in">Log in</NavItem></LinkContainer>
+      </Nav>
+    )
+  };
+
   render() {
+    const { name, type, loggedIn } = this.props;
+    let loginDisplay = null;
+   if (loggedIn) {
+     switch (type) {
+       case 'carRenter':
+         loginDisplay = this.renderRenterBar();
+         break;
+       case 'carOwner':
+         loginDisplay = this.renderOwnerBar();
+         break;
+       case 'admin':
+         loginDisplay = this.renderAdminBar();
+         break;
+     }
+   }
+   else {
+     loginDisplay = this.renderNotRegisteredUserBar();
+   }
     console.log('This.props in navBar.js', this.props)
     return (
       <Navbar fixedTop inverse collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#brand">React-Bootstrap</a>
+            <LinkContainer className="link-container" to="/"><span>Platform</span></LinkContainer>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
-          <Nav>
-            <NavItem eventKey={1} href="#">
-              Link
-            </NavItem>
-            <NavItem eventKey={2} href="#">
-              Link
-            </NavItem>
-            <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-              <MenuItem eventKey={3.1}>Action</MenuItem>
-              <LinkContainer to="/login"><MenuItem eventKey={3.2}>Another action</MenuItem></LinkContainer>
-              <MenuItem eventKey={3.3}>Something else here</MenuItem>
-              <MenuItem divider />
-              <MenuItem eventKey={3.3}>Separated link</MenuItem>
-            </NavDropdown>
-          </Nav>
           <Nav pullRight>
-            <NavItem eventKey={1} href="#">
-              Link Right
-            </NavItem>
-            <NavItem eventKey={2} href="#">
-              Link Right
-            </NavItem>
+            { loginDisplay }
           </Nav>
+          {/*<Nav>*/}
+            {/*<NavItem eventKey={1} href="#">*/}
+              {/*Link*/}
+            {/*</NavItem>*/}
+          {/*</Nav>*/}
+          {/*<Nav pullRight>*/}
+            {/*<NavItem eventKey={1} href="#">*/}
+              {/*Link Right*/}
+            {/*</NavItem>*/}
+            {/*<NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">*/}
+              {/*<MenuItem eventKey={3.1}>Action</MenuItem>*/}
+              {/*<LinkContainer to="/login"><MenuItem eventKey={3.2}>Another action</MenuItem></LinkContainer>*/}
+              {/*<MenuItem eventKey={3.3}>Something else here</MenuItem>*/}
+              {/*<MenuItem divider />*/}
+              {/*<MenuItem eventKey={3.3}>Separated link</MenuItem>*/}
+            {/*</NavDropdown>*/}
+          {/*</Nav>*/}
         </Navbar.Collapse>
       </Navbar>
     )

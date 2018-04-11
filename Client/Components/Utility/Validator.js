@@ -95,3 +95,9 @@ export function validateRegister(data, page) {
   }
   return _.mergeWith(first, second, customizer);
 }
+
+export function validateLoginForm(data) {
+  const { username, password } = data;
+  if (password.trim().length < 8) return false;
+  return true;
+}

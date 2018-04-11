@@ -1,8 +1,9 @@
 import React, { createContext } from 'react';
-import axiosInstance            from './Utility/Axios';
+import axiosInstance, { createRedirectAxiosInstance }            from './Utility/Axios';
 
 const defaultContextValue = {
   axios: axiosInstance,
+  redirectAxios: createRedirectAxiosInstance,
 };
 console.log('default context is ', defaultContextValue)
 

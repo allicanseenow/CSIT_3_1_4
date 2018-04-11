@@ -1,24 +1,35 @@
 import axios      from 'axios';
 import cookie     from 'cookie';
 import _          from 'lodash';
+import createHistory from "history/createBrowserHistory"
 
-function createAxiosInstance() {
+export default function createAxiosInstance() {
   let config = {
     baseURL: 'http://localhost:8080/',
-    timeout: 3000,
+    // timeout: 5000,
     headers: {
-      accept: 'application/json',
+      accept: 'application/json'
     },
+    withCredentials: true,
   };
-  const cookieList = cookie.parse(document.cookie);
-  if (cookieList) {
-    // request.set('cookie', req.get('cookie'))
-    _.extend(config.headers, { cookie: cookieList })
-  }
-
+  if (localStorage.localToken) config.headers['x-access-token'] = window.localStorage.getItem('localToken');
+  // if (cookieList) {
+  //   // request.set('cookie', req.get('cookie'))
+  //   _.extend(config.headers, { Cookie: cookieList })
+  // }
   return axios.create(config);
 }
 
-console.log('cookie is ', cookie.parse(document.cookie))
+// Use this axios instance for request that requires authentication. If not authenticated, user will be ridrected to "/login"
+export function createRedirectAxiosInstance() {
+  const axiosInstance = createAxiosInstance();
+  axiosInstance.interceptors.response.use((res) => {
+    console.log("interceptor response is ", res);
+  }, (err) => {
+    console.log("interceptor error is ", err);
+    createHistory().push("/login");
+  });
+  return axiosInstance;
+}
 
-export default createAxiosInstance;
+

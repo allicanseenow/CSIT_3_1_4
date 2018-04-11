@@ -11,9 +11,7 @@ import SteppingDot              from '../../RecyclableComponents/SteppingDot';
 
 export default class Signup_Component extends Component {
   static propTypes = {
-    userSignupRequest: PropTypes.func.isRequired,
-    addFlashMessage: PropTypes.func.isRequired,
-    isUserExists: PropTypes.func.isRequired
+
   };
 
   state = {
@@ -59,55 +57,30 @@ export default class Signup_Component extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     if (this.isValid()) {
-      let token
-      if (typeof document !== 'undefined' && document.querySelector('meta[name="csrf-token"]')) token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-
-      const defaultHeaders = {
-        'x-csrf-token': token,
-      }
-      this.setState({ errors: {}, isLoading: true });
-
-    }
-    console.log('submit')
-    const { username, password, firstName, lastName, dob, licenseNumber, cardHolderName, cardNumber, cardExpiryDate } = this.state;
-    axios.post('/api/account', {
-      // headers: {
-      //   "Access-Control-Allow-Origin": "https://1scope.com",
-      //   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-      //   "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
-      // },
-      // proxy: {
-      //   host: '127.0.0.1',
-      //   port: 9001,
-      // },
-      // withCredentials: true
-      data: {
+      const { username, password, firstName, lastName, dob, licenseNumber, cardHolderName, cardNumber, cardExpiryDate } = this.state;
+      this.props.axios().post('http://localhost:9000/api/account', {
         username: username,
         password: password,
         driverLicense: licenseNumber,
         firstname: firstName,
-        "lastname": lastName,
-        "dob": dob,
-        "creditCard": {
-          "cardholder": cardHolderName,
-          "cardNumber": cardNumber,
-          "expiryDate": cardExpiryDate}
-      },
-    }, {
-      transformRequest: [function (data, headers) {
-        console.log('stringfyify ----', JSON.stringify(data.data));
-        console.log('stringfyify ----', data);
-        return JSON.stringify(data.data);
-      }],
-    }).then((res) => {
-      console.log('axios reposnse', res);
-    })
-      .catch(err => {
-        console.log('err is ', err);
+        lastname: lastName,
+        dob: dob,
+        creditCard: {
+          cardholder: cardHolderName,
+          cardNumber,
+          expiryDate: cardExpiryDate
+        },
+      }).then((res) => {
+        window.localStorage.localToken = res.data.token;
+        window.location = "/";
+      }).catch(err => {
+          console.log('err is ', err);
       })
       .finally(() => {
         this.setState({ isLoading: false });
-      })
+      });
+      this.setState({ errors: {}, isLoading: true });
+    }
   };
 
   onClickNextStep = () => {
@@ -124,23 +97,11 @@ export default class Signup_Component extends Component {
   };
 
   isValid = (page) => {
-    console.log('page is ', page)
     const { errors, isValid } = validateRegister(this.state, page);
     if (!isValid) {
       this.setState({ errors });
     }
-    console.log('isvalid id ', isValid)
     return isValid;
-  };
-
-  checkUserExists = (event) => {
-    const field = event.target.name;
-    const val = event.target.value;
-    // if (val !== '') {
-    //   this.props.isUserExists(val).then(res => {
-    //
-    //   })
-    // }
   };
 
   /**
@@ -156,7 +117,6 @@ export default class Signup_Component extends Component {
     return (
       <FormGroup>
         { _.map(clickedList, (clicked, index) => {
-          console.log('render stepping dot ', index);
           return <SteppingDot key={`steppingDot-${index}`} borderRadius="35%" step={index} clicked={clicked} onClick={this.clickTickBox} />
         }) }
       </FormGroup>
@@ -201,7 +161,6 @@ export default class Signup_Component extends Component {
 
       </div>
     ][step];
-    console.log('step button', step)
     const formButton = [
       (<div>
         <Button key="nextButton" bsStyle="primary" onClick={this.onClickNextStep} disabled={this.state.isLoading || this.state.invalid}>Next</Button>
@@ -210,7 +169,6 @@ export default class Signup_Component extends Component {
         <Button key="submitButton" bsStyle="primary" type="submit" disabled={this.state.isLoading || this.state.invalid}>Sign up</Button>
       </div>)
     ][step];
-    console.log('after step')
 
     return (
       <FormGroup key="formGroupBody">
@@ -233,7 +191,6 @@ export default class Signup_Component extends Component {
 
   render(){
     const { errors, step } = this.state;
-    console.log('props here is ----Sign', this.props)
     return (
       <div className="card card-container">
         <form onSubmit={this.onSubmit}>
