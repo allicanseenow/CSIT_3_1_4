@@ -1,4 +1,15 @@
 .main-body {
-  margin-top: 10vh;
   height: auto;
+  min-height: 60vh;
+  margin: 0 auto;
+  margin-top: 10vh;
+  //padding: 0 0 70px;
+  &:after {
+    content: "";
+    display: block;
+  }
+
+  .inner-margin {
+    margin-bottom: 50px;
+  }
 }

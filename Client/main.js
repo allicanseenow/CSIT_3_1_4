@@ -1,6 +1,7 @@
 import React, { Component, createContext }      from 'react';
 import Header                                   from './Components/Header';
 import Home                                     from './Components/Home';
+import Footer                                   from './Components/Footer/Footer';
 
 const MainContext = createContext();
 export const { Consumer } = MainContext;
@@ -41,6 +42,7 @@ export default class Main extends Component {
       }}>
         <Header {...this.props}/>
         <Home {...this.props}/>
+        <Footer {...this.props}/>
       </MainContext.Provider>
     )
   }

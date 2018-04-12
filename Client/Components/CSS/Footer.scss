@@ -1,0 +1,48 @@
+@import "variables.scss";
+footer.footer {
+  z-index: 10;
+  position: relative;
+  color: $gray-lighter;
+  height: auto;
+  //h4 {
+  //  color: $brand-info;
+  //  font-size: 16px;
+  //}
+
+  a {
+    color: #eee;
+
+    &:hover {
+      color: #3EB8B4;
+    }
+  }
+
+  .footer-top {
+    padding: 30px 20px 30px;
+    background-color: $gray-dark;
+    line-height: 2;
+
+    p, ul {
+      margin-bottom: 35px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+
+      > li {
+        line-height: 2.5;
+      }
+    }
+  }
+
+  .footer-bottom {
+    font-size: 12px;
+    padding: 12px 20px;
+    background-color: #292929;
+
+    a {
+      margin-left: 30px;
+    }
+  }
+}
