@@ -85,9 +85,9 @@ class CustomNavBar extends Component {
    else {
      loginDisplay = this.renderNotRegisteredUserBar();
    }
-    console.log('This.props in navBar.js', this.props)
+    console.log('This.props in  navBar.js', this.props)
     return (
-      <Navbar fixedTop inverse collapseOnSelect>
+      <Navbar className="navbar-custom" inverse collapseOnSelect fluid>
         <Navbar.Header>
           <Navbar.Brand>
             <LinkContainer className="link-container" to="/"><span>Platform</span></LinkContainer>

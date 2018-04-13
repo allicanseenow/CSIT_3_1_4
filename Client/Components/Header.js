@@ -1,5 +1,6 @@
 import React, { Component }           from 'react';
-import NavBar                         from './Header/NavBar';
+import { Route }                      from 'react-router-dom';
+import BarCollection                         from './Header/BarCollection';
 import { Consumer }                   from '../context';
 import { Consumer as MainConsumer }   from '../main';
 import './CSS/Header.scss';
@@ -12,7 +13,7 @@ export default class Header extends Component {
         <MainConsumer>
           {mainContext => (
             <Consumer>
-              {context => { return <NavBar axios={context.axios} {...mainContext} {...this.props}/> }}
+              {context => { return <BarCollection axios={context.axios} {...mainContext} {...this.props}/> }}
             </Consumer>
           )}
         </MainConsumer>
