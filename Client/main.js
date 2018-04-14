@@ -4,7 +4,7 @@ import Home                                     from './Components/Home';
 import Footer                                   from './Components/Footer/Footer';
 
 const MainContext = createContext();
-export const { Consumer } = MainContext;
+export const { Provider, Consumer } = MainContext;
 
 export default class Main extends Component {
   state = {

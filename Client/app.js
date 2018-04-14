@@ -1,10 +1,13 @@
+import React, { Component, createContext }    from 'react';
+import createHistory                          from "history/createBrowserHistory"
+import { render }                             from 'react-dom';
+import { Router, Switch, Route, Link }        from "react-router-dom";
+import { Provider }                           from 'react-redux';
+import configureStore                         from './Store/configureStore';
+
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
-import React, { Component, createContext } from 'react';
-import createHistory from "history/createBrowserHistory"
-import { render }             from 'react-dom';
-import { Router, Switch, Route, Link } from "react-router-dom";
 
 import Main from './main';
 import { Consumer } from './context';
@@ -19,6 +22,8 @@ import './Components/CSS/variables.scss';
 // import './CSS/bootstrap-responsive.scss';
 // import './CSS/style.scss';
 // import './CSS/default.scss';
+
+const store = configureStore();
 
 class App extends Component {
   render() {
@@ -37,6 +42,8 @@ class App extends Component {
 }
 
 render(
-  <App/>,
+  <Provider store={store}>
+    <App/>
+  </Provider>,
   document.getElementById('main')
 );

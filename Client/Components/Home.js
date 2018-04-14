@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import Login_Container from "./Body/Account/Login_Container";
-import SignUp from "./Body/Account/SignUp_Container";
+import Login_Container                                  from "./Body/Account/Login_Container";
+import SignUp                                           from "./Body/Account/SignUp_Container";
+import HomePage                                         from "./Body/HomePage/HomePage";
 
 import './CSS/Home.scss';
 import './CSS/Login.scss';
@@ -15,6 +16,7 @@ export default class Home extends Component {
       <div className="main-body">
         <div className="container-fluid inner-margin">
           <Switch>
+            <Route exact path="/" component={HomePage} />
             <Route path="/login" component={Login_Container} />
             <Route path="/register" component={SignUp} />
           </Switch>

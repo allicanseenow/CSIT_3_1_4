@@ -1,8 +1,12 @@
-import React, { Component }                                       from 'react';
+import React, { Component }                from 'react';
+import { connect }                         from 'react-redux';
+import { fetch }                           from '../../Actions/MainPage';
 
-export default class SearchBar extends Component {
+class SearchBar extends Component {
 
   render() {
+    console.log("this props inside SearchBar", this.props);
+    this.props.fetch();
     return (
       <div className="second-bar">
 
@@ -10,3 +14,13 @@ export default class SearchBar extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return { state: state };
+};
+
+const mapDispatchToProps = {
+  fetch,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
