@@ -60,7 +60,7 @@ class CustomNavBar extends Component {
     return (
       <Nav key="NonRegistered">
         <LinkContainer key={0} to="/about"><NavItem name="About">About</NavItem></LinkContainer>
-        <LinkContainer key={1} to="/register"><NavItem name="Join now">Join now</NavItem></LinkContainer>,
+        <LinkContainer key={1} to="/register"><NavItem name="Join now">Join now</NavItem></LinkContainer>
         <LinkContainer key={2} to="/login"><NavItem name="Log in">Log in</NavItem></LinkContainer>
       </Nav>
     )
@@ -69,22 +69,22 @@ class CustomNavBar extends Component {
   render() {
     const { name, type, loggedIn } = this.props;
     let loginDisplay = null;
-   if (loggedIn) {
-     switch (type) {
-       case 'carRenter':
-         loginDisplay = this.renderRenterBar();
-         break;
-       case 'carOwner':
-         loginDisplay = this.renderOwnerBar();
-         break;
-       case 'admin':
-         loginDisplay = this.renderAdminBar();
-         break;
-     }
-   }
-   else {
-     loginDisplay = this.renderNotRegisteredUserBar();
-   }
+    if (loggedIn) {
+      switch (type) {
+        case 'carRenter':
+          loginDisplay = this.renderRenterBar();
+          break;
+          case 'carOwner':
+            loginDisplay = this.renderOwnerBar();
+            break;
+          case 'admin':
+            loginDisplay = this.renderAdminBar();
+            break;
+      }
+    }
+    else {
+      loginDisplay = this.renderNotRegisteredUserBar();
+    }
     console.log('This.props in  navBar.js', this.props)
     return (
       <Navbar className="navbar-custom" inverse collapseOnSelect fluid>
@@ -92,6 +92,14 @@ class CustomNavBar extends Component {
           <Navbar.Brand>
             <LinkContainer className="link-container" to="/"><span>Platform</span></LinkContainer>
           </Navbar.Brand>
+          <Nav className="searchBox-nextTo-header">
+            <NavItem>
+              <form className="search-box">
+                <input type="text" className="textbox" placeholder="Search"/>
+                <button title="Search" type="submit" className="button"><i className="fas fa-search "/></button>
+              </form>
+            </NavItem>
+          </Nav>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
