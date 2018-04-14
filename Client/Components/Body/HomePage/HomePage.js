@@ -8,11 +8,12 @@ class HomePage extends Component {
 
   };
 
-
   render() {
     console.log("this. props is ", this.props);
     return (
-      <div></div>
+      <div>
+
+      </div>
     )
   }
 }

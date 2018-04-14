@@ -18,8 +18,6 @@ export function setFetch(data, err) {
   }
 }
 
-
-
 export function fetch() {
   return (dispatch) => {
     return axios().get('http://localhost:9000/api/account')
