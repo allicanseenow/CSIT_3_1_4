@@ -15,8 +15,8 @@ export default class CreateListingContainer extends Component {
     rego: '',
     unavailableDate: '',
     uploadPic: '',
-    startDate: null,
-    endDate: null,
+    startAvailableDate: null,
+    endAvailableDate: null,
 
     errors: {},
   };
@@ -36,12 +36,18 @@ export default class CreateListingContainer extends Component {
     }
   };
 
-  onCalendarChange = (calendarName, value) => {
-    this.setState({ [calendarName]: value })
+  onCalendarChange = (isStart, value) => {
+    if (isStart) {
+      this.setState({ startAvailableDate: value })
+    }
+    else {
+      this.setState({ endAvailableDate: value })
+    }
   };
 
   render() {
     const carListingDetail = this.state;
+    console.log("Calendar is ", this.state.startAvailableDate&&this.state.startAvailableDate.format('DD-MM-YYYY'))
     return (
       <CreateListingComponent
         carListingDetail={carListingDetail}

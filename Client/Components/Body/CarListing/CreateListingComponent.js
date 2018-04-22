@@ -1,7 +1,7 @@
 import React, { Component }                 from 'react';
 import PropTypes                            from 'prop-types';
 import TextFieldGroup                       from '../../Utility/TextFieldGroup';
-import Calendar                             from '../../RecyclableComponents/Calendar';
+import RangeCalendar                        from './RangeCalendar';
 
 export default class CreateListingComponent extends Component {
   static propTypes = {
@@ -31,10 +31,10 @@ export default class CreateListingComponent extends Component {
               { this.renderTextFieldGroup('odometer', carListingDetail.odometer, 'Odometer', onChange, onBlur, errors.odometer) }
               { this.renderTextFieldGroup('year', carListingDetail.year, 'Year', onChange, onBlur, errors.year, 'YYYY') }
               { this.renderTextFieldGroup('rego', carListingDetail.rego, 'Rego', onChange, onBlur, errors.rego) }
-              <Calendar
-                calendarName="startDate"
+              <RangeCalendar
                 onChange={onCalendarChange}
-                value={carListingDetail.startDate}
+                startValue={carListingDetail.startAvailableDate}
+                endValue={carListingDetail.endAvailableDate}
                 showDateInput
               />
             </form>
