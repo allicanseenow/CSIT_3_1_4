@@ -15,6 +15,8 @@ export default class CreateListingContainer extends Component {
     rego: '',
     unavailableDate: '',
     uploadPic: '',
+    startDate: null,
+    endDate: null,
 
     errors: {},
   };
@@ -34,6 +36,10 @@ export default class CreateListingContainer extends Component {
     }
   };
 
+  onCalendarChange = (calendarName, value) => {
+    this.setState({ [calendarName]: value })
+  };
+
   render() {
     const carListingDetail = this.state;
     return (
@@ -42,6 +48,7 @@ export default class CreateListingContainer extends Component {
         onChange={this.onChange}
         onBlur={this.onBlur}
         errors={this.state.errors}
+        onCalendarChange={this.onCalendarChange}
       />
     )
   }
