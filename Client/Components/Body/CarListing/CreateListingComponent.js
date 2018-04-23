@@ -1,5 +1,6 @@
 import React, { Component }                 from 'react';
 import PropTypes                            from 'prop-types';
+import { Grid, Row, Col }                         from 'react-bootstrap';
 import TextFieldGroup                       from '../../Utility/TextFieldGroup';
 import RangeCalendar                        from './RangeCalendar';
 
@@ -20,7 +21,26 @@ export default class CreateListingComponent extends Component {
     return (
       <div className="form-container">
         <div className="form_details_header">
+          <div className="">
+            <Grid fluid className="form-header">
+              <Row>
+                <Col lg={7} md={8} className="form-title">
+                  <div className="form-row">
+                    <span className="form-number">1</span>
+                    <h2 className="text-large inner-form-title">Enter detail</h2>
+                  </div>
+                </Col>
+                <Col lg={3} md={2}>
 
+                </Col>
+              </Row>
+              <Row>
+                <Col md={10}>
+                  <hr className="inner-form-hr"/>
+                </Col>
+              </Row>
+            </Grid>
+          </div>
         </div>
         <div className="form_details_contents">
           <div>

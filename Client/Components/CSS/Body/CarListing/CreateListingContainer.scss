@@ -69,6 +69,49 @@
   margin-left: 8.3333333333%;
   margin-right: auto;
 
+  .form_details_header {
+    margin-top: 20px;
+    .form-header {
+      padding-left: 0;
+
+      .form-title {
+        display: table;
+        width: 100%;
+        box-sizing: border-box;
+
+        .form-row {
+          display: table-row;
+
+          .form-number {
+            display: table-cell;
+            padding-left: 0;
+            vertical-align: middle;
+            background-color: #0093D7;
+            color: #fff;
+
+            width: 50px;
+            font-size: 35px;
+            line-height: 45px;
+            padding-bottom: 5px;
+
+            text-align: center;
+          }
+
+          .inner-form-title {
+            display: table-cell;
+            vertical-align: middle;
+            padding-left: 10px;
+            color: #666a73;
+          }
+        }
+      }
+      .inner-form-hr {
+        bottom: 1px;
+        position: relative;
+      }
+    }
+  }
+
   .form_details_contents {
     margin-top: 10px;
     width: 66.6666666667%;
