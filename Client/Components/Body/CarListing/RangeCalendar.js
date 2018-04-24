@@ -40,6 +40,7 @@ class Picker extends React.Component {
       disabledDate={disabledDate}
       showDateInput={showDateInput}
     />);
+    console.log("formatted value in calendar is ", value && value.format('DD-MM-YYYY'))
     return (<DatePicker
       animation="slide-up"
       disabled={disabled}
@@ -51,14 +52,14 @@ class Picker extends React.Component {
         ({ value }) => {
           return (
             <span>
-                <input
-                  placeholder={FORMAT}
-                  style={{ width: 250 }}
-                  disabled={disabled}
-                  readOnly
-                  value={(value && value.format(getFormat(showTime))) || ''}
-                />
-                </span>
+              <input
+                placeholder='DD-MM-YYYY'
+                style={{ width: 250 }}
+                disabled={disabled}
+                value={(value && value.format(getFormat(showTime))) || ''}
+                className="textField-form form-control"
+              />
+            </span>
           );
         }
       }
@@ -108,30 +109,32 @@ export default class RangeCalendar extends React.Component {
 
   render() {
     const { startValue, endValue, showTime, showDateInput, disabled } = this.props;
-    return (<div style={{ width: 240, margin: 20 }}>
-      <p>
-        Start：
-        <Picker
-          showTime={showTime}
-          disabledDate={this.disabledStartDate}
-          value={startValue}
-          onChange={this.onChange.bind(this, 1)}
-          showDateInput={showDateInput}
-          disabled={disabled}
-        />
-      </p>
+    return (
+      <div className="form-group">
+        <div>
+          <label className="control-label textField-label">Start</label>
+          <Picker
+            showTime={showTime}
+            disabledDate={this.disabledStartDate}
+            value={startValue}
+            onChange={this.onChange.bind(this, 1)}
+            showDateInput={showDateInput}
+            disabled={disabled}
+          />
+        </div>
 
-      <p>
-        End：
-        <Picker
-          showTime={showTime}
-          disabledDate={this.disabledEndDate}
-          value={endValue}
-          onChange={this.onChange.bind(this, 0)}
-          showDateInput={showDateInput}
-          disabled={disabled}
-        />
-      </p>
-    </div>);
+        <div>
+          <label>End</label>
+          <Picker
+            showTime={showTime}
+            disabledDate={this.disabledEndDate}
+            value={endValue}
+            onChange={this.onChange.bind(this, 0)}
+            showDateInput={showDateInput}
+            disabled={disabled}
+          />
+        </div>
+      </div>
+    );
   }
 }

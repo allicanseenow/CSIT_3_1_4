@@ -66,7 +66,7 @@
 
 .form-container {
   max-width: 1080px;
-  margin-left: 8.3333333333%;
+  margin-left: auto;
   margin-right: auto;
 
   .form_details_header {
@@ -84,7 +84,6 @@
 
           .form-number {
             display: table-cell;
-            padding-left: 0;
             vertical-align: middle;
             background-color: #0093D7;
             color: #fff;
@@ -92,8 +91,7 @@
             width: 50px;
             font-size: 35px;
             line-height: 45px;
-            padding-bottom: 5px;
-
+            padding: 5px 0;
             text-align: center;
           }
 
@@ -112,11 +110,12 @@
     }
   }
 
-  .form_details_contents {
-    margin-top: 10px;
-    width: 66.6666666667%;
+  .form-inner-col-field {
+    padding-left: 0;
+    .form_details_contents {
+      margin-top: 10px;
+      margin-bottom: 35px;
+    }
   }
 }
-
-
 
