@@ -23,14 +23,15 @@ export default class Login_Component extends Component {
     event.preventDefault();
     const { username, password, rememberMe } = this.state;
     const { history, setLoginStatus } = this.props;
-    console.log('this props while submitting ', this.props);
     const { axios } = this.props;
     if (validateLoginForm(this.state)) {
       axios().post('http://localhost:9000/api/auth', { username, password })
       .then((res) => {
-        console.log('response in Login is ', res);
         window.localStorage.localToken = res.data.token;
-        window.location = "/";
+        if (this.props.location.state && this.props.location.state.from.pathname) {
+          return window.location = this.props.location.state.from.pathname;
+        }
+        return window.location = "/";
       })
       .catch((err) => {
         console.log('Error while logging in', err);
@@ -63,7 +64,8 @@ export default class Login_Component extends Component {
   };
 
   render() {
-    console.log('this props is ', this.props)
+    console.log('this props LOGIN is ', this.props.location.state && this.props.location.state.from.pathname)
+    console.log('this state LOGIN is ', this.state)
     return (
       <div className="container">
         <div className="card card-container">

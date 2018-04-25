@@ -1,8 +1,10 @@
 import React, { Component }                 from 'react';
 import PropTypes                            from 'prop-types';
-import { Grid, Row, Col }                         from 'react-bootstrap';
+import { Grid, Row, Col }                   from 'react-bootstrap';
+import { Button }                           from 'antd';
 import TextFieldGroup                       from '../../Utility/TextFieldGroup';
-import RangeCalendar                        from './RangeCalendar';
+// import RangeCalendar                        from './RangeCalendar';
+import UploadImageComponent                 from './UploadImageComponent';
 
 export default class CreateListingComponent extends Component {
   static propTypes = {
@@ -41,15 +43,16 @@ export default class CreateListingComponent extends Component {
         </div>
       </div>
     )
-}
+  };
 
   render() {
-    const { carListingDetail, onChange, onBlur, errors, onCalendarChange } = this.props;
+    const { carListingDetail, onChange, onBlur, onSubmit, errors, onImageChange } = this.props;
+    console.log('this props errors is ', errors)
     return (
       <div className="form-container">
         <Grid fluid>
           <Col smOffset={1} sm={11}>
-            <form>
+            <form onSubmit={onSubmit}>
               { this.renderHeader(1, 'Car listing details') }
               <Col sm={8} xs={12} className="form-inner-col-field">
                 <div className="form_details_contents">
@@ -60,18 +63,30 @@ export default class CreateListingComponent extends Component {
                     { this.renderTextFieldGroup('odometer', carListingDetail.odometer, 'Odometer', onChange, onBlur, errors.odometer) }
                     { this.renderTextFieldGroup('year', carListingDetail.year, 'Year', onChange, onBlur, errors.year, 'YYYY') }
                     { this.renderTextFieldGroup('rego', carListingDetail.rego, 'Rego', onChange, onBlur, errors.rego) }
+                    { this.renderTextFieldGroup('location', carListingDetail.location, 'Location', onChange, onBlur, errors.location) }
+                    { this.renderTextFieldGroup('colour', carListingDetail.colour, 'Colour', onChange, onBlur, errors.colour) }
                   </div>
                 </div>
               </Col>
-              { this.renderHeader(2, 'Available dates') }
-              <Col sm={8} xs={12} className="form-inner-col-field">
+              {/* We skip the available dates for now */}
+              {/*{ this.renderHeader(2, 'Available dates') }*/}
+              {/*<Col sm={8} xs={12} className="form-inner-col-field">*/}
+                {/*<div className="form_details_contents">*/}
+                  {/*<RangeCalendar*/}
+                    {/*onChange={onCalendarChange}*/}
+                    {/*startValue={carListingDetail.startAvailableDate}*/}
+                    {/*endValue={carListingDetail.endAvailableDate}*/}
+                    {/*showDateInput*/}
+                  {/*/>*/}
+                {/*</div>*/}
+              {/*</Col>*/}
+              { this.renderHeader(2, 'Car image') }
+              <div className="form-inner-col-field">
+                <div className="form_image_contents"><UploadImageComponent onChange={onImageChange} maximumImageAllowed={1}/></div>
+              </div>
+              <Col smOffset={3} xsOffset={5} xs={2} className="form-inner-col-field">
                 <div className="form_details_contents">
-                  <RangeCalendar
-                    onChange={onCalendarChange}
-                    startValue={carListingDetail.startAvailableDate}
-                    endValue={carListingDetail.endAvailableDate}
-                    showDateInput
-                  />
+                  <Button htmlType="submit" type="primary">Submit</Button>
                 </div>
               </Col>
             </form>

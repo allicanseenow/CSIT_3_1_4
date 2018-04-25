@@ -101,3 +101,7 @@ export function validateLoginForm(data) {
   if (password.trim().length < 8) return false;
   return true;
 }
+
+export function validateCreateListing(data) {
+
+}

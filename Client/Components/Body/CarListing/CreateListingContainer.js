@@ -13,12 +13,17 @@ export default class CreateListingContainer extends Component {
     odometer: '',
     year: '',
     rego: '',
-    unavailableDate: '',
-    uploadPic: '',
-    startAvailableDate: null,
-    endAvailableDate: null,
+    location: '',
+    colour: '',
+    fileList: [],
+
 
     errors: {},
+  };
+
+  onSubmit = (event) => {
+    event.preventDefault();
+    console.log("All state when submitting is ", this.state);
   };
 
   onChange = (event) => {
@@ -26,35 +31,44 @@ export default class CreateListingContainer extends Component {
   };
 
   onBlur = (event) => {
+    console.log('event name is ', event.target.name)
+    console.log('event target value is ', event.target.value)
     if (_.isEmpty(event.target.value)) {
-      const newErr = _.merge({}, this.state, { errors: {[event.target.name]: 'This field is required' }});
+      const newErr = _.merge({}, this.state.errors, {[event.target.name]: 'This field is required' });
       this.setState({ errors: newErr });
     }
     else {
-      const newErr = _.merge({}, this.state, { errors: {[event.target.name]: '' }});
+      const newErr = _.merge({}, this.state.errors, {[event.target.name]: '' });
+      console.log('new erERR in case 2 ', newErr)
       this.setState({ errors: newErr });
     }
   };
 
-  onCalendarChange = (isStart, value) => {
-    if (isStart) {
-      this.setState({ startAvailableDate: value })
-    }
-    else {
-      this.setState({ endAvailableDate: value })
-    }
+  // onCalendarChange = (isStart, value) => {
+  //   if (isStart) {
+  //     this.setState({ startAvailableDate: value })
+  //   }
+  //   else {
+  //     this.setState({ endAvailableDate: value })
+  //   }
+  // };
+
+  onImageChange = (fileList) => {
+    this.setState({ fileList });
   };
 
   render() {
     const carListingDetail = this.state;
-    console.log("Calendar is ", this.state.startAvailableDate&&this.state.startAvailableDate.format('DD-MM-YYYY'))
+
     return (
       <CreateListingComponent
         carListingDetail={carListingDetail}
         onChange={this.onChange}
         onBlur={this.onBlur}
+        onSubmit={this.onSubmit}
         errors={this.state.errors}
-        onCalendarChange={this.onCalendarChange}
+        onImageChange={this.onImageChange}
+        // onCalendarChange={this.onCalendarChange}
       />
     )
   }
