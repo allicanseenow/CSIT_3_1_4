@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect, Link } from "react-router-dom";
+import { Consumer as AxiosConsumer }                    from '../context';
 
 import Login_Container                                  from "./Body/Account/Login_Container";
 import SignUp                                           from "./Body/Account/SignUp_Container";
@@ -18,13 +19,11 @@ export default class Home extends Component {
   privateRoute = ({ component: Component, auth, ...rest }) => {
     return (
       <Route
-        {...rest}
         render={(innerProps) => {
-          console.log("this props privetateoute ", this.props)
           const { loggedIn } = this.props.auth;
           const authed = loggedIn;
           return authed
-            ? <Component {...innerProps} />
+            ? <Component {...innerProps}  {...rest} />
             : <Redirect to={{pathname: '/login', state: {from: innerProps.location}}} />
         }}
       />
@@ -32,19 +31,24 @@ export default class Home extends Component {
   };
 
   render() {
-    console.log('State in home is ', this.props);
     const PrivateRoute = this.privateRoute;
     return (
       <div className="main-body">
         <div className="container-fluid inner-margin">
-          <Switch>
-            <Route exact path="/" component={HomePage} />
+          <AxiosConsumer>
+            {(context) => {
+              return (
+                <Switch>
+                  <Route exact path="/" component={HomePage} />
 
-            <Route path="/login" component={Login_Container} />
-            <Route path="/register" component={SignUp} />
+                  <Route path="/login" component={Login_Container} />
+                  <Route path="/register" component={SignUp} />
 
-            <PrivateRoute path="/create-car-listing" component={CreateListingContainer} />
-          </Switch>
+                  <PrivateRoute path="/create-car-listing" component={CreateListingContainer} axios={context.axios}/>
+                </Switch>
+              )
+            }}
+          </AxiosConsumer>
         </div>
       </div>
     )

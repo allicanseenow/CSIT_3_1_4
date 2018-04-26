@@ -1,8 +1,9 @@
 import React, { Component }                 from 'react';
+import _                                    from 'lodash';
 import { connect }                          from 'react-redux';
 import PropTypes                            from 'prop-types';
 import CreateListingComponent               from './CreateListingComponent';
-import _ from "lodash";
+import { validateCreateListing }            from '../../Utility/Validator';
 
 export default class CreateListingContainer extends Component {
 
@@ -15,15 +16,43 @@ export default class CreateListingContainer extends Component {
     rego: '',
     location: '',
     colour: '',
+    capacity: '',
     fileList: [],
-
 
     errors: {},
   };
 
   onSubmit = (event) => {
     event.preventDefault();
-    console.log("All state when submitting is ", this.state);
+    const { axios } = this.props;
+    const { brandName, model, transmission, odometer, year, rego, capacity, location, colour, fileList, errors } = this.state;
+    let formData = new FormData();
+    // Need "originFileObj" to get a 'File' object that can be used for submission
+    formData.append('listing_img', fileList[0].originFileObj);
+    formData.append('data', JSON.stringify({
+      brand: brandName,
+      rego,
+      model,
+      location,
+      colour,
+      transmission,
+      capacity,
+      year,
+      odometer,
+    }));
+    const validate = validateCreateListing(this.state);
+    if (validate.isValid) {
+      axios().post('http://localhost:9000/api/list', formData)
+        .then((res) => {
+        })
+        .catch((err) => {
+          console.log("errors while creating a new car list", err);
+
+        })
+    }
+    else {
+      this.setState({ errors: validate.errors });
+    }
   };
 
   onChange = (event) => {
@@ -31,15 +60,13 @@ export default class CreateListingContainer extends Component {
   };
 
   onBlur = (event) => {
-    console.log('event name is ', event.target.name)
-    console.log('event target value is ', event.target.value)
     if (_.isEmpty(event.target.value)) {
+      // Don't merge directly to avoid mutating the state
       const newErr = _.merge({}, this.state.errors, {[event.target.name]: 'This field is required' });
       this.setState({ errors: newErr });
     }
     else {
       const newErr = _.merge({}, this.state.errors, {[event.target.name]: '' });
-      console.log('new erERR in case 2 ', newErr)
       this.setState({ errors: newErr });
     }
   };
@@ -59,7 +86,6 @@ export default class CreateListingContainer extends Component {
 
   render() {
     const carListingDetail = this.state;
-
     return (
       <CreateListingComponent
         carListingDetail={carListingDetail}

@@ -47,7 +47,6 @@ export default class CreateListingComponent extends Component {
 
   render() {
     const { carListingDetail, onChange, onBlur, onSubmit, errors, onImageChange } = this.props;
-    console.log('this props errors is ', errors)
     return (
       <div className="form-container">
         <Grid fluid>
@@ -65,6 +64,7 @@ export default class CreateListingComponent extends Component {
                     { this.renderTextFieldGroup('rego', carListingDetail.rego, 'Rego', onChange, onBlur, errors.rego) }
                     { this.renderTextFieldGroup('location', carListingDetail.location, 'Location', onChange, onBlur, errors.location) }
                     { this.renderTextFieldGroup('colour', carListingDetail.colour, 'Colour', onChange, onBlur, errors.colour) }
+                    { this.renderTextFieldGroup('capacity', carListingDetail.capacity, 'Capacity', onChange, onBlur, errors.capacity) }
                   </div>
                 </div>
               </Col>

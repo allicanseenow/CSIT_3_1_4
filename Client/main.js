@@ -40,7 +40,6 @@ export default class Main extends Component {
   render() {
     const { username, type, loggedIn, loadAuthentication } = this.state;
     if (!loadAuthentication) return <div/>;
-    console.log('mainjs state is ---', this.state)
     return (
       <MainContext.Provider value={{
         username, type, loggedIn,
