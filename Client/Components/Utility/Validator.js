@@ -20,7 +20,7 @@ export function validateFirstPageRegister(data) {
   else if (data.password.length < 8) {
     errors.password = 'Password needs to have at least 8 characters';
   }
-  else if (/\d/.test(data.password)) {
+  else if (!/\d/.test(data.password)) {
     errors.password = 'Password needs to contain at least 1 digit.';
   }
   if (_.isEmpty(data.passwordConfirmation)) {
