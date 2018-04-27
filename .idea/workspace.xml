@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c4ef384d-47bf-4435-9e96-2d5d3124951e" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/Client/Components/CSS/RecyclableComponents/ErrorNotificationBox.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Client/Components/RecyclableComponents/ErrorNotificationBox.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client/Components/Body/CarListing/UploadImageComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Body/CarListing/UploadImageComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Components/Utility/Validator.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Utility/Validator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/context.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/context.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,11 +31,8 @@
       <file leaf-file-name="CreateListingContainer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingContainer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="91" column="20" lean-forward="true" selection-start-line="91" selection-start-column="20" selection-end-line="91" selection-end-column="20" />
-              <folding>
-                <element signature="e#0#57#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="306">
+              <caret line="89" column="20" selection-start-line="89" selection-start-column="20" selection-end-line="89" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -43,8 +40,47 @@
       <file leaf-file-name="CreateListingComponent.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingComponent.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="57" column="23" lean-forward="true" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="23" />
+            <state relative-caret-position="69">
+              <caret line="56" column="45" lean-forward="true" selection-start-line="56" selection-start-column="45" selection-end-line="56" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ErrorNotificationBox.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/Components/RecyclableComponents/ErrorNotificationBox.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="8" column="61" selection-start-line="8" selection-start-column="61" selection-end-line="8" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="23">
+              <caret line="18" column="73" selection-start-line="18" selection-start-column="73" selection-end-line="18" selection-end-column="73" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ErrorNotificationBox.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/Components/CSS/RecyclableComponents/ErrorNotificationBox.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="322">
+              <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="context.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/context.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="115">
+              <caret line="6" column="2" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
+              <folding>
+                <element signature="e#0#45#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -52,8 +88,8 @@
       <file leaf-file-name="UploadImageComponent.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/UploadImageComponent.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-39">
-              <caret line="81" column="49" lean-forward="true" selection-start-line="81" selection-start-column="49" selection-end-line="81" selection-end-column="49" />
+            <state relative-caret-position="23">
+              <caret line="61" column="26" selection-start-line="61" selection-start-column="26" selection-end-line="61" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -61,7 +97,7 @@
       <file leaf-file-name="Login_Component.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client/Components/Body/Account/Login_Component.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="559">
+            <state relative-caret-position="1748">
               <caret line="78" column="1" selection-start-line="78" selection-end-line="78" selection-end-column="1" />
             </state>
           </provider>
@@ -70,29 +106,8 @@
       <file leaf-file-name="Validator.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client/Components/Utility/Validator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
+            <state relative-caret-position="2415">
               <caret line="107" column="17" selection-start-line="107" selection-start-column="17" selection-end-line="107" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SignUp_Component.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/Components/Body/Account/SignUp_Component.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2001">
-              <caret line="93" column="19" selection-start-line="93" selection-start-column="19" selection-end-line="93" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Home.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/Components/Home.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="32" column="12" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -104,15 +119,13 @@
       <list>
         <option value="CSS File" />
         <option value="Sass File" />
-        <option value="SCSS File" />
         <option value="JavaScript File" />
+        <option value="SCSS File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>here</find>
-      <find>key=</find>
       <find>background-i</find>
       <find>date</find>
       <find>email</find>
@@ -140,7 +153,9 @@
       <find>validate</find>
       <find>axios</find>
       <find>error</find>
+      <find>fontaw</find>
       <find>myref</find>
+      <find>&lt;ErrorNotificationBox/&gt;</find>
     </findStrings>
     <replaceStrings>
       <replace>className</replace>
@@ -152,8 +167,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Client/Components/Utility/Bcrypt.js" />
-        <option value="$PROJECT_DIR$/Client/Components/Body/Account/BankDetail.js" />
         <option value="$PROJECT_DIR$/Client/HTTP Request/Axios.js" />
         <option value="$PROJECT_DIR$/Client/Components/CSS/RecyclableComponents/React-boostrap-component.scss" />
         <option value="$PROJECT_DIR$/Client/Components/Body/Account/Login_Container.js" />
@@ -164,7 +177,6 @@
         <option value="$PROJECT_DIR$/Client/Components/CSS/Footer.scss" />
         <option value="$PROJECT_DIR$/Client/Components/CSS/Login.scss" />
         <option value="$PROJECT_DIR$/Client/Components/Header.js" />
-        <option value="$PROJECT_DIR$/Client/context.js" />
         <option value="$PROJECT_DIR$/Client/Components/Body/HomePage/Context.js" />
         <option value="$PROJECT_DIR$/Client/Store/configureStore.js" />
         <option value="$PROJECT_DIR$/Client/Components/Body/HomePage/HomePage.js" />
@@ -179,7 +191,6 @@
         <option value="$PROJECT_DIR$/Client/Reducers/MainPage.js" />
         <option value="$PROJECT_DIR$/Client/Components/Body/Account/SignUp_Container.js" />
         <option value="$PROJECT_DIR$/Client/Components/CSS/CreateListingContainer.scss" />
-        <option value="$PROJECT_DIR$/Client/app.js" />
         <option value="$PROJECT_DIR$/Client/Components/Utility/TextFieldGroup.js" />
         <option value="$PROJECT_DIR$/Client/Components/CSS/RecyclableComponents/TextFieldGroup.scss" />
         <option value="$PROJECT_DIR$/Client/Components/CSS/RecyclableComponents/Calendar.scss" />
@@ -199,9 +210,13 @@
         <option value="$PROJECT_DIR$/Client/Components/Body/Account/Login_Component.js" />
         <option value="$PROJECT_DIR$/Client/Components/Home.js" />
         <option value="$PROJECT_DIR$/Client/main.js" />
-        <option value="$PROJECT_DIR$/Client/Components/Body/CarListing/UploadImageComponent.js" />
         <option value="$PROJECT_DIR$/Client/Components/Utility/Validator.js" />
         <option value="$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingContainer.js" />
+        <option value="$PROJECT_DIR$/Client/context.js" />
+        <option value="$PROJECT_DIR$/Client/Components/Body/CarListing/UploadImageComponent.js" />
+        <option value="$PROJECT_DIR$/Client/app.js" />
+        <option value="$PROJECT_DIR$/Client/Components/RecyclableComponents/ErrorNotificationBox.js" />
+        <option value="$PROJECT_DIR$/Client/Components/CSS/RecyclableComponents/ErrorNotificationBox.scss" />
         <option value="$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingComponent.js" />
       </list>
     </option>
@@ -281,6 +296,14 @@
               <item name="Client" type="462c0819:PsiDirectoryNode" />
               <item name="Components" type="462c0819:PsiDirectoryNode" />
               <item name="CSS" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CSIT_3_1_4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CSIT_3_1_4" type="462c0819:PsiDirectoryNode" />
+              <item name="Client" type="462c0819:PsiDirectoryNode" />
+              <item name="Components" type="462c0819:PsiDirectoryNode" />
+              <item name="CSS" type="462c0819:PsiDirectoryNode" />
+              <item name="RecyclableComponents" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CSIT_3_1_4" type="b2602c69:ProjectViewProjectNode" />
@@ -415,7 +438,9 @@
       <workItem from="1524632608942" duration="21163000" />
       <workItem from="1524685787099" duration="7122000" />
       <workItem from="1524719395320" duration="11766000" />
-      <workItem from="1524747692033" duration="8454000" />
+      <workItem from="1524747692033" duration="14532000" />
+      <workItem from="1524801182383" duration="362000" />
+      <workItem from="1524821385188" duration="1084000" />
     </task>
     <task id="LOCAL-00001" summary="Small fix">
       <created>1523465293006</created>
@@ -431,11 +456,18 @@
       <option name="project" value="LOCAL" />
       <updated>1524689748057</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="- Finished the create-car-listing functionality (logic &amp; interface)&#10;- Added basic validation for create-car-listing&#10;- Haven't included the error display if there is an error returned with the response from the server">
+      <created>1524760582751</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1524760582751</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="423609000" />
+    <option name="totallyTimeSpent" value="431133000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -448,12 +480,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="916" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.20028208" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4992948" weight="0.32896462" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50070524" side_tool="true" weight="0.28440368" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="11" visible="true" weight="0.32896462" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32896462" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -474,11 +507,11 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20028208" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20028208" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4992948" weight="0.32896462" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32110092" />
@@ -486,7 +519,7 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4992948" weight="0.28440368" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50070524" side_tool="true" weight="0.28440368" />
-      <window_info anchor="bottom" id="Version Control" order="11" visible="true" weight="0.32896462" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32896462" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info id="Favorites" order="3" side_tool="true" />
     </layout-to-restore>
@@ -500,7 +533,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Small fix" />
     <MESSAGE value="- Add new interface FRAMEWORK: Antd&#10;- Create upload image component&#10;- Create the create-car-listing&#10;- Add protected routing. If not logged in, the user will be prompted to enter log in details, then will be redirected to the previous page after logging in" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Add new interface FRAMEWORK: Antd&#10;- Create upload image component&#10;- Create the create-car-listing&#10;- Add protected routing. If not logged in, the user will be prompted to enter log in details, then will be redirected to the previous page after logging in" />
+    <MESSAGE value="- Finished the create-car-listing functionality (logic &amp; interface)&#10;- Added basic validation for create-car-listing&#10;- Haven't included the error display if there is an error returned with the response from the server" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Finished the create-car-listing functionality (logic &amp; interface)&#10;- Added basic validation for create-car-listing&#10;- Haven't included the error display if there is an error returned with the response from the server" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -508,44 +542,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingComponent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1196">
-          <caret line="52" column="12" lean-forward="true" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Components/Home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="32" column="12" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Components/Body/Account/SignUp_Container.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="41" selection-start-column="41" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/rc-calendar/lib/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/react.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="2921" column="8" selection-start-line="2921" selection-start-column="8" selection-end-line="2921" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/rc-calendar/lib/Picker.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1170">
@@ -592,9 +588,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
           <caret line="43" column="8" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -672,13 +665,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Components/CSS/RecyclableComponents/Dropzone/dropzone.css" />
-    <entry file="file://$PROJECT_DIR$/webpack.config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" column="33" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.babelrc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
@@ -758,23 +744,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/context.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-566">
-          <caret column="7" lean-forward="true" selection-start-column="7" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Client/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="929">
@@ -786,9 +755,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
           <caret line="32" column="12" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -808,39 +774,95 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Components/Body/Account/Login_Component.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
+        <state relative-caret-position="1748">
           <caret line="78" column="1" selection-start-line="78" selection-end-line="78" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/UploadImageComponent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-39">
-          <caret line="81" column="49" lean-forward="true" selection-start-line="81" selection-start-column="49" selection-end-line="81" selection-end-column="49" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Components/Utility/Validator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
+        <state relative-caret-position="2415">
           <caret line="107" column="17" selection-start-line="107" selection-start-column="17" selection-end-line="107" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/context.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="6" column="2" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Components/RecyclableComponents/SteppingDot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="1" column="50" selection-end-line="1" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="7" column="18" lean-forward="true" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1219">
+          <caret line="1" column="33" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/antd/es/style/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="344" column="1" selection-start-line="344" selection-start-column="1" selection-end-line="344" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingContainer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="91" column="20" lean-forward="true" selection-start-line="91" selection-start-column="20" selection-end-line="91" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#57#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="306">
+          <caret line="89" column="20" selection-start-line="89" selection-start-column="20" selection-end-line="89" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/UploadImageComponent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="61" column="26" selection-start-line="61" selection-start-column="26" selection-end-line="61" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="18" column="73" selection-start-line="18" selection-start-column="73" selection-end-line="18" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Components/CSS/RecyclableComponents/ErrorNotificationBox.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Components/RecyclableComponents/ErrorNotificationBox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="8" column="61" selection-start-line="8" selection-start-column="61" selection-end-line="8" selection-end-column="61" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingComponent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="57" column="23" lean-forward="true" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="23" />
+        <state relative-caret-position="69">
+          <caret line="56" column="45" lean-forward="true" selection-start-line="56" selection-start-column="45" selection-end-line="56" selection-end-column="45" />
         </state>
       </provider>
     </entry>

@@ -5,6 +5,7 @@ import { Button }                           from 'antd';
 import TextFieldGroup                       from '../../Utility/TextFieldGroup';
 // import RangeCalendar                        from './RangeCalendar';
 import UploadImageComponent                 from './UploadImageComponent';
+import ErrorNotificationBox                 from '../../RecyclableComponents/ErrorNotificationBox';
 
 export default class CreateListingComponent extends Component {
   static propTypes = {
@@ -52,6 +53,15 @@ export default class CreateListingComponent extends Component {
         <Grid fluid>
           <Col smOffset={1} sm={11}>
             <form onSubmit={onSubmit}>
+              <div className="form_details_header">
+                <div className="form-header">
+                  <Row>
+                    <Col sm={10} xs={12}>
+                      <ErrorNotificationBox/>
+                    </Col>
+                  </Row>
+                </div>
+              </div>
               { this.renderHeader(1, 'Car listing details') }
               <Col sm={8} xs={12} className="form-inner-col-field">
                 <div className="form_details_contents">

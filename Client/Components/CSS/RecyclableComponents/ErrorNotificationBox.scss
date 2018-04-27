@@ -1,0 +1,71 @@
+.notification--alert::before {
+  color: #332c00;
+}
+.notification--alert::before {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f06a";
+}
+.notification::before {
+  position: absolute;
+  top: 50%;
+  margin-top: -14px;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 800;
+  left: 8px;
+  line-height: 22px;
+  z-index: 1;
+  font-family: "Font Awesome 5 Free";
+  content: "\f06a";
+}
+.notification {
+  word-wrap: break-word;
+}
+.notification, .notification-bar {
+  color: #45494E;
+  line-height: 22px;
+  font-size: 15px;
+}
+
+.notification--alert::after {
+  background: #ffdb00;
+}
+.notification::after {
+  content: '';
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 40px;
+}
+.notification, .notification-bar {
+  color: #45494E;
+  line-height: 22px;
+  font-size: 15px;
+}
+
+.notification {
+  padding: 10px 10px 10px 50px;
+  word-wrap: break-word;
+}
+.notification--alert, .notification-bar--alert {
+  border-color: #ffdb00;
+}
+.notification, .notification-bar {
+  position: relative;
+  background: #fff;
+  color: #45494E;
+  border-width: 1px;
+  border-style: solid;
+  line-height: 22px;
+  font-size: 15px;
+}
+.l-mar-top-3 {
+  margin-top: 15px;
+}

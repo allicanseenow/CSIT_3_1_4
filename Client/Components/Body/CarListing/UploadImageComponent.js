@@ -58,8 +58,6 @@ export default class UploadImageComponent extends React.Component {
 
   render() {
     const { previewImage, previewVisible, fileList  } = this.state;
-    console.log('preview Image is ', previewImage && previewImage.toString(), 'yes')
-    console.log('fileList.length', fileList.length)
     const { maximumImageAllowed } = this.props;
     const uploadButton = (
       <div>

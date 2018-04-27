@@ -5,7 +5,6 @@ const defaultContextValue = {
   axios: axiosInstance,
   redirectAxios: createRedirectAxiosInstance,
 };
-console.log('default context is ', defaultContextValue)
 
 const Context = React.createContext(defaultContextValue);
 const { Provider, Consumer } = Context;
