@@ -109,10 +109,29 @@ export function validateCreateListing(data) {
   _.forEach(data, (value, key) => {
     if (_.isEmpty(value)) errors[key] = 'This field is required';
   });
-  console.log(data.fileList);
-  console.log("errors ', erorr", errors)
   return {
     errors,
     isValid: _.isEmpty(errors),
   };
+}
+
+//inside profile
+export function validateChangePassword(data){
+  let errors = {};
+  if (_.isEmpty(data.oldPassword)) {
+    errors.firstName = 'This field is required';
+  }
+  if (_.isEmpty(data.newPassword)) {
+    errors.lastName = 'This field is required';
+  }
+  if (_.isEmpty(data.passwordConfirmation)) {
+    errors.licenseNumber = 'This field is required';
+  }
+  if (!Validator.equals(data.newPassword, data.passwordConfirmation)) {
+    errors.passwordConfirmation = 'Passwords must match';
+  }
+  return {
+    errors,
+    isValid: _.isEmpty(errors)
+  }
 }
