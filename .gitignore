@@ -34,3 +34,5 @@ node_modules
 
 # Typings directory
 typings
+
+*.DS_Store
