@@ -70,6 +70,27 @@ export function validateSecondPageRegister(data) {
   }
 }
 
+//inside profile
+export function validateChangePassword(data){
+  let errors = {};
+  if (_.isEmpty(data.oldPassword)) {
+    errors.firstName = 'This field is required';
+  }
+  if (_.isEmpty(data.newPassword)) {
+    errors.lastName = 'This field is required';
+  }
+  if (_.isEmpty(data.passwordConfirmation)) {
+    errors.licenseNumber = 'This field is required';
+  }
+  if (!Validator.equals(data.newPassword, data.passwordConfirmation)) {
+    errors.passwordConfirmation = 'Passwords must match';
+  }
+  return {
+    errors,
+    isValid: _.isEmpty(errors)
+  }
+
+}
 export function validateRegister(data, page) {
   if (typeof page === 'number' && page >= 0) {
     switch (page) {

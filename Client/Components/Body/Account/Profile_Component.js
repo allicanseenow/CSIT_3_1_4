@@ -3,6 +3,8 @@ import { Tabs, Tab, Image, label, Button, form , input}           from 'react-bo
 import { LinkContainer }                                          from 'react-router-bootstrap';
 import { Redirect }                                               from 'react-router';
 import _                                                          from 'lodash';
+import { validateChangePassword }                                 from '../../Utility/Validator';
+import TextFieldGroup                                             from '../../Utility/TextFieldGroup';
 
 
 export default class Profile_Component extends Component {
@@ -10,7 +12,7 @@ export default class Profile_Component extends Component {
     oldPassword: '',
     newPassword: '',
     passwordConfirmation: '',
-    errors: '',
+    errors: {}
   };
 
   onChange = (event) => {
@@ -28,6 +30,30 @@ export default class Profile_Component extends Component {
       console.log('Error:',this.state);
     }
   };
+
+  isValid = (page) => {
+    const { errors, isValid } = validateChangePassword(this.state, page);
+    if (!isValid) {
+      this.setState({ errors });
+    }
+    return isValid;
+
+  };
+
+  onSubmitChangePassword= (event) => {
+    if (this.isValid()){
+      console.log("works!!!")
+    }
+  };
+
+  renderTextFieldGroup = (field, value, label, onChange, onBlur, error, placeholder, type) => {
+    return (
+      <TextFieldGroup key={`TextFieldGroup-${field}`} field={field} value={value} label={label} onChange={onChange} onBlur={onBlur} error={error} type={type} placeholder={placeholder}/>
+    )
+  };
+
+
+
   renderOverview = () => {
     return(
 
@@ -48,7 +74,7 @@ export default class Profile_Component extends Component {
       )
   };
   renderChangePassword = () => {
-    const { newPassword, oldPassword, passwordConfirmation } = this.state;
+    const { newPassword, oldPassword, passwordConfirmation, errors } = this.state;
       return(
         <div className="row">
           <div className="col-lg-11 col-lg-offset-1">
@@ -58,14 +84,11 @@ export default class Profile_Component extends Component {
           <div className="col-sm-5 col-sm-offset-1">
             <form >
               <div className ="form-group">
-                  <label >Old Password</label>
-                  <input  value={oldPassword} name="oldPassword" type="password" className="form-control" onChange={this.onChange} onBlur={this.onBlur}  />
-                  <label >New Password</label>
-                  <input  value= {newPassword} name="newPassword" type="password" className="form-control" onChange={this.onChange} onBlur={this.onBlur} />
-                  <label >Confirm Password</label>
-                  <input  value={passwordConfirmation} name="passwordConfirmation" type="password" className="form-control mb-10" onChange={this.onChange} onBlur={this.onBlur} />
+                {this.renderTextFieldGroup("oldPassword", oldPassword, "Old password", this.onChange, this.onBlur, errors.oldPassword, null, "password")}
+                {this.renderTextFieldGroup("newPassword", newPassword, "New password", this.onChange, this.onBlur, errors.newPassword, null, "password")}
+                {this.renderTextFieldGroup("passwordConfirmation", passwordConfirmation, "Confirm password", this.onChange, this.onBlur, errors.passwordConfirmation, null, "password")}
               </div>
-                  <Button key="submitNPButton" type="button" bsSize="large" bsStyle="primary" block className="btn-signin" >Sign in</Button>
+                  <Button key="submitNPButton" type="button" onClick={this.onSubmitChangePassword} bsSize="large" bsStyle="primary" block className="btn-signin" >Sign in</Button>
             </form>
           </div>
         </div>
