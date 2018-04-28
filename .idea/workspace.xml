@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="c4ef384d-47bf-4435-9e96-2d5d3124951e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Components/Utility/Validator.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Utility/Validator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Components/Body/Account/Login_Component.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Body/Account/Login_Component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Components/Body/Account/SignUp_Component.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Body/Account/SignUp_Component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Components/CSS/Login.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/CSS/Login.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Utility/Axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Utility/Axios.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,11 +26,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CreateListingContainer.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CreateListingContainer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingContainer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="111" column="28" lean-forward="true" selection-start-line="111" selection-start-column="28" selection-end-line="111" selection-end-column="28" />
+            <state relative-caret-position="275">
+              <caret line="108" column="18" selection-start-line="108" selection-start-column="18" selection-end-line="108" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Axios.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Client/Utility/Axios.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -37,8 +50,8 @@
       <file leaf-file-name="CreateListingComponent.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingComponent.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="50" column="120" lean-forward="true" selection-start-line="50" selection-start-column="120" selection-end-line="50" selection-end-column="120" />
+            <state relative-caret-position="-1656">
+              <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
                 <element signature="e#398#472#0" expanded="true" />
@@ -47,53 +60,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TextFieldGroup.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/Components/Utility/TextFieldGroup.js">
+      <file leaf-file-name="context.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/context.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="27" column="8" lean-forward="true" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NavBar.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/Components/Header/NavBar.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="47" column="25" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="25" />
+            <state relative-caret-position="115">
+              <caret line="5" column="15" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="15" />
               <folding>
-                <element signature="e#0#79#0" expanded="true" />
+                <element signature="e#0#45#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/app.js">
+      <file leaf-file-name="SignUp_Container.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/Components/Body/Account/SignUp_Container.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
+            <state relative-caret-position="207">
+              <caret line="9" column="50" lean-forward="true" selection-start-line="9" selection-start-column="50" selection-end-line="9" selection-end-column="50" />
               <folding>
-                <element signature="e#633#653#0" expanded="true" />
+                <element signature="e#0#41#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Home.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/Components/Home.js">
+      <file leaf-file-name="SignUp_Component.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/Components/Body/Account/SignUp_Component.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="32" column="15" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="15" />
+            <state relative-caret-position="152">
+              <caret line="203" column="18" lean-forward="true" selection-start-line="203" selection-start-column="18" selection-end-line="203" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#69#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -101,8 +99,8 @@
       <file leaf-file-name="Login_Component.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client/Components/Body/Account/Login_Component.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+            <state relative-caret-position="306">
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
               <folding>
                 <element signature="e#0#79#0" expanded="true" />
               </folding>
@@ -110,11 +108,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Validator.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/Components/Utility/Validator.js">
+      <file leaf-file-name="Login_Container.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/Components/Body/Account/Login_Container.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="106" column="16" selection-start-line="106" selection-start-column="16" selection-end-line="106" selection-end-column="16" />
+            <state>
+              <folding>
+                <element signature="e#0#79#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -133,7 +133,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>date</find>
       <find>email</find>
       <find>dropdown</find>
       <find>&quot;/</find>
@@ -156,13 +155,14 @@
       <find>a</find>
       <find>valid</find>
       <find>validate</find>
-      <find>axios</find>
       <find>error</find>
       <find>fontaw</find>
       <find>myref</find>
       <find>&lt;ErrorNotificationBox/&gt;</find>
       <find>console</find>
       <find>has-error</find>
+      <find>axios</find>
+      <find>reauth-email</find>
     </findStrings>
     <replaceStrings>
       <replace>className</replace>
@@ -177,12 +177,9 @@
         <option value="$PROJECT_DIR$/Client/HTTP Request/Axios.js" />
         <option value="$PROJECT_DIR$/Client/Components/CSS/RecyclableComponents/React-boostrap-component.scss" />
         <option value="$PROJECT_DIR$/Client/Components/Body/Account/Login_Container.js" />
-        <option value="$PROJECT_DIR$/Client/Utility/Axios.js" />
-        <option value="$PROJECT_DIR$/Client/Components/Body/Account/SignUp_Component.js" />
         <option value="$PROJECT_DIR$/Client/Components/CSS/variables.scss" />
         <option value="$PROJECT_DIR$/Client/Components/Footer/Footer.js" />
         <option value="$PROJECT_DIR$/Client/Components/CSS/Footer.scss" />
-        <option value="$PROJECT_DIR$/Client/Components/CSS/Login.scss" />
         <option value="$PROJECT_DIR$/Client/Components/Header.js" />
         <option value="$PROJECT_DIR$/Client/Components/Body/HomePage/Context.js" />
         <option value="$PROJECT_DIR$/Client/Store/configureStore.js" />
@@ -213,7 +210,6 @@
         <option value="$PROJECT_DIR$/Client/Components/Body/CarListing/Form.js" />
         <option value="$PROJECT_DIR$/Client/Components/Body/CarListing/PicturesWall.js" />
         <option value="$PROJECT_DIR$/Client/Components/CSS/Body/CarListing/CreateListingContainer.scss" />
-        <option value="$PROJECT_DIR$/Client/Components/Body/Account/Login_Component.js" />
         <option value="$PROJECT_DIR$/Client/Components/Home.js" />
         <option value="$PROJECT_DIR$/Client/main.js" />
         <option value="$PROJECT_DIR$/Client/context.js" />
@@ -225,6 +221,10 @@
         <option value="$PROJECT_DIR$/Client/Components/Utility/Validator.js" />
         <option value="$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingComponent.js" />
         <option value="$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingContainer.js" />
+        <option value="$PROJECT_DIR$/Client/Components/Body/Account/SignUp_Component.js" />
+        <option value="$PROJECT_DIR$/Client/Components/CSS/Login.scss" />
+        <option value="$PROJECT_DIR$/Client/Components/Body/Account/Login_Component.js" />
+        <option value="$PROJECT_DIR$/Client/Utility/Axios.js" />
       </list>
     </option>
   </component>
@@ -287,7 +287,7 @@
               <item name="Client" type="462c0819:PsiDirectoryNode" />
               <item name="Components" type="462c0819:PsiDirectoryNode" />
               <item name="Body" type="462c0819:PsiDirectoryNode" />
-              <item name="CarListing" type="462c0819:PsiDirectoryNode" />
+              <item name="Account" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CSIT_3_1_4" type="b2602c69:ProjectViewProjectNode" />
@@ -434,7 +434,7 @@
       <workItem from="1524747692033" duration="14532000" />
       <workItem from="1524801182383" duration="362000" />
       <workItem from="1524821385188" duration="8085000" />
-      <workItem from="1524882654247" duration="4158000" />
+      <workItem from="1524882654247" duration="12497000" />
     </task>
     <task id="LOCAL-00001" summary="Small fix">
       <created>1523465293006</created>
@@ -464,11 +464,18 @@
       <option name="project" value="LOCAL" />
       <updated>1524882349924</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="- Add displaying errors for createListingComponent">
+      <created>1524886887972</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1524886887972</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="442292000" />
+    <option name="totallyTimeSpent" value="450631000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -485,13 +492,13 @@
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20028208" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4992948" weight="0.32896462" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50070524" side_tool="true" weight="0.28440368" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50070524" side_tool="true" weight="0.3277635" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32110092" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="11" visible="true" weight="0.32896462" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="11" sideWeight="0.4992948" visible="true" weight="0.3277635" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4992948" weight="0.28440368" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4992948" weight="0.2840617" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
@@ -527,6 +534,32 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
@@ -535,7 +568,8 @@
     <MESSAGE value="- Add new interface FRAMEWORK: Antd&#10;- Create upload image component&#10;- Create the create-car-listing&#10;- Add protected routing. If not logged in, the user will be prompted to enter log in details, then will be redirected to the previous page after logging in" />
     <MESSAGE value="- Finished the create-car-listing functionality (logic &amp; interface)&#10;- Added basic validation for create-car-listing&#10;- Haven't included the error display if there is an error returned with the response from the server" />
     <MESSAGE value="- Change error box component to make it more dynamic" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Change error box component to make it more dynamic" />
+    <MESSAGE value="- Add displaying errors for createListingComponent" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Add displaying errors for createListingComponent" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -543,20 +577,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Client/Components/RecyclableComponents/Calendar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="43" column="8" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Components/CSS/Home.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Client/Components/CSS/Footer.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="966">
@@ -591,13 +611,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
           <caret line="36" column="2" selection-start-line="36" selection-start-column="2" selection-end-line="36" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Components/CSS/Login.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="142" column="25" selection-start-line="142" selection-start-column="25" selection-end-line="142" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -682,20 +695,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Components/RecyclableComponents/dropzone-amd-module.js" />
-    <entry file="file://$PROJECT_DIR$/Client/Utility/Axios.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="23" column="47" lean-forward="true" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Components/Body/Account/SignUp_Component.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2001">
-          <caret line="93" column="19" selection-start-line="93" selection-start-column="19" selection-end-line="93" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
@@ -728,16 +727,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
           <caret line="61" column="26" selection-start-line="61" selection-start-column="26" selection-end-line="61" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/context.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="2" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -826,16 +815,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Components/Body/Account/Login_Component.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#79#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Client/Components/Utility/TextFieldGroup.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="283">
@@ -846,14 +825,60 @@
     <entry file="file://$PROJECT_DIR$/Client/Components/Utility/Validator.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
-          <caret line="106" column="16" selection-start-line="106" selection-start-column="16" selection-end-line="106" selection-end-column="16" />
+          <caret line="100" column="16" selection-start-line="100" selection-start-column="16" selection-end-line="100" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Components/Body/Account/Login_Container.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Components/CSS/Login.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Components/Body/Account/SignUp_Container.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="9" column="50" lean-forward="true" selection-start-line="9" selection-start-column="50" selection-end-line="9" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/context.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Components/Body/Account/Login_Component.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="e#0#79#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingComponent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="50" column="120" lean-forward="true" selection-start-line="50" selection-start-column="120" selection-end-line="50" selection-end-column="120" />
+        <state relative-caret-position="-1656">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
           <folding>
             <element signature="e#0#57#0" expanded="true" />
             <element signature="e#398#472#0" expanded="true" />
@@ -863,8 +888,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingContainer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="111" column="28" lean-forward="true" selection-start-line="111" selection-start-column="28" selection-end-line="111" selection-end-column="28" />
+        <state relative-caret-position="275">
+          <caret line="108" column="18" selection-start-line="108" selection-start-column="18" selection-end-line="108" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Components/Body/Account/SignUp_Component.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="203" column="18" lean-forward="true" selection-start-line="203" selection-start-column="18" selection-end-line="203" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#69#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Utility/Axios.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
