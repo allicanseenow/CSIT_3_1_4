@@ -11,6 +11,7 @@ export default class Main extends Component {
     loggedIn: false,
     username: '',
     type: '',
+    loadAuthentication: false,
   };
 
   setLoginStatus = ({ loggedIn, username, type }, callback) => {
@@ -19,6 +20,7 @@ export default class Main extends Component {
 
   componentWillMount() {
     const { axios } = this.props;
+
     axios().get('http://localhost:9000/api/account')
       .then(({ data }) => {
         this.setState({
@@ -29,19 +31,22 @@ export default class Main extends Component {
       })
       .catch((err) => {
         console.log("Error is ", err);
+      })
+      .finally(() => {
+        this.setState({ loadAuthentication: true })
       });
   };
 
   render() {
-    const { username, type, loggedIn } = this.state;
-    console.log('mainjs state is ---', this.state)
+    const { username, type, loggedIn, loadAuthentication } = this.state;
+    if (!loadAuthentication) return <div/>;
     return (
       <MainContext.Provider value={{
         username, type, loggedIn,
         setLoginStatus: this.setLoginStatus,
       }}>
         <Header {...this.props}/>
-        <Home {...this.props}/>
+        <Home {...this.props} auth={this.state}/>
         <Footer {...this.props}/>
       </MainContext.Provider>
     )

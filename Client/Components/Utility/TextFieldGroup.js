@@ -23,7 +23,7 @@ export default class TextFieldGroup extends PureComponent {
     const { field, value, label, error, placeholder, type, onChange, onBlur } = this.props;
     return (
       <div className={ classnames('form-group', {'has-error': error })}>
-        <label className="control-label">{label}</label>
+        <label className="control-label textField-label">{label}</label>
         <input
           type={type}
           onChange={onChange}
@@ -31,7 +31,7 @@ export default class TextFieldGroup extends PureComponent {
           value={value}
           name={field}
           placeholder={placeholder}
-          className="form-control"
+          className="textField-form form-control"
         />
         { error && <span className="help-block">{error}</span> }
       </div>

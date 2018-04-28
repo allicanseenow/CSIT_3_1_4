@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import SignupForm           from './SignUp_Component';
 import { Consumer }         from '../../../context';
 
-export default class SignupPage extends React.Component {
+export default class SignupPage extends Component {
   render() {
-    const { } = this.props;
+    // const { } = this.props;
     return (
       <div className="row">
         <div className="col-md-6 col-md-offset-3">
@@ -17,6 +17,6 @@ export default class SignupPage extends React.Component {
           </Consumer>
         </div>
       </div>
-  );
+    );
   }
-  }
+}

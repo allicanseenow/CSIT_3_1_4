@@ -1,5 +1,5 @@
 import React, { Component }                                       from 'react';
-import { Link }                                                   from 'react-router-dom';
+import { Link, Switch, Route }                                                   from 'react-router-dom';
 import { NavDropdown, Navbar, Nav, MenuItem, NavItem, Badge }     from 'react-bootstrap'
 import { LinkContainer }                                          from 'react-router-bootstrap';
 import { withRouter }                                             from 'react-router-dom';
@@ -17,12 +17,25 @@ class CustomNavBar extends Component {
     window.location = "/";
   };
 
+  renderSearchBar = () => {
+    return (
+      <Nav key="search-box" className="searchBox-nextTo-header">
+        <NavItem>
+          <form className="search-box">
+            <input type="text" className="textbox" placeholder="Search"/>
+            <button title="Search" type="submit" className="button"><i className="fas fa-search "/></button>
+          </form>
+        </NavItem>
+      </Nav>
+    )
+  };
+
   renderRenterBar = () => {
     return (
       <Nav key="Profile">
         <NavDropdown title={this.props.username} id="basic-nav-dropdown">
-          <LinkContainer  to="/profile"><MenuItem>Profile</MenuItem></LinkContainer>
-          <LinkContainer  to="/upgrade-account"><MenuItem>Upgrade Account</MenuItem></LinkContainer>
+          <LinkContainer to="/profile"><MenuItem>My profile</MenuItem></LinkContainer>
+          <LinkContainer to="/upgrade-account"><MenuItem>Upgrade Account</MenuItem></LinkContainer>
           <MenuItem onSelect={this.logOutAction}>Logout</MenuItem>
         </NavDropdown>
       </Nav>
@@ -34,6 +47,7 @@ class CustomNavBar extends Component {
       <Nav key="Profile">
         <NavDropdown title={this.props.username} id="basic-nav-dropdown">
           <LinkContainer to="/profile"><MenuItem>My profile</MenuItem></LinkContainer>
+          <LinkContainer to="/create-car-listing"><MenuItem>Create new car listing</MenuItem></LinkContainer>
           <LinkContainer to="/car-listings"><MenuItem>My car listing</MenuItem></LinkContainer>
           <MenuItem onSelect={this.logOutAction}>Logout</MenuItem>
         </NavDropdown>
@@ -89,14 +103,11 @@ class CustomNavBar extends Component {
           <Navbar.Brand>
             <LinkContainer className="link-container" to="/"><span>Platform</span></LinkContainer>
           </Navbar.Brand>
-          <Nav className="searchBox-nextTo-header">
-            <NavItem>
-              <form className="search-box">
-                <input type="text" className="textbox" placeholder="Search"/>
-                <button title="Search" type="submit" className="button"><i className="fas fa-search "/></button>
-              </form>
-            </NavItem>
-          </Nav>
+          <Switch>
+            <Route exact path="/">
+              { this.renderSearchBar() }
+            </Route>
+          </Switch>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>

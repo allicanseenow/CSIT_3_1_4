@@ -1,10 +1,11 @@
-import React, { Component }     from 'react';
-import _                        from 'lodash';
+import React, { Component }                             from 'react';
+import _                                                from 'lodash';
 import { Grid, Row, Col, Button, FormGroup }            from 'react-bootstrap';
-import TextFieldGroup           from '../../Utility/TextFieldGroup';
-import { validateRegister }        from '../../Utility/Validator';
+import TextFieldGroup                                   from '../../Utility/TextFieldGroup';
+import ErrorNotificationBox                             from '../../RecyclableComponents/ErrorNotificationBox';
+import { validateRegister }                             from '../../Utility/Validator';
 
-import SteppingDot              from '../../RecyclableComponents/SteppingDot';
+import SteppingDot                                      from '../../RecyclableComponents/SteppingDot';
 
 export default class Signup_Component extends Component {
   state = {
@@ -21,6 +22,7 @@ export default class Signup_Component extends Component {
     cardExpiryDate: '',
 
     errors: {},
+    submitError: null,
     isLoading: false,
     invalid: false,
     step: 0,
@@ -51,28 +53,35 @@ export default class Signup_Component extends Component {
     event.preventDefault();
     if (this.isValid()) {
       const { username, password, firstName, lastName, dob, licenseNumber, cardHolderName, cardNumber, cardExpiryDate } = this.state;
-      this.props.axios().post('http://localhost:9000/api/account', {
-        username: username,
-        password: password,
-        driverLicense: licenseNumber,
-        firstname: firstName,
-        lastname: lastName,
-        dob: dob,
-        creditCard: {
-          cardholder: cardHolderName,
-          cardNumber,
-          expiryDate: cardExpiryDate
-        },
-      }).then((res) => {
-        window.localStorage.localToken = res.data.token;
-        window.location = "/";
-      }).catch(err => {
-          console.log('err is ', err);
-      })
-      .finally(() => {
-        this.setState({ isLoading: false });
+      this.setState({ errors: {}, isLoading: true }, () => {
+        this.props.axios().post('http://localhost:9000/api/account', {
+          username: username,
+          password: password,
+          driverLicense: licenseNumber,
+          firstname: firstName,
+          lastname: lastName,
+          dob: dob,
+          creditCard: {
+            cardholder: cardHolderName,
+            cardNumber,
+            expiryDate: cardExpiryDate
+          },
+        })
+        .then((res) => {
+          this.setState({ submitError: null });
+          window.localStorage.localToken = res.data.token;
+          window.location = "/";
+        })
+        .catch(({ response }) => {
+          const errorMsg = response && response.data && response.data.message;
+          this.setState({ submitError: errorMsg }, () => {
+            window.scrollTo(0, 0);
+          });
+        })
+        .finally(() => {
+          this.setState({ isLoading: false });
+        });
       });
-      this.setState({ errors: {}, isLoading: true });
     }
   };
 
@@ -134,7 +143,7 @@ export default class Signup_Component extends Component {
       (<div>
         { this.renderTextFieldGroup("firstName", firstName, "First Name", this.onChange, this.onBlur, errors.firstName) }
         { this.renderTextFieldGroup("lastName", lastName, "Last Name", this.onChange, this.onBlur, errors.lastName) }
-        { this.renderTextFieldGroup("dob", dob, "Date of Birth", this.onChange, this.onBlur, errors.dob, "DD-MM-YY") }
+        { this.renderTextFieldGroup("dob", dob, "Date of Birth", this.onChange, this.onBlur, errors.dob, "DD-MM-YYYY") }
         { this.renderTextFieldGroup("licenseNumber", licenseNumber, "Driver license Number", this.onChange, this.onBlur, errors.licenseNumber) }
         <Grid className="bankDetail-wrapper" fluid>
           <Row>
@@ -183,10 +192,17 @@ export default class Signup_Component extends Component {
   }
 
   render(){
-    const { errors, step } = this.state;
+    const { step, submitError } = this.state;
     return (
       <div className="card card-container">
         <form onSubmit={this.onSubmit}>
+          { submitError && (
+            <div className="error-form-singup">
+              <ErrorNotificationBox>
+                {submitError}
+              </ErrorNotificationBox>
+            </div>
+          ) }
           <h1>Join the platform</h1>
           { this.renderStep(step) }
         </form>

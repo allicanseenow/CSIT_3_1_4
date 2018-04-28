@@ -15,6 +15,8 @@ const history = createHistory();
 
 import './app.scss';
 import './Components/CSS/RecyclableComponents/React-boostrap-component.scss';
+import './Components/CSS/RecyclableComponents/TextFieldGroup.scss';
+import './Components/CSS/RecyclableComponents/ErrorNotificationBox.scss';
 import './Components/CSS/variables.scss';
 // import './CSS/headerfix.scss';
 // import './CSS/overwrite.scss';

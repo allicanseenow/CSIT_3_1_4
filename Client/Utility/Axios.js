@@ -1,6 +1,4 @@
 import axios      from 'axios';
-import cookie     from 'cookie';
-import _          from 'lodash';
 import createHistory from "history/createBrowserHistory"
 
 export default function createAxiosInstance() {

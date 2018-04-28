@@ -5,8 +5,6 @@ import moment         from 'moment';
 export function validateFirstPageRegister(data) {
   let errors = {};
 
-  console.log("validator is ", Validator);
-  console.log('date is ', data);
   if (_.isEmpty(data.username)) {
     errors.username = 'This field is required';
   }
@@ -19,6 +17,12 @@ export function validateFirstPageRegister(data) {
   if (_.isEmpty(data.password)) {
     errors.password = 'This field is required';
   }
+  else if (data.password.length < 8) {
+    errors.password = 'Password needs to have at least 8 characters';
+  }
+  else if (!/\d/.test(data.password)) {
+    errors.password = 'Password needs to contain at least 1 digit.';
+  }
   if (_.isEmpty(data.passwordConfirmation)) {
     errors.passwordConfirmation = 'This field is required';
   }
@@ -29,7 +33,6 @@ export function validateFirstPageRegister(data) {
   //   errors.timezone = 'This field is required';
   // }
 
-  console.log('erros is ', errors)
   return {
     errors,
     isValid: _.isEmpty(errors)
@@ -85,7 +88,6 @@ export function validateRegister(data, page) {
       }
     }
   }
-  console.log('here---------------------------')
   const first = validateFirstPageRegister(data);
   const second = validateSecondPageRegister(data);
   function customizer(des, src) {
@@ -100,4 +102,17 @@ export function validateLoginForm(data) {
   const { username, password } = data;
   if (password.trim().length < 8) return false;
   return true;
+}
+
+export function validateCreateListing(data) {
+  let errors = {};
+  _.forEach(data, (value, key) => {
+    if (_.isEmpty(value)) errors[key] = 'This field is required';
+  });
+  console.log(data.fileList);
+  console.log("errors ', erorr", errors)
+  return {
+    errors,
+    isValid: _.isEmpty(errors),
+  };
 }

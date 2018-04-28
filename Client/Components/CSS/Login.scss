@@ -12,6 +12,9 @@ body, html {
 .card-container.card {
   max-width: 490px;
   padding: 40px 40px;
+  .error-form-singup {
+    padding-bottom: 20px;
+  }
 }
 
 .btn {
