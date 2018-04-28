@@ -6,7 +6,7 @@ export default class ErrorNotificationBox extends PureComponent {
     return (
       <div className="clearfix">
         <div className="l-mar-top-3 notification notification--alert">
-          There are missing fields that need to be filled in!
+          { this.props.children }
         </div>
       </div>
     )

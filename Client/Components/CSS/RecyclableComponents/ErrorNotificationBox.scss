@@ -34,7 +34,7 @@
 }
 
 .notification--alert::after {
-  background: #ffdb00;
+  background: #d30c1f;
 }
 .notification::after {
   content: '';
@@ -55,7 +55,7 @@
   word-wrap: break-word;
 }
 .notification--alert, .notification-bar--alert {
-  border-color: #ffdb00;
+  border-color: #d30c1f;
 }
 .notification, .notification-bar {
   position: relative;

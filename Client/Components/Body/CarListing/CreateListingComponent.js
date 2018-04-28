@@ -57,7 +57,9 @@ export default class CreateListingComponent extends Component {
                 <div className="form-header">
                   <Row>
                     <Col sm={10} xs={12}>
-                      <ErrorNotificationBox/>
+                      <ErrorNotificationBox>
+                        <span>This form needs to be filled in</span>
+                      </ErrorNotificationBox>
                     </Col>
                   </Row>
                 </div>

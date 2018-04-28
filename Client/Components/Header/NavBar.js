@@ -48,7 +48,7 @@ class CustomNavBar extends Component {
       <Nav key="Profile">
         <NavDropdown title={this.props.username} id="basic-nav-dropdown">
           <LinkContainer to="/profile"><MenuItem>Profile</MenuItem></LinkContainer>
-          <LinkContainer to="/car-listing/new"><MenuItem>Create car listing</MenuItem></LinkContainer>
+          <LinkContainer to="/create-car-listing"><MenuItem>Create car listing</MenuItem></LinkContainer>
           <LinkContainer to="/change-password"><MenuItem>Change password</MenuItem></LinkContainer>
           <LinkContainer to="/change-email"><MenuItem>Change email</MenuItem></LinkContainer>
           <MenuItem onSelect={this.logOutAction}>Logout</MenuItem>
