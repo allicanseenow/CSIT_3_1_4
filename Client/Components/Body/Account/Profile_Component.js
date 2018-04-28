@@ -5,13 +5,15 @@ import { Redirect }                                               from 'react-ro
 import _                                                          from 'lodash';
 import { validateChangePassword }                                 from '../../Utility/Validator';
 import TextFieldGroup                                             from '../../Utility/TextFieldGroup';
-
+import axios                                                      from 'axios'
 
 export default class Profile_Component extends Component {
   state = {
+    username:'',
     oldPassword: '',
     newPassword: '',
     passwordConfirmation: '',
+
     errors: {}
   };
 
@@ -42,7 +44,18 @@ export default class Profile_Component extends Component {
 
   onSubmitChangePassword= (event) => {
     if (this.isValid()){
-      console.log("works!!!")
+      const {username} = this.props;
+      const {oldPassword, newPassword} = this.state;
+      axios.put('http://localhost:9000/api/account', {newPassword})
+      .then((res) => {
+        console.log('change password response',res)
+      }).catch(err => {
+          console.log('err is ', err.response);
+      })
+      .finally(() => {
+        this.setState({ isLoading: false });
+      });
+      this.setState({ errors: {}, isLoading: true });
     }
   };
 
@@ -65,7 +78,19 @@ export default class Profile_Component extends Component {
   };
   renderPaymentDetails = () => {
       return(
+        <div>
         <h1>renderPaymentDetails</h1>
+        <div className="row">
+          <div className="col-lg-11 col-lg-offset-1">
+            <button type="button" className="btn btn-info" data-toggle="collapse" data-target="#demo">Simple collapsible</button>
+            <div id="demo" className="collapse">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </div>
+          </div>
+        </div>
+        </div>
       )
   };
   renderBillingDetails = () => {
@@ -110,6 +135,7 @@ export default class Profile_Component extends Component {
       </Tabs>
     )
   };
+
   renderOwnerProfile = () => {
     return(
       <Tabs defaultActiveKey={1}  id="Pofile">
@@ -133,7 +159,9 @@ export default class Profile_Component extends Component {
 
     console.log('Profile Component',this.props);
 
-    const { name, type, loggedIn } = this.props;
+    const { username, type, loggedIn } = this.props;
+    this.username = username;
+    console.log("username main", this.username);
     let profile = null;
     if (loggedIn) {
       switch (type) {
