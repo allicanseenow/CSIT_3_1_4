@@ -105,10 +105,12 @@ export function validateLoginForm(data) {
 }
 
 export function validateCreateListing(data) {
-  let errors = { }, isValid;
+  let errors = {};
   _.forEach(data, (value, key) => {
     if (_.isEmpty(value)) errors[key] = 'This field is required';
   });
+  console.log(data.fileList);
+  console.log("errors ', erorr", errors)
   return {
     errors,
     isValid: _.isEmpty(errors),

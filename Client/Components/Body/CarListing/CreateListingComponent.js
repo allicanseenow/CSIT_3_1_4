@@ -11,6 +11,7 @@ export default class CreateListingComponent extends Component {
   static propTypes = {
     carListingDetail: PropTypes.object.required,
     onCalendarChange: PropTypes.func.isRequired,
+    submitError: PropTypes.string,
   };
 
   renderTextFieldGroup = (field, value, label, onChange, onBlur, error, placeholder, type) => {
@@ -47,7 +48,7 @@ export default class CreateListingComponent extends Component {
   };
 
   render() {
-    const { carListingDetail, onChange, onBlur, onSubmit, errors, onImageChange } = this.props;
+    const { carListingDetail, onChange, onBlur, onSubmit, errors, submitError, submitting, onImageChange } = this.props;
     return (
       <div className="form-container">
         <Grid fluid>
@@ -57,9 +58,11 @@ export default class CreateListingComponent extends Component {
                 <div className="form-header">
                   <Row>
                     <Col sm={10} xs={12}>
-                      <ErrorNotificationBox>
-                        <span>This form needs to be filled in</span>
-                      </ErrorNotificationBox>
+                      { submitError && (
+                        <ErrorNotificationBox>
+                          <span>{submitError}</span>
+                        </ErrorNotificationBox>
+                      )}
                     </Col>
                   </Row>
                 </div>
@@ -94,11 +97,16 @@ export default class CreateListingComponent extends Component {
               {/*</Col>*/}
               { this.renderHeader(2, 'Car image') }
               <div className="form-inner-col-field">
-                <div className="form_image_contents"><UploadImageComponent onChange={onImageChange} maximumImageAllowed={1}/></div>
+                <div className="form_image_contents">
+                  <div className="has-error">
+                    <UploadImageComponent onChange={onImageChange} maximumImageAllowed={1}/>
+                    { errors && errors.fileList && <span className="help-block">{errors.fileList}</span> }
+                  </div>
+                </div>
               </div>
               <Col smOffset={3} xsOffset={5} xs={2} className="form-inner-col-field">
                 <div className="form_details_contents">
-                  <Button htmlType="submit" type="primary">Submit</Button>
+                  <Button loading={submitting} htmlType="submit" type="primary">Submit</Button>
                 </div>
               </Col>
             </form>
