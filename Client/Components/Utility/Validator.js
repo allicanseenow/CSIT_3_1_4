@@ -66,6 +66,9 @@ export function validateSecondPageRegister(data) {
   if (_.isEmpty(data.cardExpiryDate)) {
     errors.cardExpiryDate = 'This field is required';
   }
+  if (_.isEmpty(data.cardCvv)) {
+    errors.cardCvv = 'This field is required';
+  }
 
   return {
     errors,

@@ -6,15 +6,16 @@ import _                                                          from 'lodash';
 import { validateChangePassword }                                 from '../../Utility/Validator';
 import TextFieldGroup                                             from '../../Utility/TextFieldGroup';
 import axios                                                      from 'axios'
+import ErrorNotificationBox                                       from '../../RecyclableComponents/ErrorNotificationBox';
 
 export default class Profile_Component extends Component {
   state = {
-    username:'',
     oldPassword: '',
     newPassword: '',
     passwordConfirmation: '',
 
-    errors: {}
+    errors: {},
+    submitError: null
   };
 
   onChange = (event) => {
@@ -24,12 +25,10 @@ export default class Profile_Component extends Component {
     if (_.isEmpty(event.target.value)) {
       const newErr = _.merge(this.state.errors, { [event.target.name]: 'This field is required' });
       this.setState({ errors: newErr });
-      console.log('Error:',this.state.errors);
     }
     else {
       const newErr = _.merge(this.state.errors, { [event.target.name]: '' });
       this.setState({ errors: newErr });
-      console.log('Error:',this.state);
     }
   };
 
@@ -44,18 +43,46 @@ export default class Profile_Component extends Component {
 
   onSubmitChangePassword= (event) => {
     if (this.isValid()){
-      const {username} = this.props;
       const {oldPassword, newPassword} = this.state;
-      axios.put('http://localhost:9000/api/account', {newPassword})
+      console.log("submitChangePassword");
+      axios({
+        method: 'put',
+        url: 'http://localhost:9000/api/account',
+        data: {
+          oldPassword: oldPassword,
+          password: newPassword
+        },
+        headers: {'x-access-token': window.localStorage.localToken}
+      })
       .then((res) => {
-        console.log('change password response',res)
-      }).catch(err => {
-          console.log('err is ', err.response);
+        this.setState({ submitError: null });
+      })
+      .catch(({ response }) => {
+        const errorMsg = response && response.data && response.data.message;
+        this.setState({ submitError: errorMsg }, () => {
+          window.scrollTo(0, 0);
+        });
       })
       .finally(() => {
         this.setState({ isLoading: false });
       });
-      this.setState({ errors: {}, isLoading: true });
+    }
+  };
+
+  renderMessageBox=(res)=>{
+    if(status != 200){
+      return(
+      <Alert bsStyle="danger">
+        <i className="fa fa-times-circle"></i>
+        {message}
+      </Alert>
+    )
+    }
+    else{
+    <Alert bsStyle="success">
+       <i class="fa fa-check"></i>
+       Successfully changed your password
+    </Alert>
     }
   };
 
@@ -71,7 +98,7 @@ export default class Profile_Component extends Component {
     return(
 
       <div className="col-xs-4 col-md-3">
-      <h4>get info from api -fname, lname, DOB, Driver license</h4>
+      <h4>get info from api -fname, lname, DOB</h4>
         <Image src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" rounded />
       </div>
     )
@@ -80,16 +107,9 @@ export default class Profile_Component extends Component {
       return(
         <div>
         <h1>renderPaymentDetails</h1>
-        <div className="row">
-          <div className="col-lg-11 col-lg-offset-1">
-            <button type="button" className="btn btn-info" data-toggle="collapse" data-target="#demo">Simple collapsible</button>
-            <div id="demo" className="collapse">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </div>
+          <div className="row">
+
           </div>
-        </div>
         </div>
       )
   };
@@ -99,21 +119,26 @@ export default class Profile_Component extends Component {
       )
   };
   renderChangePassword = () => {
-    const { newPassword, oldPassword, passwordConfirmation, errors } = this.state;
+    const { newPassword, oldPassword, passwordConfirmation, errors, submitError } = this.state;
       return(
         <div className="row">
-          <div className="col-lg-11 col-lg-offset-1">
-            <h4>Change password</h4>
-          </div>
 
           <div className="col-sm-5 col-sm-offset-1">
-            <form >
+            <form onSubmit={this.onSubmitChangePassword} >
+              { submitError && (
+                <div className="error-form-singup">
+                  <ErrorNotificationBox>
+                    {submitError}
+                  </ErrorNotificationBox>
+                </div>
+              ) }
+              <h4>Change password</h4>
               <div className ="form-group">
                 {this.renderTextFieldGroup("oldPassword", oldPassword, "Old password", this.onChange, this.onBlur, errors.oldPassword, null, "password")}
                 {this.renderTextFieldGroup("newPassword", newPassword, "New password", this.onChange, this.onBlur, errors.newPassword, null, "password")}
                 {this.renderTextFieldGroup("passwordConfirmation", passwordConfirmation, "Confirm password", this.onChange, this.onBlur, errors.passwordConfirmation, null, "password")}
               </div>
-                  <Button key="submitNPButton" type="button" onClick={this.onSubmitChangePassword} bsSize="large" bsStyle="primary" block className="btn-signin" >Sign in</Button>
+                  <Button key="submitNPButton" type="submit" bsSize="large" bsStyle="primary" block className="btn-signin" >Change Password</Button>
             </form>
           </div>
         </div>

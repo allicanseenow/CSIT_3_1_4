@@ -20,6 +20,7 @@ export default class Signup_Component extends Component {
     cardHolderName: '',
     cardNumber: '',
     cardExpiryDate: '',
+    cardCvv: '',
 
     errors: {},
     submitError: null,
@@ -52,7 +53,7 @@ export default class Signup_Component extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     if (this.isValid()) {
-      const { username, password, firstName, lastName, dob, licenseNumber, cardHolderName, cardNumber, cardExpiryDate } = this.state;
+      const { username, password, firstName, lastName, dob, licenseNumber, cardHolderName, cardNumber, cardExpiryDate, cardCvv } = this.state;
       this.setState({ errors: {}, isLoading: true }, () => {
         this.props.axios().post('http://localhost:9000/api/account', {
           username: username,
@@ -63,7 +64,7 @@ export default class Signup_Component extends Component {
           dob: dob,
           creditCard: {
             cardholder: cardHolderName,
-            cardNumber,
+            cardNumber, cardCvv,
             expiryDate: cardExpiryDate
           },
         })
@@ -132,7 +133,7 @@ export default class Signup_Component extends Component {
   };
 
   renderStep = (step) => {
-    const { username, errors, email, password, cardHolderName, cardNumber, cardExpiryDate, passwordConfirmation, firstName, lastName, licenseNumber, dob } = this.state;
+    const { username, errors, email, password, cardHolderName, cardNumber, cardExpiryDate, cardCvv, passwordConfirmation, firstName, lastName, licenseNumber, dob } = this.state;
     const formBody = [
       (<div>
         { this.renderTextFieldGroup("username", username, "Username", this.onChange, this.onBlur, errors.username) }
@@ -147,11 +148,16 @@ export default class Signup_Component extends Component {
         { this.renderTextFieldGroup("licenseNumber", licenseNumber, "Driver license Number", this.onChange, this.onBlur, errors.licenseNumber) }
         <Grid className="bankDetail-wrapper" fluid>
           <Row>
-            <Col md={8} sm={12}>
+            <Col sm={12}>
               { this.renderTextFieldGroup("cardNumber", cardNumber, "Card Number", this.onChange, this.onBlur, errors.cardNumber) }
             </Col>
-            <Col md={4} sm={12}>
-              { this.renderTextFieldGroup("cardExpiryDate", cardExpiryDate, "Expiry Date", this.onChange, this.onBlur, errors.cardExpiryDate, "MM-YYYY") }
+          </Row>
+          <Row>
+            <Col md={6} sm={12}>
+              { this.renderTextFieldGroup("cardExpiryDate", cardExpiryDate, "Expiry Date", this.onChange, this.onBlur, errors.cardExpiryDate, "DD-MM-YYYY") }
+            </Col>
+            <Col md={6} sm={12}>
+              { this.renderTextFieldGroup("cardCvv", cardCvv, "CVV", this.onChange, this.onBlur, errors.cardCvv, "CVV") }
             </Col>
           </Row>
           <Row>
