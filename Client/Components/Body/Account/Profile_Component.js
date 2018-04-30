@@ -42,9 +42,11 @@ export default class Profile_Component extends Component {
   };
 
   onSubmitChangePassword= (event) => {
+    event.preventDefault();
     if (this.isValid()){
       const {oldPassword, newPassword} = this.state;
       console.log("submitChangePassword");
+      this.setState({ isLoading: true });
       axios({
         method: 'put',
         url: 'http://localhost:9000/api/account',
@@ -119,7 +121,7 @@ export default class Profile_Component extends Component {
       )
   };
   renderChangePassword = () => {
-    const { newPassword, oldPassword, passwordConfirmation, errors, submitError } = this.state;
+    const { newPassword, oldPassword, passwordConfirmation, errors, submitError,isLoading } = this.state;
       return(
         <div className="row">
 
@@ -138,7 +140,7 @@ export default class Profile_Component extends Component {
                 {this.renderTextFieldGroup("newPassword", newPassword, "New password", this.onChange, this.onBlur, errors.newPassword, null, "password")}
                 {this.renderTextFieldGroup("passwordConfirmation", passwordConfirmation, "Confirm password", this.onChange, this.onBlur, errors.passwordConfirmation, null, "password")}
               </div>
-                  <Button key="submitNPButton" type="submit" bsSize="large" bsStyle="primary" block className="btn-signin" >Change Password</Button>
+                  <Button key="submitNPButton" disabled={isLoading} type="submit" bsSize="large" bsStyle="primary" block className="btn-signin" >Change Password</Button>
             </form>
           </div>
         </div>
