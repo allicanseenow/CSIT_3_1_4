@@ -10,7 +10,6 @@ export default class SteppingDot extends PureComponent {
   };
 
   thisOnClick = () => {
-    console.log('click stepping dot ', this.props.step);
     this.props.onClick(this.props.step);
   };
 
