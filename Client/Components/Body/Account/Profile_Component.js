@@ -7,6 +7,7 @@ import { validateChangePassword }                                 from '../../Ut
 import TextFieldGroup                                             from '../../Utility/TextFieldGroup';
 import axios                                                      from 'axios'
 import ErrorNotificationBox                                       from '../../RecyclableComponents/ErrorNotificationBox';
+import ConfirmationNotificationBox                                from '../../RecyclableComponents/ConfirmationNotificationBox';
 
 export default class Profile_Component extends Component {
   state = {
@@ -15,7 +16,8 @@ export default class Profile_Component extends Component {
     passwordConfirmation: '',
 
     errors: {},
-    submitError: null
+    submitError: null,
+    submitConfirm: null
   };
 
   onChange = (event) => {
@@ -40,8 +42,12 @@ export default class Profile_Component extends Component {
     return isValid;
 
   };
+  onSubmitChangePaymentDetail = (event) => {
 
-  onSubmitChangePassword= (event) => {
+  }
+
+  onSubmitChangePassword = (event) => {
+	event.preventDefault();
     if (this.isValid()){
       const {oldPassword, newPassword} = this.state;
       console.log("submitChangePassword");
@@ -56,9 +62,11 @@ export default class Profile_Component extends Component {
       })
       .then((res) => {
         this.setState({ submitError: null });
+        this.setState({ submitConfirm: "Successfully changed password" });
       })
       .catch(({ response }) => {
         const errorMsg = response && response.data && response.data.message;
+        this.setState({ submitConfirm: null});
         this.setState({ submitError: errorMsg }, () => {
           window.scrollTo(0, 0);
         });
@@ -69,22 +77,6 @@ export default class Profile_Component extends Component {
     }
   };
 
-  renderMessageBox=(res)=>{
-    if(status != 200){
-      return(
-      <Alert bsStyle="danger">
-        <i className="fa fa-times-circle"></i>
-        {message}
-      </Alert>
-    )
-    }
-    else{
-    <Alert bsStyle="success">
-       <i class="fa fa-check"></i>
-       Successfully changed your password
-    </Alert>
-    }
-  };
 
   renderTextFieldGroup = (field, value, label, onChange, onBlur, error, placeholder, type) => {
     return (
@@ -104,11 +96,18 @@ export default class Profile_Component extends Component {
     )
   };
   renderPaymentDetails = () => {
+    const {} = this.state;
       return(
         <div>
         <h1>renderPaymentDetails</h1>
           <div className="row">
+            <div className="col-sm-5 col-sm-offset-1">
+              <form onSubmit={this.onSubmitChangePaymentDetail} >
+                <div className ="form-group">
+                </div>
+              </form>
 
+            </div>
           </div>
         </div>
       )
@@ -119,7 +118,7 @@ export default class Profile_Component extends Component {
       )
   };
   renderChangePassword = () => {
-    const { newPassword, oldPassword, passwordConfirmation, errors, submitError } = this.state;
+    const { newPassword, oldPassword, passwordConfirmation, errors, submitError, submitConfirm } = this.state;
       return(
         <div className="row">
 
@@ -130,6 +129,13 @@ export default class Profile_Component extends Component {
                   <ErrorNotificationBox>
                     {submitError}
                   </ErrorNotificationBox>
+                </div>
+              ) }
+              { submitConfirm && (
+                <div className="confirm-form-singup">
+                  <ConfirmationNotificationBox>
+                    {submitConfirm}
+                  </ConfirmationNotificationBox>
                 </div>
               ) }
               <h4>Change password</h4>
