@@ -36,7 +36,7 @@ export function validateFirstPageRegister(data) {
   return {
     errors,
     isValid: _.isEmpty(errors)
-  }
+  };
 }
 
 export function validateSecondPageRegister(data) {
@@ -73,7 +73,7 @@ export function validateSecondPageRegister(data) {
   return {
     errors,
     isValid: _.isEmpty(errors)
-  }
+  };
 }
 
 export function validateRegister(data, page) {
@@ -136,5 +136,44 @@ export function validateChangePassword(data){
   return {
     errors,
     isValid: _.isEmpty(errors)
+  };
+}
+
+//inside Profile
+export function validateChangePaymentDetail(data){
+  let errors = {};
+  if (_.isEmpty(data.cardHolderName)) {
+    errors.cardHolderName = 'This field is required';
   }
+  if (_.isEmpty(data.cardNumber)) {
+    errors.cardNumber = 'This field is required';
+  }
+  if (_.isEmpty(data.cardExpiryDate)) {
+    errors.cardExpiryDate = 'This field is required';
+  }
+  if (_.isEmpty(data.cardCvv)) {
+    errors.cardCvv = 'This field is required';
+  }
+  return {
+    errors,
+    isValid: _.isEmpty(errors)
+  };
+}
+
+export function validateChangeBillingDetail(data){
+  let errors={};
+  if (_.isEmpty(data.bsb)) {
+    errors.bsb = 'This field is required';
+  }
+  if (_.isEmpty(data.accountNumber)) {
+    errors.accountNumber = 'This field is required';
+  }
+  if (_.isEmpty(data.accountName)) {
+    errors.accountName = 'This field is required';
+  }
+  alert("val error", errors)
+  return {
+    errors,
+    isValid: _.isEmpty(errors)
+  };
 }

@@ -3,10 +3,11 @@ import { Tabs, Tab, Image, label, Button, form , input}           from 'react-bo
 import { LinkContainer }                                          from 'react-router-bootstrap';
 import { Redirect }                                               from 'react-router';
 import _                                                          from 'lodash';
-import { validateChangePassword }                                 from '../../Utility/Validator';
+import { validateChangePassword,validateChangePaymentDetail, validateChangeBillingDetail }    from '../../Utility/Validator';
 import TextFieldGroup                                             from '../../Utility/TextFieldGroup';
 import axios                                                      from 'axios'
 import ErrorNotificationBox                                       from '../../RecyclableComponents/ErrorNotificationBox';
+import ConfirmationNotificationBox                                from '../../RecyclableComponents/ConfirmationNotificationBox';
 
 export default class Profile_Component extends Component {
   state = {
@@ -14,8 +15,22 @@ export default class Profile_Component extends Component {
     newPassword: '',
     passwordConfirmation: '',
 
+    cardHolderName: '',
+    cardNumber: '',
+    cardExpiryDate: '',
+    cardCvv: '',
+
+    accountName: '',
+    bsb: '',
+    accountNumber: '',
+
     errors: {},
-    submitError: null
+    submitPayError: null,
+    submitBillError: null,
+    submitPassError: null,
+    submitPayConfirm: null,
+    submitBillConfirm: null,
+    submitPassConfirm: null,
   };
 
   onChange = (event) => {
@@ -32,21 +47,104 @@ export default class Profile_Component extends Component {
     }
   };
 
-  isValid = (page) => {
-    const { errors, isValid } = validateChangePassword(this.state, page);
+  isValid = (tab) => {
+    const errors = null;
+    const isValid = true;
+    if(tab == 2){
+      const { errors, isValid }  = validateChangePaymentDetail(this.state);
+    }
+    else if(tab == 3){
+      const { errors, isValid } = validateChangeBillingDetail(this.state);
+    }
+    else if(tab == 4){
+      const { errors, isValid } = validateChangePassword(this.state);
+    }
+    else{
+      const {errors, isValid } = validateChangePassword(this.state);
+    }
+
     if (!isValid) {
       this.setState({ errors });
     }
     return isValid;
 
   };
-
-  onSubmitChangePassword= (event) => {
+  onSubmitChangePaymentDetail = (event) => {
     event.preventDefault();
-    if (this.isValid()){
+
+    if (this.isValid(2)){
+      const {cardHolderName, cardNumber, cardExpiryDate, cardCvv} = this.state;
+      console.log("submitChangePassword");
+      axios({
+        method: 'put',
+        url: 'http://localhost:9000/api/account',
+        data: {
+          creditCard:{
+            cardholder: cardHolderName,
+            cardNumber: cardNumber,
+            cardCvv: cardCvv,
+            expiryDate: cardExpiryDate
+          }
+        },
+        headers: {'x-access-token': window.localStorage.localToken}
+      })
+      .then((res) => {
+        console.log("payment res", res);
+        this.setState({ submitPayError: null });
+        this.setState({ submitPayConfirm: "Successfully changed payment detail" });
+      })
+      .catch(({ response }) => {
+        console.log("payment error", response);
+        const errorMsg = response && response.data && response.data.message;
+        this.setState({ submitPayConfirm: null});
+        this.setState({ submitPayError: errorMsg }, () => {
+          window.scrollTo(0, 0);
+        });
+      })
+      .finally(() => {
+        this.setState({ isLoading: false });
+      });
+    }
+
+  };
+
+  onSubmitChangeBillingDetail = (event) => {
+	event.preventDefault();
+    if (this.isValid(3)){
+      const {accountNumber, bsb} = this.state;
+      axios({
+        method: 'put',
+        url: 'http://localhost:9000/api/account',
+        data: {
+          bsb: bsb,
+          accountNumber: accountNumber,
+        },
+        headers: {'x-access-token': window.localStorage.localToken}
+      })
+      .then((res) => {
+        this.setState({ submitBillError: null });
+        this.setState({ submitBillConfirm: "Successfully changed billing details" });
+        console.log("billing res", res);
+      })
+      .catch(({ response }) => {
+        console.log("error response", response);
+        const errorMsg = response && response.data && response.data.message;
+        this.setState({ submitBillConfirm: null});
+        this.setState({ submitBillError: errorMsg }, () => {
+          window.scrollTo(0, 0);
+        });
+      })
+      .finally(() => {
+        this.setState({ isLoading: false });
+      });
+    }
+  };
+
+  onSubmitChangePassword = (event) => {
+	event.preventDefault();
+    if (this.isValid(4)){
       const {oldPassword, newPassword} = this.state;
       console.log("submitChangePassword");
-      this.setState({ isLoading: true });
       axios({
         method: 'put',
         url: 'http://localhost:9000/api/account',
@@ -57,11 +155,13 @@ export default class Profile_Component extends Component {
         headers: {'x-access-token': window.localStorage.localToken}
       })
       .then((res) => {
-        this.setState({ submitError: null });
+        this.setState({ submitPassError: null });
+        this.setState({ submitPassConfirm: "Successfully changed password" });
       })
       .catch(({ response }) => {
         const errorMsg = response && response.data && response.data.message;
-        this.setState({ submitError: errorMsg }, () => {
+        this.setState({ submitPassConfirm: null});
+        this.setState({ submitPassError: errorMsg }, () => {
           window.scrollTo(0, 0);
         });
       })
@@ -71,29 +171,12 @@ export default class Profile_Component extends Component {
     }
   };
 
-  renderMessageBox=(res)=>{
-    if(status != 200){
-      return(
-      <Alert bsStyle="danger">
-        <i className="fa fa-times-circle"></i>
-        {message}
-      </Alert>
-    )
-    }
-    else{
-    <Alert bsStyle="success">
-       <i class="fa fa-check"></i>
-       Successfully changed your password
-    </Alert>
-    }
-  };
 
   renderTextFieldGroup = (field, value, label, onChange, onBlur, error, placeholder, type) => {
     return (
       <TextFieldGroup key={`TextFieldGroup-${field}`} field={field} value={value} label={label} onChange={onChange} onBlur={onBlur} error={error} type={type} placeholder={placeholder}/>
     )
   };
-
 
 
   renderOverview = () => {
@@ -105,42 +188,121 @@ export default class Profile_Component extends Component {
       </div>
     )
   };
-  renderPaymentDetails = () => {
-      return(
-        <div>
-        <h1>renderPaymentDetails</h1>
-          <div className="row">
 
+  renderPaymentDetails = () => {
+    const {cardHolderName, cardNumber, cardExpiryDate, cardCvv, submitPayError, submitPayConfirm, errors} = this.state;
+      return(
+        <div className="row">
+          <div className="col-sm-6 col-sm-offset-1">
+            <form onSubmit={this.onSubmitChangePaymentDetail} >
+              { submitPayError && (
+                <div className="error-form-singup">
+                  <ErrorNotificationBox>
+                    {submitPayError}
+                  </ErrorNotificationBox>
+                </div>
+              ) }
+              { submitPayConfirm && (
+                <div className="confirm-form-singup">
+                  <ConfirmationNotificationBox>
+                    {submitPayConfirm}
+                  </ConfirmationNotificationBox>
+                </div>
+              ) }
+              <h3>Change payment details</h3>
+              <div className ="form-group">
+                <div className="row">
+                  <div className="col-sm-12">
+                    {this.renderTextFieldGroup("cardHolderName", cardHolderName, "Name on the credit card", this.onChange, this.onBlur, errors.cardHolderName) }
+                    {this.renderTextFieldGroup("cardNumber", cardNumber, "Card Number", this.onChange, this.onBlur, errors.cardNumber) }
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-sm-12 col-md-6">
+                    { this.renderTextFieldGroup("cardExpiryDate", cardExpiryDate, "Expiry Date", this.onChange, this.onBlur, errors.cardExpiryDate, "DD-MM-YYYY") }
+                  </div>
+                  <div className="col-sm-12 col-md-6">
+                    { this.renderTextFieldGroup("cardCvv", cardCvv, "CVV", this.onChange, this.onBlur, errors.cardCvv, "CVV") }
+                  </div>
+                </div>
+              </div>
+                  <Button key="submitNPButton" type="submit" bsSize="large" bsStyle="primary" block className="btn-signin" >Change payment detail</Button>
+            </form>
           </div>
         </div>
       )
   };
   renderBillingDetails = () => {
+      const {accountHolder, bsb, accountNumber, submitBillError, submitBillConfirm, errors} = this.state;
       return(
-        <h1>renderBillingDetails</h1>
+        <div className="row">
+          <div className="col-sm-6 col-sm-offset-1">
+            <form onSubmit={this.onSubmitChangeBillingDetail} >
+              { submitBillError && (
+                <div className="error-form-singup">
+                  <ErrorNotificationBox>
+                    {submitBillError}
+                  </ErrorNotificationBox>
+                </div>
+              ) }
+              { submitBillConfirm && (
+                <div className="confirm-form-singup">
+                  <ConfirmationNotificationBox>
+                    {submitBillConfirm}
+                  </ConfirmationNotificationBox>
+                </div>
+              ) }
+              <h3>Change billing details</h3>
+              <div className ="form-group">
+                <div className="row">
+                  <div className="col-sm-12">
+                    {this.renderTextFieldGroup("accountHolder", accountHolder, "Name of account holder", this.onChange, this.onBlur, errors.accountName) }
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-sm-12 col-md-5">
+                    { this.renderTextFieldGroup("bsb", bsb, "BSB", this.onChange, this.onBlur, errors.bsb, "BSB") }
+                  </div>
+                  <div className="col-sm-12 col-md-7">
+                    { this.renderTextFieldGroup("accountNumber", accountNumber, "Account Number", this.onChange, this.onBlur, errors.accountNumber, "Account no") }
+                  </div>
+                </div>
+              </div>
+                  <Button key="submitNPButton" type="submit" bsSize="large" bsStyle="primary" block className="btn-signin" >Change billing detail</Button>
+            </form>
+          </div>
+        </div>
+
       )
   };
   renderChangePassword = () => {
-    const { newPassword, oldPassword, passwordConfirmation, errors, submitError,isLoading } = this.state;
+    const { newPassword, oldPassword, passwordConfirmation, errors, submitPassError, submitPassConfirm } = this.state;
       return(
         <div className="row">
 
           <div className="col-sm-5 col-sm-offset-1">
             <form onSubmit={this.onSubmitChangePassword} >
-              { submitError && (
+              { submitPassError && (
                 <div className="error-form-singup">
                   <ErrorNotificationBox>
-                    {submitError}
+                    {submitPassError}
                   </ErrorNotificationBox>
                 </div>
               ) }
-              <h4>Change password</h4>
+              { submitPassConfirm && (
+                <div className="confirm-form-singup">
+                  <ConfirmationNotificationBox>
+                    {submitPassConfirm}
+                  </ConfirmationNotificationBox>
+                </div>
+              ) }
+              <h3>Change password</h3>
               <div className ="form-group">
                 {this.renderTextFieldGroup("oldPassword", oldPassword, "Old password", this.onChange, this.onBlur, errors.oldPassword, null, "password")}
                 {this.renderTextFieldGroup("newPassword", newPassword, "New password", this.onChange, this.onBlur, errors.newPassword, null, "password")}
                 {this.renderTextFieldGroup("passwordConfirmation", passwordConfirmation, "Confirm password", this.onChange, this.onBlur, errors.passwordConfirmation, null, "password")}
               </div>
-                  <Button key="submitNPButton" disabled={isLoading} type="submit" bsSize="large" bsStyle="primary" block className="btn-signin" >Change Password</Button>
+                  <Button key="submitNPButton" type="submit" bsSize="large" bsStyle="primary" block className="btn-signin" >Change Password</Button>
             </form>
           </div>
         </div>
@@ -169,7 +331,7 @@ export default class Profile_Component extends Component {
         <Tab eventKey={1} title="Overview">
             {this.renderOverview()}
         </Tab>
-        <Tab eventKey={2} title="Payment Details">
+        <Tab eventKey={2} title="Payment Details" >
             {this.renderPaymentDetails()}
         </Tab>
         <Tab eventKey={3} title="Billing Details">
