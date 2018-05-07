@@ -203,10 +203,42 @@
 }
 
 .display-car-listing-collection {
-  max-width: 1080px;
+  max-width: 850px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
 
-  
+  .display-car-listing-collection_header {
+    margin: 24px 0 !important;
+
+    .display-car-listing-collection_header_title {
+      display: table !important;
+      table-layout: fixed !important;
+      width: 100% !important;
+
+      .display-car-listing-collection_header_title_cell {
+        display: table-cell !important;
+        width: 100%;
+        vertical-align: baseline !important;
+
+        .display-car-listing-collection_header_title_cell_word {
+          margin-bottom: 8px !important;
+
+          .display-car-listing-collection_header_title_cell_word_h3 {
+            font-weight: 700 !important;
+            margin-bottom: 0 !important;
+            font-size: 28px !important;
+            line-height: 32px !important;
+            letter-spacing: -0.6px !important;
+            padding-top: 2px !important;
+            padding-bottom: 2px !important;
+            color: rgb(72, 72, 72) !important;
+          }
+        }
+      }
+    }
+
+    @media only screen  and (min-width: 744px) {
+      margin: 32px 0 !important;
+    }
+  }
 }

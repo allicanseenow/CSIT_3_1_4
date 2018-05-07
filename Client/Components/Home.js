@@ -15,6 +15,7 @@ import './CSS/Footer.scss';
 import './CSS/Body/CarListing/CreateListingContainer.scss';
 import './CSS/Profile.scss';
 import './CSS/RecyclableComponents/SteppingDot.scss';
+import ShowCarListingCollectionContainer from "./Body/CarListing/ShowCarListingCollectionContainer";
 
 const USER_TYPE = {
   carOwner: 'carOwner',
@@ -95,8 +96,11 @@ export default class Home extends Component {
                   /*
                       Car listing management
                    */
-                  <PrivateRoute path="/create-car-listing" component={CreateListingContainer} axios={context.axios} requireAuth={[ USER_TYPE.carOwner ]}/>
                   <PublicRoute path="/display-car-listing/:carListingId" component={DisplayCarListingContainer} />
+
+                  <PrivateRoute path="/create-car-listing" component={CreateListingContainer} axios={context.axios} requireAuth={[ USER_TYPE.carOwner ]} />
+
+                  <PrivateRoute path="/car-listings" component={ShowCarListingCollectionContainer} requireAuth={[ USER_TYPE.carOwner ]} />
                 </Switch>
               )
             }}
