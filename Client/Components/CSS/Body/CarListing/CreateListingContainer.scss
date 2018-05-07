@@ -125,3 +125,88 @@
   }
 }
 
+.display-car-listing {
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+
+  .image-car-listing {
+    position: relative;
+    width: 100%;
+    cursor: pointer !important;
+    padding: 0 24px;
+
+    .car-image {
+      background-size: contain !important;
+      height: 300px;
+      background-repeat: no-repeat;
+      background-position: 50% 50% !important;
+    }
+  }
+
+  .car-listing_body {
+    position: relative;
+    margin-top: 0px;
+    margin-bottom: 50px;
+    padding-top: 0;
+
+    .car-listing_body_content {
+      margin-left: auto !important;
+      margin-right: auto !important;
+      width: auto !important;
+
+      @media only screen and (min-width: 744px) {
+        padding: 0 24px !important;
+      }
+
+      .car-detail-panel-wrapper {
+        .car-title-panel-wrapper {
+          position: relative;
+          width: 100%;
+          padding: 20px 10px;
+          top: 3px;
+
+          .left-panel {
+            border-right-width: 1px;
+          }
+
+          .right-panel {
+
+          }
+        }
+
+        .car-content-panel-wrapper {
+          padding: 10px;
+          position: relative;
+          width: 100%;
+          top: 1px;
+        }
+
+        .car-review-panel-wrapper {
+          position: relative;
+          padding: 10px;
+          width: 100%;
+          top: 1px;
+          border-top-width: 0;
+        }
+
+        .car-panel-float-right {
+          float: right;
+        }
+      }
+    }
+    //@media only screen and (min-width: 1080px) {
+    //  margin-top: 40px;
+    //}
+  }
+}
+
+.display-car-listing-collection {
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+
+  
+}
