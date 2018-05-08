@@ -2,63 +2,59 @@ import React, { Component }                 from 'react';
 import _                                    from 'lodash';
 import { connect }                          from 'react-redux';
 import PropTypes                            from 'prop-types';
+import moment                               from 'moment';
 import CreateListingComponent               from './CreateListingComponent';
-import { validateCreateListing }            from '../../Utility/Validator';
+import { validateCreateCarListing }            from '../../Utility/Validator';
 
 export default class CreateListingContainer extends Component {
 
   state = {
-    brandName: '',
-    model: '',
-    transmission: '',
-    odometer: '',
-    year: '',
     rego: '',
-    location: '',
-    colour: '',
-    capacity: '',
-    fileList: [],
-
+    time: [],
     errors: {},
     submitError: null,
     submitting: false,
   };
 
+  getAvailableDayArray = () => {
+    const { time } = this.state;
+    if (_.isEmpty(time)) return null;
+    const startDate = time[0];
+    const endDate = time[1];
+    const dateArray = [];
+    const currentDay = startDate.toDate();
+    const lastDay = endDate.toDate();
+    while (currentDay < lastDay) {
+      dateArray.push(moment(currentDay).format("DD-MM-YYYY"));
+      currentDay.setDate(currentDay.getDate() + 1);
+    }
+    return dateArray;
+  };
+
   onSubmit = (event) => {
     event.preventDefault();
     const { axios } = this.props;
-    const { brandName, model, transmission, odometer, year, rego, capacity, location, colour, fileList, errors } = this.state;
-    const validate = validateCreateListing({ brandName, model, transmission, odometer, year, rego, capacity, location, colour, fileList });
+    const { rego, time, errors } = this.state;
+    const validate = validateCreateCarListing({ rego, time });
     if (validate.isValid) {
-      let formData = new FormData();
-      // Need "originFileObj" to get a 'File' object that can be used for submission
-      formData.append('listing_img', fileList[0].originFileObj);
-      formData.append('data', JSON.stringify({
-        brand: brandName,
-        rego,
-        model,
-        location,
-        colour,
-        transmission,
-        capacity,
-        year,
-        odometer,
-      }));
       this.setState({ submitting: true }, () => {
-        axios().post('http://localhost:9000/api/list', formData)
-          .then((res) => {
-            this.setState({ submitError: null, })
-          })
-          .catch(({ response }) => {
-            console.log("errors while creating a new car list", response.data.message);
-            const errorMsg = response && response.data && response.data.message;
-            this.setState({ submitError: errorMsg }, () => {
-              window.scrollTo(0, 0);
-            });
-          })
-          .finally(() => {
-            this.setState({ errors: validate.errors, submitting: false });
-          })
+        axios().post('/api/list', {
+          rego,
+          availableDates: this.getAvailableDayArray(),
+        })
+        .then(({ response }) => {
+          this.setState({ submitError: null, })
+        })
+        .catch(({ response }) => {
+          console.log("errors while creating a new car list", response.data.message);
+          const errorMsg = response && response.data && response.data.message;
+          this.setState({ submitError: errorMsg }, () => {
+            window.scrollTo(0, 0);
+          });
+        })
+        .finally(() => {
+          this.setState({ errors: validate.errors, submitting: false });
+        })
       });
     }
     else {
@@ -82,24 +78,10 @@ export default class CreateListingContainer extends Component {
     }
   };
 
-  // onCalendarChange = (isStart, value) => {
-  //   if (isStart) {
-  //     this.setState({ startAvailableDate: value })
-  //   }
-  //   else {
-  //     this.setState({ endAvailableDate: value })
-  //   }
-  // };
-
-  onImageChange = (fileList) => {
-    let newErr = this.state.errors;
-    if (_.isEmpty(fileList)) {
-      newErr = _.merge({}, this.state.errors, {fileList: 'This field is required' });
-    }
-    else {
-      newErr = _.merge({}, this.state.errors, {fileList: null });
-    }
-    this.setState({ fileList, errors: newErr });
+  onCalendarChange = (value) => {
+    this.setState({ time: value }, () => {
+      this.getAvailableDayArray()
+    });
   };
 
   render() {
@@ -112,10 +94,9 @@ export default class CreateListingContainer extends Component {
         onBlur={this.onBlur}
         onSubmit={this.onSubmit}
         errors={errors}
-        onImageChange={this.onImageChange}
         submitError={submitError}
         submitting={submitting}
-        // onCalendarChange={this.onCalendarChange}
+        onCalendarChange={this.onCalendarChange}
       />
     )
   }

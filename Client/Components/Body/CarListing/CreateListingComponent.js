@@ -1,11 +1,13 @@
 import React, { Component }                 from 'react';
 import PropTypes                            from 'prop-types';
 import { Grid, Row, Col }                   from 'react-bootstrap';
-import { Button }                           from 'antd';
+import { Button, DatePicker }                           from 'antd';
 import TextFieldGroup                       from '../../Utility/TextFieldGroup';
 // import RangeCalendar                        from './RangeCalendar';
 import UploadImageComponent                 from './UploadImageComponent';
 import ErrorNotificationBox                 from '../../RecyclableComponents/ErrorNotificationBox';
+
+const { RangePicker } = DatePicker;
 
 export default class CreateListingComponent extends Component {
   static propTypes = {
@@ -48,7 +50,8 @@ export default class CreateListingComponent extends Component {
   };
 
   render() {
-    const { carListingDetail, onChange, onBlur, onSubmit, errors, submitError, submitting, onImageChange } = this.props;
+    const { carListingDetail, onChange, onBlur, onSubmit, errors, submitError, submitting, onCalendarChange } = this.props;
+    const { time, rego } = carListingDetail;
     return (
       <div className="form-container">
         <Grid fluid>
@@ -67,40 +70,30 @@ export default class CreateListingComponent extends Component {
                   </Row>
                 </div>
               </div>
-              { this.renderHeader(1, 'Car listing details') }
+              { this.renderHeader(1, 'Select a car') }
               <Col sm={8} xs={12} className="form-inner-col-field">
                 <div className="form_details_contents">
                   <div>
-                    { this.renderTextFieldGroup('brandName', carListingDetail.brandName, 'Brand name', onChange, onBlur, errors.brandName) }
-                    { this.renderTextFieldGroup('model', carListingDetail.model, 'Model', onChange, onBlur, errors.model) }
-                    { this.renderTextFieldGroup('transmission', carListingDetail.transmission, 'Transmission', onChange, onBlur, errors.transmission) }
-                    { this.renderTextFieldGroup('odometer', carListingDetail.odometer, 'Odometer', onChange, onBlur, errors.odometer) }
-                    { this.renderTextFieldGroup('year', carListingDetail.year, 'Year', onChange, onBlur, errors.year, 'YYYY') }
                     { this.renderTextFieldGroup('rego', carListingDetail.rego, 'Rego', onChange, onBlur, errors.rego) }
-                    { this.renderTextFieldGroup('location', carListingDetail.location, 'Location', onChange, onBlur, errors.location) }
-                    { this.renderTextFieldGroup('colour', carListingDetail.colour, 'Colour', onChange, onBlur, errors.colour) }
-                    { this.renderTextFieldGroup('capacity', carListingDetail.capacity, 'Capacity', onChange, onBlur, errors.capacity) }
                   </div>
                 </div>
               </Col>
-              {/* We skip the available dates for now */}
-              {/*{ this.renderHeader(2, 'Available dates') }*/}
-              {/*<Col sm={8} xs={12} className="form-inner-col-field">*/}
-                {/*<div className="form_details_contents">*/}
-                  {/*<RangeCalendar*/}
-                    {/*onChange={onCalendarChange}*/}
-                    {/*startValue={carListingDetail.startAvailableDate}*/}
-                    {/*endValue={carListingDetail.endAvailableDate}*/}
-                    {/*showDateInput*/}
-                  {/*/>*/}
-                {/*</div>*/}
-              {/*</Col>*/}
-              { this.renderHeader(2, 'Car image') }
+              { this.renderHeader(2, 'Available date range for the listing') }
               <div className="form-inner-col-field">
                 <div className="form_image_contents">
-                  <div className="has-error">
-                    <UploadImageComponent onChange={onImageChange} maximumImageAllowed={1}/>
-                    { errors && errors.fileList && <span className="help-block">{errors.fileList}</span> }
+                  <div className={`form-group ${errors && errors.time ? 'has-error': ''}`}>
+                    <label className="control-label textField-label">From - To</label>
+                    <div style={{display: "block"}}>
+                      <RangePicker
+                        format="DD-MM-YYYY"
+                        showTime
+                        value={time}
+                        onChange={onCalendarChange}
+                      />
+                    </div>
+                    <div>
+                      { errors && errors.time && <span className="help-block">{errors.time}</span> }
+                    </div>
                   </div>
                 </div>
               </div>
