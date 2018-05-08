@@ -1,10 +1,8 @@
 import React, { Component }                 from 'react';
 import PropTypes                            from 'prop-types';
 import { Grid, Row, Col }                   from 'react-bootstrap';
-import { Button, DatePicker }                           from 'antd';
+import { Button, DatePicker }               from 'antd';
 import TextFieldGroup                       from '../../Utility/TextFieldGroup';
-// import RangeCalendar                        from './RangeCalendar';
-import UploadImageComponent                 from './UploadImageComponent';
 import ErrorNotificationBox                 from '../../RecyclableComponents/ErrorNotificationBox';
 
 const { RangePicker } = DatePicker;

@@ -2,26 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c4ef384d-47bf-4435-9e96-2d5d3124951e" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Client/Components/Body/Car/CreateCarContainer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Client/Unused-CSS/app.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/CSS/Bootstrap/bootstrap-theme.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Unused-CSS/Bootstrap/bootstrap-theme.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/CSS/Bootstrap/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Unused-CSS/Bootstrap/bootstrap.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/CSS/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Body/Car/CreateCarComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/CSS/bootstrap-responsive.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Unused-CSS/bootstrap-responsive.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/CSS/bootstrap.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Unused-CSS/bootstrap.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/CSS/default.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Unused-CSS/default.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/CSS/headerfix.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Unused-CSS/headerfix.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/CSS/overwrite.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Unused-CSS/overwrite.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/CSS/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Unused-CSS/style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Components/Body/CarListing/DisplayCarListingContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Body/CarListing/DisplayCarListingContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Components/Body/CarListing/ShowCarListingCollectionComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Body/CarListing/ShowCarListingCollectionComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Components/Body/CarListing/ShowCarListingCollectionContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Body/CarListing/ShowCarListingCollectionContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Components/CSS/Body/CarListing/CreateListingContainer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/CSS/Body/CarListing/CreateListingContainer.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Components/CSS/Home.scss" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/CSS/Home.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Components/Header/NavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Header/NavBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/Components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Client/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingContainer.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -41,43 +24,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DisplayCarListingContainer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/DisplayCarListingContainer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="897">
-              <caret line="42" column="19" lean-forward="true" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
-              <folding>
-                <element signature="e#0#79#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DisplayCarListingComponent.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/DisplayCarListingComponent.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="20" column="12" lean-forward="true" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
-              <folding>
-                <element signature="e#0#79#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreateListingComponent.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingComponent.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="13" column="34" lean-forward="true" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
-              <folding>
-                <element signature="e#0#57#0" expanded="true" />
-                <element signature="e#398#472#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ShowCarListingCollectionContainer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/ShowCarListingCollectionContainer.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -90,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShowCarListingCollectionComponent.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ShowCarListingCollectionComponent.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/ShowCarListingCollectionComponent.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="67" column="38" selection-start-line="67" selection-start-column="38" selection-end-line="67" selection-end-column="38" />
+            <state relative-caret-position="182">
+              <caret line="64" column="4" selection-start-line="64" selection-start-column="4" selection-end-line="64" selection-end-column="4" />
               <folding>
                 <element signature="e#0#79#0" expanded="true" />
               </folding>
@@ -102,13 +48,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CreateListingContainer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingContainer.js">
+      <file leaf-file-name="CreateListingContainer.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/Components/CSS/Body/CarListing/CreateListingContainer.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="54" column="60" lean-forward="true" selection-start-line="54" selection-start-column="60" selection-end-line="54" selection-end-column="60" />
+            <state relative-caret-position="62">
+              <caret line="112" column="25" lean-forward="true" selection-start-line="112" selection-start-column="25" selection-end-line="112" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TextFieldGroup.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/Components/Utility/TextFieldGroup.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="251">
+              <caret line="35" column="62" lean-forward="true" selection-start-line="35" selection-start-column="19" selection-end-line="35" selection-end-column="62" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RangeCalendar.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/RangeCalendar.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2323">
+              <caret line="131" column="30" lean-forward="true" selection-start-line="131" selection-start-column="30" selection-end-line="131" selection-end-column="30" />
               <folding>
-                <element signature="e#0#57#0" expanded="true" />
+                <element signature="e#0#38#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -117,8 +81,8 @@
       <file leaf-file-name="CreateCarContainer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client/Components/Body/Car/CreateCarContainer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-890">
-              <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
+            <state relative-caret-position="1150">
+              <caret line="50" column="79" lean-forward="true" selection-start-line="50" selection-start-column="79" selection-end-line="50" selection-end-column="79" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
               </folding>
@@ -129,24 +93,44 @@
       <file leaf-file-name="CreateCarComponent.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Client/Components/Body/Car/CreateCarComponent.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="61" column="36" selection-start-line="61" selection-start-column="36" selection-end-line="61" selection-end-column="36" />
+            <state relative-caret-position="-122">
+              <caret line="74" column="73" selection-start-line="74" selection-start-column="57" selection-end-line="74" selection-end-column="73" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
-                <element signature="e#398#472#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReviewListingComponent.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/ReviewListingComponent.js">
+      <file leaf-file-name="CreateListingComponent.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingComponent.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+            <state relative-caret-position="-1500">
+              <caret line="10" column="22" lean-forward="true" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
               <folding>
-                <element signature="e#0#83#0" expanded="true" />
+                <element signature="e#0#57#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CreateListingContainer.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingContainer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="61" column="25" lean-forward="true" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#57#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Validator.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Client/Components/Utility/Validator.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1175">
+              <caret line="131" column="5" lean-forward="true" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -165,10 +149,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>form-signin</find>
-      <find>form-group</find>
-      <find>Calendar</find>
-      <find>onChange</find>
       <find>Col</find>
       <find>start</find>
       <find>readon</find>
@@ -177,7 +157,6 @@
       <find>a</find>
       <find>valid</find>
       <find>validate</find>
-      <find>error</find>
       <find>fontaw</find>
       <find>myref</find>
       <find>&lt;ErrorNotificationBox/&gt;</find>
@@ -195,6 +174,11 @@
       <find>showReviewPopup</find>
       <find>linear\-gradient\(to bottom, #fff</find>
       <find>listingNumber</find>
+      <find>form-group</find>
+      <find>control-label</find>
+      <find>textField-label</find>
+      <find>carListingDetail</find>
+      <find>error</find>
     </findStrings>
     <replaceStrings>
       <replace>className</replace>
@@ -230,15 +214,12 @@
         <option value="$PROJECT_DIR$/Client/Components/Body/CarListing/UploadImageComponent.js" />
         <option value="$PROJECT_DIR$/Client/Components/RecyclableComponents/ErrorNotificationBox.js" />
         <option value="$PROJECT_DIR$/Client/Components/CSS/RecyclableComponents/ErrorNotificationBox.scss" />
-        <option value="$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingComponent.js" />
-        <option value="$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingContainer.js" />
         <option value="$PROJECT_DIR$/Client/Components/Body/Account/SignUp_Component.js" />
         <option value="$PROJECT_DIR$/Client/Components/CSS/Login.scss" />
         <option value="$PROJECT_DIR$/Client/Components/Body/Account/Login_Component.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/Client/Components/RecyclableComponents/SteppingDot.js" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/Client/Components/Utility/Validator.js" />
         <option value="$PROJECT_DIR$/Client/Components/Body/Account/Profile_Component.js" />
         <option value="$PROJECT_DIR$/Client/Components/CSS/Profile.scss" />
         <option value="$PROJECT_DIR$/Client/Utility/Axios.js" />
@@ -257,6 +238,9 @@
         <option value="$PROJECT_DIR$/Client/Components/Body/CarListing/ReviewListingComponent.js" />
         <option value="$PROJECT_DIR$/Client/Components/Body/CarListing/ShowCarListingCollectionContainer.js" />
         <option value="$PROJECT_DIR$/Client/Components/Body/CarListing/ShowCarListingCollectionComponent.js" />
+        <option value="$PROJECT_DIR$/Client/Components/Utility/Validator.js" />
+        <option value="$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingComponent.js" />
+        <option value="$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingContainer.js" />
       </list>
     </option>
   </component>
@@ -468,7 +452,7 @@
       <workItem from="1525096534050" duration="3626000" />
       <workItem from="1525668642920" duration="18359000" />
       <workItem from="1525702875378" duration="7998000" />
-      <workItem from="1525744348383" duration="14647000" />
+      <workItem from="1525744348383" duration="26892000" />
     </task>
     <task id="LOCAL-00001" summary="Small fix">
       <created>1523465293006</created>
@@ -526,11 +510,25 @@
       <option name="project" value="LOCAL" />
       <updated>1525713288527</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="- Almost finish making the showCarListingCollection (component + logic) (update and delete functionality left)&#10;- Change &quot;createCarListing&quot; component to &quot;createCar&quot;. Add a link to the nav bar to create a new car &#10;- Remove the unused CSS files">
+      <created>1525776005271</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1525776005272</updated>
+    </task>
+    <task id="LOCAL-00010" summary="- Make the &quot;createListingComponent&quot; (component + logic) to correspond to the new API">
+      <created>1525800383668</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1525800383668</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="527309000" />
+    <option name="totallyTimeSpent" value="539554000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -545,43 +543,43 @@
     <frame x="-8" y="-8" width="1456" height="916" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23765868" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4992948" weight="0.32896462" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50070524" side_tool="true" weight="0.3277635" />
-      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.4992948" weight="0.32372215" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="11" sideWeight="0.4992948" visible="true" weight="0.32372215" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4992948" weight="0.28309307" />
+      <window_info anchor="bottom" id="TypeScript" order="9" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23765868" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32110092" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4992948" visible="true" weight="0.28309307" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="TypeScript" order="9" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32110092" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23765868" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4992948" weight="0.32896462" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32110092" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4992948" visible="true" weight="0.28309307" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4992948" weight="0.28309307" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50070524" side_tool="true" weight="0.3277635" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.4992948" weight="0.32372215" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -628,7 +626,9 @@
     <MESSAGE value="Update .gitignore" />
     <MESSAGE value="- Create displayCarListing functionality (component + logic)&#10;- Add requireAuth to Route&#10;- Fixed a CSS issue with Profile.scss&#10;- Change base URL of the axios instance so that the URL to call the API can be shortened to &quot;api/xxxx&quot; instead of &quot;http://localhost:9000/api/xxxx&quot;" />
     <MESSAGE value="- Create draft component for display all listings to carOwner" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Create draft component for display all listings to carOwner" />
+    <MESSAGE value="- Almost finish making the showCarListingCollection (component + logic) (update and delete functionality left)&#10;- Change &quot;createCarListing&quot; component to &quot;createCar&quot;. Add a link to the nav bar to create a new car &#10;- Remove the unused CSS files" />
+    <MESSAGE value="- Make the &quot;createListingComponent&quot; (component + logic) to correspond to the new API" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Make the &quot;createListingComponent&quot; (component + logic) to correspond to the new API" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -636,20 +636,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Client/Components/Body/Account/SignUp_Component.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="53" column="27" lean-forward="true" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="34" column="33" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Client/Components/Utility/Validator.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
@@ -717,26 +703,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Components/Utility/TextFieldGroup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Client/Components/Body/Account/Profile_Container.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <folding>
             <element signature="e#0#79#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Components/Utility/Validator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="126" column="36" selection-start-line="126" selection-start-column="36" selection-end-line="126" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -917,36 +889,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Components/CSS/Body/CarListing/CreateListingContainer.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="591">
-          <caret line="225" column="18" selection-start-line="225" selection-start-column="18" selection-end-line="225" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="990" column="14" selection-start-line="990" selection-start-column="14" selection-end-line="990" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Client/Components/Header/NavBar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="46" column="25" lean-forward="true" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
           <folding>
             <element signature="e#0#79#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Components/Body/Car/CreateCarContainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-890">
-          <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#57#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -971,27 +919,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Components/Body/Car/CreateCarComponent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="61" column="36" selection-start-line="61" selection-start-column="36" selection-end-line="61" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#57#0" expanded="true" />
-            <element signature="e#398#472#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingContainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="54" column="60" lean-forward="true" selection-start-line="54" selection-start-column="60" selection-end-line="54" selection-end-column="60" />
-          <folding>
-            <element signature="e#0#57#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/DisplayCarListingContainer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="897">
@@ -1012,17 +939,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingComponent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="13" column="34" lean-forward="true" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#57#0" expanded="true" />
-            <element signature="e#398#472#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/ShowCarListingCollectionContainer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -1035,10 +951,95 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/ShowCarListingCollectionComponent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="67" column="38" selection-start-line="67" selection-start-column="38" selection-end-line="67" selection-end-column="38" />
+        <state relative-caret-position="182">
+          <caret line="64" column="4" selection-start-line="64" selection-start-column="4" selection-end-line="64" selection-end-column="4" />
           <folding>
             <element signature="e#0#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Components/CSS/Body/CarListing/CreateListingContainer.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="112" column="25" lean-forward="true" selection-start-line="112" selection-start-column="25" selection-end-line="112" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/antd/lib/date-picker/interface.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="76" column="4" selection-start-line="76" selection-start-column="4" selection-end-line="76" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="120" column="4" selection-start-line="120" selection-start-column="4" selection-end-line="120" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Components/Utility/Validator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1175">
+          <caret line="131" column="5" lean-forward="true" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/RangeCalendar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2323">
+          <caret line="131" column="30" lean-forward="true" selection-start-line="131" selection-start-column="30" selection-end-line="131" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Components/Body/Car/CreateCarContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1150">
+          <caret line="50" column="79" lean-forward="true" selection-start-line="50" selection-start-column="79" selection-end-line="50" selection-end-column="79" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Components/Body/Car/CreateCarComponent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-122">
+          <caret line="74" column="73" selection-start-line="74" selection-start-column="57" selection-end-line="74" selection-end-column="73" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Components/Utility/TextFieldGroup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="35" column="62" lean-forward="true" selection-start-line="35" selection-start-column="19" selection-end-line="35" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingComponent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1500">
+          <caret line="10" column="22" lean-forward="true" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Client/Components/Body/CarListing/CreateListingContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="61" column="25" lean-forward="true" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
           </folding>
         </state>
       </provider>

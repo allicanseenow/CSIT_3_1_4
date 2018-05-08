@@ -1,13 +1,10 @@
 import React, { Component }                 from 'react';
 import _                                    from 'lodash';
-import { connect }                          from 'react-redux';
-import PropTypes                            from 'prop-types';
 import moment                               from 'moment';
 import CreateListingComponent               from './CreateListingComponent';
 import { validateCreateCarListing }            from '../../Utility/Validator';
 
 export default class CreateListingContainer extends Component {
-
   state = {
     rego: '',
     time: [],
