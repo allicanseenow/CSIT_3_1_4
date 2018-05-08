@@ -10,8 +10,8 @@ export default class DisplayCarListingContainer extends Component {
     const { axios } = this.props;
     axios().get(`api/list/${this.props.computedMatch.params.carListingId}`)
       .then(({ data }) => {
-        console.log('res is ---', data);
-        this.setState({...data});
+        const { available, car, carListingNumber, price, rating } = data;
+        this.setState({ ...car, carListingNumber, price, rating, available });
       })
   }
 
@@ -25,7 +25,7 @@ export default class DisplayCarListingContainer extends Component {
 
   render() {
     const {
-      brand, capacity, colour, img, listingNumber, location, model, odometer, price, rating, rego, transType, year,
+      brand, capacity, colour, img, carListingNumber, location, model, odometer, price, rating, rego, transType, year,
       showReviewPopup,
     } = this.state;
     return (
@@ -34,7 +34,7 @@ export default class DisplayCarListingContainer extends Component {
         capacity={capacity}
         colour={colour}
         img={img}
-        listingNumber={listingNumber}
+        listingNumber={carListingNumber}
         location={location}
         model={model}
         odometer={odometer}

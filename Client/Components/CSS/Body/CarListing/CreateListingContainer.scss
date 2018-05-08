@@ -207,6 +207,26 @@
   margin-left: auto;
   margin-right: auto;
 
+  .display-car-listing-collection_img {
+    background-size: contain;
+    height: 100px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .display-car-listing-collection_block {
+    display: table;
+    width: 100%;
+    overflow: auto;
+
+    .display-car-listing-collection_block_cell {
+      display: table-cell;
+      vertical-align: middle;
+      float: none;
+    }
+  }
+
   .display-car-listing-collection_header {
     margin: 24px 0 !important;
 
