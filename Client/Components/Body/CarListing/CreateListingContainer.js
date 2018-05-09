@@ -2,16 +2,29 @@ import React, { Component }                 from 'react';
 import _                                    from 'lodash';
 import moment                               from 'moment';
 import CreateListingComponent               from './CreateListingComponent';
-import { validateCreateCarListing }            from '../../Utility/Validator';
+import { validateCreateCarListing }         from '../../Utility/Validator';
 
 export default class CreateListingContainer extends Component {
   state = {
     rego: '',
     time: [],
+    cars: [],
+    selectedCar: null,
     errors: {},
     submitError: null,
     submitting: false,
   };
+
+  componentDidMount() {
+    const { axios } = this.props;
+    axios().get(`/api/car`)
+      .then(({ data })  => {
+        this.setState({ cars: data });
+      })
+      .catch(({ response }) => {
+        console.log('Errors with get(/api/car)')
+      })
+  }
 
   getAvailableDayArray = () => {
     const { time } = this.state;
@@ -60,7 +73,14 @@ export default class CreateListingContainer extends Component {
   };
 
   onChange = (event) => {
+    if (event.target.name === 'rego') {
+      this.setState({ selectedCar: null })
+    }
     this.setState({ [event.target.name]: event.target.value });
+  };
+
+  onSelectCar = (event) => {
+    this.setState({ [event.target.name]: event.target.value, selectedCar: event.target.value });
   };
 
   onBlur = (event) => {
@@ -83,7 +103,7 @@ export default class CreateListingContainer extends Component {
 
   render() {
     const carListingDetail = this.state;
-    const { errors, submitError, submitting } = this.state;
+    const { errors, submitError, submitting, selectedCar } = this.state;
     return (
       <CreateListingComponent
         carListingDetail={carListingDetail}
@@ -94,6 +114,8 @@ export default class CreateListingContainer extends Component {
         submitError={submitError}
         submitting={submitting}
         onCalendarChange={this.onCalendarChange}
+        onSelectCar={this.onSelectCar}
+        selectedCar={selectedCar}
       />
     )
   }

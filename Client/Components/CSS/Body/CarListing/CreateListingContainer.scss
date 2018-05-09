@@ -262,3 +262,16 @@
     }
   }
 }
+
+.createListing_selectCar_wrapper {
+  width: 100%;
+
+  .createListing_selectCar {
+    display: table;
+    width: 100%;
+
+    .createListing_selectCar_content {
+      display: table-cell;
+    }
+  }
+}
