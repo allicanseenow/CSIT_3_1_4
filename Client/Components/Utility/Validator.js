@@ -118,6 +118,24 @@ export function validateCreateListing(data) {
   };
 }
 
+/**
+ * Validate when creating a new car listing
+ * @param data: { rego, time }
+ *              rego is a string
+ *              time is an array that contains from 0 -> 2 moment objects
+ * @returns {{errors, isValid: boolean}}
+ */
+export function validateCreateCarListing(data) {
+  let errors = {};
+  _.forEach(data, (value, key) => {
+    if (_.isEmpty(value)) errors[key] = 'This field is required';
+  });
+  return {
+    errors,
+    isValid: _.isEmpty(errors),
+  };
+}
+
 //inside profile
 export function validateChangePassword(data){
   let errors = {};

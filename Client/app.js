@@ -7,7 +7,10 @@ import configureStore                         from './Store/configureStore';
 
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
+/**
+ * Disable this to disable the unwanted gradient CSS
+ */
+// import 'bootstrap/dist/css/bootstrap-theme.css';
 
 import Main from './main';
 import { Consumer } from './context';

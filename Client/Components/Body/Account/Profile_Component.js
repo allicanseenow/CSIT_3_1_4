@@ -235,7 +235,7 @@ export default class Profile_Component extends Component {
   renderBillingDetails = () => {
       const {accountHolder, bsb, accountNumber, submitBillError, submitBillConfirm, errors} = this.state;
       return(
-        <div className="row">
+        <div className="row row-profile">
           <div className="col-sm-6 col-sm-offset-1">
             <form onSubmit={this.onSubmitChangeBillingDetail} >
               { submitBillError && (
