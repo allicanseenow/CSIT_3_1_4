@@ -10,6 +10,7 @@ import Profile                                          from "./Body/Account/Pro
 import DisplayCarListingContainer                       from "./Body/CarListing/DisplayCarListingContainer";
 import ShowCarListingCollectionContainer                from "./Body/CarListing/ShowCarListingCollectionContainer";
 import CreateCarContainer                               from "./Body/Car/CreateCarContainer";
+import EditListingContainer                             from "./Body/CarListing/EditListingContainer";
 
 import './CSS/Home.scss';
 import './CSS/Login.scss';
@@ -107,6 +108,7 @@ export default class Home extends Component {
                    */
                   <PublicRoute path="/display-car-listing/:carListingId" component={DisplayCarListingContainer} />
 
+                  <PrivateRoute path="/edit-car-listing/:carListingId" component={EditListingContainer} requireAuth={[ USER_TYPE.carOwner ]} />
                   <PrivateRoute path="/create-car-listing" component={CreateListingContainer} axios={context.axios} requireAuth={[ USER_TYPE.carOwner ]} />
                   <PrivateRoute path="/create-car" component={CreateCarContainer} axios={context.axios} requireAuth={[ USER_TYPE.carOwner ]} />
                   <PrivateRoute path="/car-listings" component={ShowCarListingCollectionContainer} requireAuth={[ USER_TYPE.carOwner ]} />

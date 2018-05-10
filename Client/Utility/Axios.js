@@ -1,5 +1,5 @@
-import axios      from 'axios';
-import createHistory from "history/createBrowserHistory"
+import axios            from 'axios';
+import createHistory    from "history/createBrowserHistory"
 
 export default function createAxiosInstance() {
   let config = {
