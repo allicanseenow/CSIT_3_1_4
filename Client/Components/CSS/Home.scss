@@ -70,7 +70,33 @@ hr {
       padding-bottom: 10px;
       padding-left: 15px;
       padding-right: 15px;
+      font-size: 14px;
+
+      .pop-up_inner_content_button_wrapper {
+        padding-top: 20px;
+        padding-bottom: 30px;
+
+        .pop-up_inner_content_button {
+          background-color: transparent;
+          border: none;
+        }
+
+        .pop-up_inner_content_button.pop-up_inner_content_button-danger {
+          color: red;
+        }
+
+        .pop-up_inner_content_button.pop-up_inner_content_button-save {
+          color: cyan;
+        }
+      }
     }
+  }
+
+  .pop-up_inner-top {
+    left: 30%;
+    right: 30%;
+    top: 15%;
+    bottom: auto;
   }
 }
 

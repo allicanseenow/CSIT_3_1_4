@@ -2,9 +2,9 @@ import React, { Component }                 from 'react';
 import _                                    from 'lodash';
 import moment                               from 'moment';
 import CreateListingComponent               from './CreateListingComponent';
-import { validateCreateCarListing }         from '../../Utility/Validator';
+import {validateCreateCarListing} from "../../Utility/Validator";
 
-export default class CreateListingContainer extends Component {
+export default class EditListingContainer extends Component {
   state = {
     rego: '',
     time: [],
@@ -17,29 +17,18 @@ export default class CreateListingContainer extends Component {
 
   componentDidMount() {
     const { axios } = this.props;
-    axios().get(`/api/car`)
-      .then(({ data })  => {
-        this.setState({ cars: data });
-      })
-      .catch(({ response }) => {
-        console.log('Errors with get(/api/car)')
-      })
+    axios().get(`api/list/${this.props.computedMatch.params.carListingId}`)
+      .then(({ data }) => {
+        const { available, car } = data;
+        const { rego } = car;
+        const availableDates = _.sortBy(_.map(available, (t) => {
+          const { year, month, day } = t;
+          return moment(`${year}-${month}-${day}`, "YYYY-MM-DD");
+        }));
+        const time = availableDates && [availableDates[0], availableDates[availableDates.length - 1]];
+        this.setState({ rego, availableDates, time });
+      });
   }
-
-  getAvailableDayArray = () => {
-    const { time } = this.state;
-    if (_.isEmpty(time)) return null;
-    const startDate = time[0];
-    const endDate = time[1];
-    const dateArray = [];
-    const currentDay = startDate.toDate();
-    const lastDay = endDate.toDate();
-    while (currentDay < lastDay) {
-      dateArray.push(moment(currentDay).format("DD-MM-YYYY"));
-      currentDay.setDate(currentDay.getDate() + 1);
-    }
-    return dateArray;
-  };
 
   onSubmit = (event) => {
     event.preventDefault();
@@ -52,19 +41,19 @@ export default class CreateListingContainer extends Component {
           rego,
           availableDates: this.getAvailableDayArray(),
         })
-        .then(({ response }) => {
-          this.setState({ submitError: null, })
-        })
-        .catch(({ response }) => {
-          console.log("errors while creating a new car list", response.data.message);
-          const errorMsg = response && response.data && response.data.message;
-          this.setState({ submitError: errorMsg }, () => {
-            window.scrollTo(0, 0);
-          });
-        })
-        .finally(() => {
-          this.setState({ errors: validate.errors, submitting: false });
-        })
+          .then(({ response }) => {
+            this.setState({ submitError: null, })
+          })
+          .catch(({ response }) => {
+            console.log("errors while creating a new car list", response.data.message);
+            const errorMsg = response && response.data && response.data.message;
+            this.setState({ submitError: errorMsg }, () => {
+              window.scrollTo(0, 0);
+            });
+          })
+          .finally(() => {
+            this.setState({ errors: validate.errors, submitting: false });
+          })
       });
     }
     else {
@@ -100,11 +89,10 @@ export default class CreateListingContainer extends Component {
   };
 
   render() {
-    const carListingDetail = this.state;
-    const { errors, submitError, submitting, selectedCar } = this.state;
+    const { errors, submitError, submitting, selectedCar, availableDates } = this.state;
     return (
       <CreateListingComponent
-        carListingDetail={carListingDetail}
+        carListingDetail={this.state}
         onChange={this.onChange}
         onBlur={this.onBlur}
         onSubmit={this.onSubmit}
@@ -114,6 +102,7 @@ export default class CreateListingContainer extends Component {
         onCalendarChange={this.onCalendarChange}
         onSelectCar={this.onSelectCar}
         selectedCar={selectedCar}
+        editCarMode
       />
     )
   }

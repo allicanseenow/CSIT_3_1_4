@@ -31,6 +31,12 @@
       font-weight: 500;
     }
   }
+
+  .a-being-selected {
+    background: #F48024;
+    color: #fafafb;
+    font-weight: 500;
+  }
 }
 
 .search-box {
@@ -87,4 +93,14 @@
       height: 28px;
     }
   }
+}
+
+.popUp_cost-bar_title {
+  display: inline-block;
+  width: 32px;
+}
+
+.popUp_cost-bar {
+  width: 150px;
+  margin-left: 10px;
 }

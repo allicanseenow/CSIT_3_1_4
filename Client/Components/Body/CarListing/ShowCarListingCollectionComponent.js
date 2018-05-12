@@ -1,13 +1,16 @@
 import React, { Component }                                       from 'react';
 import PropTypes                                                  from 'prop-types';
-import { Link }                                          from 'react-router-dom';
+import { Link }                                                   from 'react-router-dom';
 import _                                                          from 'lodash';
 import { Grid, Col, Row, Button }                                 from 'react-bootstrap';
 import { Button as AntButton }                                    from 'antd';
+import ErrorNotificationBox                                       from '../../RecyclableComponents/ErrorNotificationBox';
 
 export default class ShowCarListingCollectionComponent extends Component {
   static propTypes = {
     carListings: PropTypes.array.isRequired,
+    onUpdateListing: PropTypes.func.isRequired,
+    onDeleteListing: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -31,9 +34,9 @@ export default class ShowCarListingCollectionComponent extends Component {
   };
 
   renderEachListing = (listing) => {
-    console.log('listing is ', listing);
     const { carListingNumber, car, } = listing;
     const { brand, model, year, colour, capacity, img } = car;
+    const { onDeleteListing, onUpdateListing } = this.props;
 
     return (
       <Row className="display-car-listing-collection_block vertical-align" key={`car-listing-id-${listing.carListingNumber}`}>
@@ -52,8 +55,8 @@ export default class ShowCarListingCollectionComponent extends Component {
         </Col>
         <Col xs={3} className="display-car-listing-collection_block_cell">
           <Row>
-            <Col xs={12} sm={6}><AntButton>Update</AntButton></Col>
-            <Col xs={12} sm={6}><AntButton>Delete</AntButton></Col>
+            <Col xs={12} sm={6}><AntButton type="primary" onClick={() => onUpdateListing(carListingNumber)}>Update</AntButton></Col>
+            <Col xs={12} sm={6}><AntButton type="danger" onClick={() => onDeleteListing(carListingNumber)}>Delete</AntButton></Col>
           </Row>
         </Col>
       </Row>
@@ -78,8 +81,14 @@ export default class ShowCarListingCollectionComponent extends Component {
   };
 
   render() {
+    const { submitError } = this.props;
     return (
       <div className="display-car-listing-collection">
+        { submitError && (
+          <ErrorNotificationBox>
+            {submitError}
+          </ErrorNotificationBox>
+        )}
         { this.showHeader() }
         { this.renderSmallListings() }
       </div>

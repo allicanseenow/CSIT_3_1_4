@@ -5,6 +5,7 @@ import { Button as AntButton }                                    from 'antd';
 import { Rate }                                                   from 'antd';
 import UserReviewComponent                                        from '../../RecyclableComponents/UserReviewComponent';
 import ReviewListingComponent                                     from "./ReviewListingComponent";
+import ErrorNotificationBox                                       from '../../RecyclableComponents/ErrorNotificationBox';
 
 
 export default class DisplayCarListingComponent extends Component {

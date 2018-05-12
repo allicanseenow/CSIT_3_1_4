@@ -1,7 +1,9 @@
 import React, { Component }                 from 'react';
 import PropTypes                            from 'prop-types';
 import { Grid, Row, Col }                   from 'react-bootstrap';
+import { Link }                             from 'react-router-dom';
 import { Button, DatePicker, Radio }        from 'antd';
+import moment                               from 'moment';
 import TextFieldGroup                       from '../../Utility/TextFieldGroup';
 import ErrorNotificationBox                 from '../../RecyclableComponents/ErrorNotificationBox';
 
@@ -14,6 +16,13 @@ export default class CreateListingComponent extends Component {
     carListingDetail: PropTypes.object.required,
     onCalendarChange: PropTypes.func.isRequired,
     submitError: PropTypes.string,
+    defaultCalendarValue: PropTypes.object,
+    editCarMode: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    defaultCalendarValue: null,
+    disableSelectCarFromList: false,
   };
 
   renderTextFieldGroup = (field, value, label, onChange, onBlur, error, placeholder, type) => {
@@ -85,8 +94,12 @@ export default class CreateListingComponent extends Component {
     )
   };
 
+  disabledDate = (current) => {
+    return current < moment().startOf('day');
+  };
+
   render() {
-    const { carListingDetail, onChange, onBlur, onSubmit, errors, submitError, submitting, onCalendarChange } = this.props;
+    const { carListingDetail, onChange, onBlur, onSubmit, errors, submitError, submitting, onCalendarChange, editCarMode } = this.props;
     const { time, rego, cars } = carListingDetail;
     return (
       <div className="form-container">
@@ -106,16 +119,20 @@ export default class CreateListingComponent extends Component {
                   </Row>
                 </div>
               </div>
-              { this.renderHeader(1, 'Select a car') }
-              <Col sm={8} xs={12} className="form-inner-col-field">
-                <div className="form_details_contents">
-                  <div>
-                    { this.renderTextFieldGroup('rego', carListingDetail.rego, 'Enter the rego of the car', onChange, onBlur, errors.rego) }
-                    { this.renderCarSelection(cars) }
-                  </div>
+              { !editCarMode && (
+                <div>
+                  { this.renderHeader(1, 'Select a car') }
+                  <Col sm={8} xs={12} className="form-inner-col-field">
+                    <div className="form_details_contents">
+                      <div>
+                        { this.renderTextFieldGroup('rego', carListingDetail.rego, 'Enter the rego of the car', onChange, onBlur, errors.rego) }
+                        { this.renderCarSelection(cars) }
+                      </div>
+                    </div>
+                  </Col>
                 </div>
-              </Col>
-              { this.renderHeader(2, 'Available date range for the listing') }
+              )}
+              { this.renderHeader(!editCarMode ? 2 : 1, 'Available date range for the listing') }
               <div className="form-inner-col-field">
                 <div className="form_image_contents">
                   <div className={`form-group ${errors && errors.time ? 'has-error': ''}`}>
@@ -126,6 +143,7 @@ export default class CreateListingComponent extends Component {
                         showTime
                         value={time}
                         onChange={onCalendarChange}
+                        disabledDate={this.disabledDate}
                       />
                     </div>
                     <div>
@@ -140,6 +158,15 @@ export default class CreateListingComponent extends Component {
                 </div>
               </Col>
             </form>
+          </Col>
+          <Col smOffset={1} sm={11}>
+            { editCarMode && (
+              <div>
+                <Link to="/car-listings">
+                  Return to the car listing page
+                </Link>
+              </div>
+            )}
           </Col>
         </Grid>
       </div>
