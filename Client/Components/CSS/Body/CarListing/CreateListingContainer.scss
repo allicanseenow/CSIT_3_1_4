@@ -181,6 +181,17 @@
           position: relative;
           width: 100%;
           top: 1px;
+
+          .car-content-panel-wrapper_averageReviewTitle {
+            display: inline-block;
+          }
+
+          .car-content-panel-wrapper_averageReview {
+            display: inline-block;
+            padding-left: 10px;
+            bottom: -2px;
+            position: relative;
+          }
         }
 
         .car-review-panel-wrapper {
@@ -273,5 +284,40 @@
     .createListing_selectCar_content {
       display: table-cell;
     }
+  }
+}
+
+.review-box-component-wrapper {
+  display: table;
+
+  .review-box-component-wrapper_element_image {
+    display: table-cell;
+    vertical-align: middle !important;
+  }
+  .review-box-component-wrapper_element {
+    padding-left: 16px;
+    display: table-cell;
+  }
+}
+
+.review-box-component-content_wrapper {
+  .review-box-component-content_wrapper_msg {
+    margin-top: 10px;
+  }
+  .review-box-component-content_wrapper_star {
+    font-size: 14px;
+  }
+}
+
+.reviewListingComponent {
+  .reviewListingComponent_field {
+    margin: 10px 0;
+    label {
+      color: red;
+    }
+  }
+
+  .reviewListingComponent_button {
+    margin-top: 20px;
   }
 }

@@ -6,28 +6,54 @@ export default class DisplayCarListingContainer extends Component {
     showReviewPopup: false,
   };
 
-  componentWillMount() {
+  getCarDetail = () => {
     const { axios } = this.props;
-    axios().get(`api/list/${this.props.computedMatch.params.carListingId}`)
+    const listingId = this.props.computedMatch.params.carListingId;
+    axios().get(`api/list/${listingId}`)
       .then(({ data }) => {
         const { available, car, carListingNumber, price, rating } = data;
         this.setState({ ...car, carListingNumber, price, rating, available });
-      })
+      });
+  };
+
+  getReview = () => {
+    const { axios } = this.props;
+    const listingId = this.props.computedMatch.params.carListingId;
+    axios().get(`api/review/${listingId}`)
+      .then(({ data }) => {
+        this.setState({ ratings: data });
+      });
+  };
+
+  componentDidMount() {
+    this.getCarDetail();
+    this.getReview();
   }
 
   onTogglePopup = (showPopup) => {
     this.setState({ showReviewPopup: showPopup })
   };
 
-  onSubmitReview = (e) => {
-    this.onTogglePopup(false);
+  onSubmitReview = (review) => {
+    const { axios, computedMatch } = this.props;
+    const listingId = computedMatch.params.carListingId;
+    axios().post(`api/review/${listingId}`, {
+      ...review,
+    })
+    .then(({ data }) => {
+      this.onTogglePopup(false);
+      this.getCarDetail();
+      this.getReview();
+    });
   };
 
   render() {
     const {
       brand, capacity, colour, img, carListingNumber, location, model, odometer, price, rating, rego, transType, year,
+      ratings,
       showReviewPopup,
     } = this.state;
+    console.log('stateh ere is ', this.state)
     return (
       <DisplayCarListingComponent
         brand={brand}
@@ -43,6 +69,7 @@ export default class DisplayCarListingContainer extends Component {
         rego={rego}
         transType={transType}
         year={year}
+        ratings={ratings}
         onTogglePopup={this.onTogglePopup}
         showReviewPopup={showReviewPopup}
         onSubmitReview={this.onSubmitReview}

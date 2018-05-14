@@ -17,14 +17,16 @@ export default class DisplayCarListingComponent extends Component {
 
   state = {
     reviews: null,
+    ratings: null,
   };
 
   render() {
     const {
-      brand, capacity, colour, img, listingNumber, location, model, odometer, price, rating, rego, transType, year,
+      brand, capacity, colour, img, listingNumber, location, model, odometer, price, rating, rego, transType, year, ratings,
       onTogglePopup, showReviewPopup, onSubmitReview,
     } = this.props;
     const { reviews } = this.state;
+    console.log("rating inside ", rating);
     return (
       <div className="display-car-listing">
         <div className="image-car-listing">
@@ -59,13 +61,15 @@ export default class DisplayCarListingComponent extends Component {
                 <Grid fluid>
                   <Row>
                     <Col xs={12}>
-                      <div>Reviews</div>
+                      <div><h3>Reviews</h3></div>
                     </Col>
                   </Row>
                   <Row>
                     <Col sm={7}>
-                      <span>Rating:</span>
-                      <Rate defaultValue={rating} disabled/>
+                      <div>
+                        <div className="car-content-panel-wrapper_averageReviewTitle"><h5>Average rating:</h5></div>
+                        <div className="car-content-panel-wrapper_averageReview"><Rate value={rating} disabled /></div>
+                      </div>
                     </Col>
                     <Col sm={1}/>
                     <Col sm={4}>
@@ -88,22 +92,26 @@ export default class DisplayCarListingComponent extends Component {
                   )}
                 </Grid>
               </div>
-              <div className="car-review-panel-wrapper listing-panel">
-                <Grid fluid>
-                  {reviews && _.forEach(reviews, (review) => {
-                    return (
-                      <Row>
-                        <Col>
-                          <UserReviewComponent />
-                        </Col>
-                      </Row>
-                    )
-                  }) || (
-                    <div>
-                      There is no review at the moment
+              <div>
+                {(!_.isEmpty(ratings) && _.map(ratings, (rating) => {
+                  return (
+                    <div className="car-review-panel-wrapper listing-panel" key={`rating-review-${rating.reviewer}-${rating.tstamp}`}>
+                      <Grid fluid>
+                        <Row>
+                          <Col>
+                            <UserReviewComponent
+                              rating={rating}
+                            />
+                          </Col>
+                        </Row>
+                      </Grid>
                     </div>
-                  )}
-                </Grid>
+                  );
+                })) || (
+                  <div className="car-review-panel-wrapper listing-panel" style={{ padding: "0 15px"}}>
+                    There is no review at the moment
+                  </div>
+                )}
               </div>
             </div>
           </div>
