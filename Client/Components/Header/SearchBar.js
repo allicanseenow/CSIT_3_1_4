@@ -1,13 +1,14 @@
 import React, { Component }                 from 'react';
 import { connect }                          from 'react-redux';
 import _                                    from 'lodash';
-import { fetch }                            from '../../Actions/MainPage';
+import { fetchCarListing }                  from '../../Actions/MainPage';
 import DateBar                              from './SearchBarComponents/DateBar';
 import CapacityBar                          from "./SearchBarComponents/CapacityBar";
 import CostBar                              from "./SearchBarComponents/CostBar";
+import MoreFilter                           from "./SearchBarComponents/MoreFilter";
+import LocationBar                          from "./SearchBarComponents/LocationBar";
 
 import                                      '../CSS/NavBar/SearchBar.scss';
-import LocationBar from "./SearchBarComponents/LocationBar";
 
 class SearchBar extends Component {
   state = {
@@ -15,8 +16,24 @@ class SearchBar extends Component {
     capacity: null,
     cost: null,
     location: null,
+    moreFilter: { hasMoreFilter: false },
     showDatePanel: false,
     showCapacityPanel: false,
+    showMoreFilter: false,
+  };
+
+  updateListingSearch = () => {
+    const  { time, capacity, cost, location, moreFilter } = this.state;
+    const { hasMoreFilter, ...rest } = moreFilter;
+    const query = {
+      from: time && time[0] && time[0].format("DD-MM-YYYY"),
+      to: time && time[1] && time[1].format("DD-MM-YYYY"),
+      capacity: capacity || null,
+      location,
+      ...rest,
+      // price: cost,
+    };
+    this.props.fetchCarListing(query);
   };
 
   /**
@@ -24,7 +41,7 @@ class SearchBar extends Component {
    * @param value Value of the new date
    */
   onCalendarChange = (value) => {
-    this.setState({ time: value, showDatePanel: false });
+    this.setState({ time: value, showDatePanel: false }, this.updateListingSearch);
   };
 
   /**
@@ -32,7 +49,7 @@ class SearchBar extends Component {
    * @param value Value of the new capacity
    */
   onCapicityChange = (value) => {
-    this.setState({ capacity: value, showCapacityPanel: false });
+    this.setState({ capacity: value, showCapacityPanel: false }, this.updateListingSearch);
   };
 
   /**
@@ -40,11 +57,15 @@ class SearchBar extends Component {
    * @param value Value of the new cost
    */
   onCostChange = (value) => {
-    this.setState({ cost: value, showCostPanel: false });
+    this.setState({ cost: value, showCostPanel: false }, this.updateListingSearch);
   };
 
   onLocationChange = (value) => {
-    this.setState({ location: value, showLocationPanel: false });
+    this.setState({ location: value, showLocationPanel: false }, this.updateListingSearch);
+  };
+
+  onFilterChange = (value) => {
+    this.setState({ moreFilter: value, showMoreFilter: false }, this.updateListingSearch);
   };
 
   onClickPanel = (component) => {
@@ -69,14 +90,14 @@ class SearchBar extends Component {
         this.setState({ showLocationPanel: true });
         break;
       }
+      case 4: {
+        this.setState({ showMoreFilter: true });
+        break;
+      }
       default:
         break;
     }
   };
-
-  componentDidMount() {
-    this.props.fetch();
-  }
 
   onBlur = (component, value) => {
     switch (component) {
@@ -96,6 +117,10 @@ class SearchBar extends Component {
         this.setState({ showLocationPanel: value });
         break;
       }
+      case 'moreFilter': {
+        this.setState({ showMoreFilter: value });
+        break;
+      }
       default: {
         break;
       }
@@ -103,14 +128,16 @@ class SearchBar extends Component {
   };
 
   render() {
-    const { showDatePanel, showCapacityPanel, showCostPanel, showLocationPanel, time, capacity, cost, location } = this.state;
-    console.log("this props inside SearchBar", this.props);
+    const {
+      showDatePanel, showCapacityPanel, showCostPanel, showLocationPanel, showMoreFilter,
+      time, capacity, cost, location, moreFilter
+    } = this.state;
     console.log("this state", this.state);
     return (
       <div className="search-bar">
         <ul>
           <li>
-            <div onClick={() => this.onClickPanel(0)}><a className={!_.isEmpty(time) && "a-being-selected"}>Date</a></div>
+            <div onClick={() => this.onClickPanel(0)}><a className={!_.isEmpty(time) && "a-being-selected" || undefined}>Date</a></div>
             { showDatePanel && (
               <DateBar
                 onCalendarChange={this.onCalendarChange}
@@ -120,7 +147,7 @@ class SearchBar extends Component {
             ) }
           </li>
           <li>
-            <div onClick={() => this.onClickPanel(1)}><a className={capacity && "a-being-selected"}>Capacity</a></div>
+            <div onClick={() => this.onClickPanel(1)}><a className={(capacity && "a-being-selected") || undefined }>Capacity</a></div>
             { showCapacityPanel && (
               <CapacityBar
                 onCapicityChange={this.onCapicityChange}
@@ -129,23 +156,33 @@ class SearchBar extends Component {
               />
             ) }
           </li>
+          {/*<li>*/}
+            {/*<div onClick={() => this.onClickPanel(2)}><a className={(!_.isEmpty(cost) && cost[1] && "a-being-selected") || undefined }>Cost</a></div>*/}
+            {/*{ showCostPanel && (*/}
+              {/*<CostBar*/}
+                {/*onCostChange={this.onCostChange}*/}
+                {/*onBlur={this.onBlur}*/}
+                {/*value={cost}*/}
+              {/*/>*/}
+            {/*) }*/}
+          {/*</li>*/}
           <li>
-            <div onClick={() => this.onClickPanel(2)}><a className={!_.isEmpty(cost) && cost[1] && "a-being-selected"}>Cost</a></div>
-            { showCostPanel && (
-              <CostBar
-                onCostChange={this.onCostChange}
-                onBlur={this.onBlur}
-                value={cost}
-              />
-            ) }
-          </li>
-          <li>
-            <div onClick={() => this.onClickPanel(3)}><a className={!_.isEmpty(location) && "a-being-selected"}>Location</a></div>
+            <div onClick={() => this.onClickPanel(3)}><a className={(!_.isEmpty(location) && "a-being-selected") || undefined }>Location</a></div>
             { showLocationPanel && (
               <LocationBar
                 onLocationChange={this.onLocationChange}
                 onBlur={this.onBlur}
                 value={location}
+              />
+            ) }
+          </li>
+          <li>
+            <div onClick={() => this.onClickPanel(4)}><a className={(moreFilter.hasMoreFilter && "a-being-selected") || undefined }>More filter</a></div>
+            { showMoreFilter && (
+              <MoreFilter
+                onFilterChange={this.onFilterChange}
+                onBlur={this.onBlur}
+                value={moreFilter}
               />
             ) }
           </li>
@@ -160,7 +197,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  fetch,
+  fetchCarListing,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

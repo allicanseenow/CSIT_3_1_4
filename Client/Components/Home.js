@@ -17,6 +17,7 @@ import './CSS/Login.scss';
 import './CSS/Footer.scss';
 import './CSS/Body/CarListing/CreateListingContainer.scss';
 import './CSS/Profile.scss';
+import './CSS/Body/HomePage/HomePage.scss';
 import './CSS/RecyclableComponents/SteppingDot.scss';
 
 const USER_TYPE = {
@@ -29,14 +30,16 @@ export default class Home extends Component {
   /**
    * Private routing for rendering components that require authentication
    * @param Component The component to be rendered
+   * @param exact
    * @param requireAuth Authentication level that is required to render the component.
    *             This is an array that contains "carOwner", "carRenter" or "admin"
    * @param rest The remaining props to be passed to the component
    * @returns {*} The route for the component to be render
    */
-  privateRoute = ({ component: Component, requireAuth, ...rest }) => {
+  privateRoute = ({ component: Component, exact, requireAuth, ...rest }) => {
     return (
       <Route
+        exact={exact}
         render={(innerProps) => {
           const { loggedIn, type } = this.props.auth;
           // If user is logged in but doesn't have the right auth level, access to the page is rejected
@@ -64,12 +67,13 @@ export default class Home extends Component {
     )
   };
 
-  publicRoute = ({ component: Component, auth, ...rest }) => {
+  publicRoute = ({ component: Component, exact, auth, ...rest }) => {
     return (
       <AxiosConsumer>
         {(context) => {
           return (
             <Route
+              exact={exact}
               render={(innerProps) => {
                 return <Component {...innerProps} {...rest} axios={context.axios}/>
               }}
