@@ -1,6 +1,7 @@
 import React, { Component, createContext } from 'react';
 import { connect }                         from 'react-redux';
 import { fetch }                           from '../../../Actions/MainPage';
+import SearchContainer                     from './Search/SearchContainer';
 // import { Provider } from '../../../main';
 
 class HomePage extends Component {
@@ -11,9 +12,7 @@ class HomePage extends Component {
   render() {
     console.log("this. props is ", this.props);
     return (
-      <div>
-
-      </div>
+      <SearchContainer/>
     )
   }
 }

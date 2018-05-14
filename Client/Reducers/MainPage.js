@@ -12,6 +12,12 @@ export default function reducer(state = defaultState, action) {
       console.log("new state is ", newState)
       return newState;
     }
+
+    case `${TYPES.SEARCH_SETTING}_SUCCESS`: {
+      const newState = _.merge({}, state, { listing: action.data });
+      return newState;
+    }
+
     default:
       return state;
   }

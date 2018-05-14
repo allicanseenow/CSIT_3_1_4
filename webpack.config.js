@@ -13,7 +13,7 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js'
   },
-  devtool: 'source-map',
+  devtool: 'cheap-source-map',
   module: {
     rules: [
       {
@@ -90,13 +90,13 @@ module.exports = {
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery'
-    })
-
+    }),
   ],
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     historyApiFallback: true,
     compress: true,
+    hot: true,
     port: process.env.PORT || 9000,
     /*
       Enable this 'proxy' if we want to bypass CSRF blocking
@@ -114,7 +114,7 @@ module.exports = {
         // bypass: function(req, res, proxyOptions) {
         //   if (req.headers.accept.indexOf("html") !== -1) {
         //     console.log("Skipping proxy for browser request.");
-        //   l  return "/index.html";
+        //     return "/index.html";
         //   }
         // }
       }
