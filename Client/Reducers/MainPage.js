@@ -18,6 +18,11 @@ export default function reducer(state = defaultState, action) {
       return newState;
     }
 
+    case `${TYPES.SEARCH_SETTING}_ERROR`: {
+      const newState = _.merge({}, state, { listing: null, error: action.error });
+      return newState;
+    }
+
     default:
       return state;
   }

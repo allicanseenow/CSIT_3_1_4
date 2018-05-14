@@ -17,6 +17,7 @@ import './CSS/Login.scss';
 import './CSS/Footer.scss';
 import './CSS/Body/CarListing/CreateListingContainer.scss';
 import './CSS/Profile.scss';
+import './CSS/Body/HomePage/HomePage.scss';
 import './CSS/RecyclableComponents/SteppingDot.scss';
 
 const USER_TYPE = {

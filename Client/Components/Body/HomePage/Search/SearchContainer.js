@@ -7,6 +7,7 @@ import {fetchCarListing}                    from "../../../../Actions/MainPage";
 class SearchContainer extends Component {
   render() {
     const { carListing } = this.props;
+    console.log('thisprops here i -s ', this.props);
     return (
       <SearchComponent
         carListing={carListing}
