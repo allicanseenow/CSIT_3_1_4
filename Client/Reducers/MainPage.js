@@ -6,20 +6,18 @@ const defaultState = {};
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
     case `${TYPES.APP_SETTINGS_LOAD}`: {
-      console.log("action in reducer", action);
-      console.log("state is ", state);
-      const newState = _.merge({}, state, { profile: action.data });
-      console.log("new state is ", newState)
+      const newState = Object.assign({}, state, { profile: action.data });
       return newState;
     }
 
     case `${TYPES.SEARCH_SETTING}_SUCCESS`: {
-      const newState = _.merge({}, state, { listing: action.data });
+      // const newState = Object.assign({}, state, { listing: action.data, error: null });
+      const newState = { ...state, listing: action.data, error: null };
       return newState;
     }
 
     case `${TYPES.SEARCH_SETTING}_ERROR`: {
-      const newState = _.merge({}, state, { listing: null, error: action.error });
+      const newState = Object.assign({}, state, { listing: null, error: action.error });
       return newState;
     }
 

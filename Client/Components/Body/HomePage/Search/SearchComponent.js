@@ -1,7 +1,7 @@
 import React, { Component }                 from 'react';
 import { Grid, Row, Col }                   from 'react-bootstrap';
 import { Link }                             from 'react-router-dom';
-import { Button, Rate }                           from 'antd';
+import { Button, Rate }                     from 'antd';
 
 export default class SearchComponent extends Component {
 
@@ -59,6 +59,7 @@ export default class SearchComponent extends Component {
       </div>
     )
   };
+
   render() {
     const { carListing } = this.props;
     console.log('carlisting is ', carListing);

@@ -34,7 +34,7 @@ export default class CreateListingContainer extends Component {
     const dateArray = [];
     const currentDay = startDate.toDate();
     const lastDay = endDate.toDate();
-    while (currentDay < lastDay) {
+    while (currentDay <= lastDay) {
       dateArray.push(moment(currentDay).format("DD-MM-YYYY"));
       currentDay.setDate(currentDay.getDate() + 1);
     }

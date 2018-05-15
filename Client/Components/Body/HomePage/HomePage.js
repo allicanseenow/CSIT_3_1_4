@@ -2,12 +2,8 @@ import React, { Component, createContext } from 'react';
 import { connect }                         from 'react-redux';
 import { fetch }                           from '../../../Actions/MainPage';
 import SearchContainer                     from './Search/SearchContainer';
-// import { Provider } from '../../../main';
 
 class HomePage extends Component {
-  updateBody = () => {
-
-  };
 
   render() {
     console.log("this. props is ", this.props);
