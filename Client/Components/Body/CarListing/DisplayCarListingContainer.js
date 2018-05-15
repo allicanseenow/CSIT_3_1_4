@@ -35,9 +35,9 @@ export default class DisplayCarListingContainer extends Component {
   };
 
   onSubmitReview = (review) => {
-    const { axios, computedMatch } = this.props;
+    const { redirectAxios, computedMatch, location } = this.props;
     const listingId = computedMatch.params.carListingId;
-    axios().post(`api/review/${listingId}`, {
+    redirectAxios(location.pathname).post(`api/review/${listingId}`, {
       ...review,
     })
     .then(({ data }) => {
@@ -53,7 +53,7 @@ export default class DisplayCarListingContainer extends Component {
       ratings,
       showReviewPopup,
     } = this.state;
-    console.log('stateh ere is ', this.state)
+    console.log('PROPS stateh ere is ', this.props)
     return (
       <DisplayCarListingComponent
         brand={brand}

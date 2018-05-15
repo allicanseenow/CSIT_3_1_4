@@ -14,7 +14,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import Main from './main';
 import { Consumer } from './context';
-const history = createHistory();
+export const history = createHistory();
 
 import './app.scss';
 import './Components/CSS/RecyclableComponents/React-boostrap-component.scss';
