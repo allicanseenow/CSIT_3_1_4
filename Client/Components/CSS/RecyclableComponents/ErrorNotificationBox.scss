@@ -36,6 +36,14 @@
 .notification--alert::after {
   background: #d30c1f;
 }
+
+.notification--success {
+  border-color: #33d340;
+  &::after {
+    background: #33d340;
+  }
+}
+
 .notification::after {
   content: '';
   height: 100%;

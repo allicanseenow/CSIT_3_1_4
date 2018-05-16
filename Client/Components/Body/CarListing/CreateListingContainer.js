@@ -13,6 +13,8 @@ export default class CreateListingContainer extends Component {
     errors: {},
     submitError: null,
     submitting: false,
+    showSuccessBanner: false,
+    loadingCarListing: true,
   };
 
   componentDidMount() {
@@ -23,6 +25,9 @@ export default class CreateListingContainer extends Component {
       })
       .catch(({ response }) => {
         console.log('Errors with get(/api/car)')
+      })
+      .finally(() => {
+        this.setState({ loadingCarListing: false });
       })
   }
 
@@ -53,7 +58,9 @@ export default class CreateListingContainer extends Component {
           availableDates: this.getAvailableDayArray(),
         })
         .then(({ response }) => {
-          this.setState({ submitError: null, })
+          this.setState({ submitError: null, showSuccessBanner: true }, () => {
+            window.scrollTo(0, 0);
+          });
         })
         .catch(({ response }) => {
           console.log("errors while creating a new car list", response.data.message);
@@ -101,7 +108,7 @@ export default class CreateListingContainer extends Component {
 
   render() {
     const carListingDetail = this.state;
-    const { errors, submitError, submitting, selectedCar } = this.state;
+    const { errors, submitError, submitting, selectedCar, showSuccessBanner, loadingCarListing } = this.state;
     return (
       <CreateListingComponent
         carListingDetail={carListingDetail}
@@ -114,6 +121,8 @@ export default class CreateListingContainer extends Component {
         onCalendarChange={this.onCalendarChange}
         onSelectCar={this.onSelectCar}
         selectedCar={selectedCar}
+        showSuccessBanner={showSuccessBanner}
+        loadingCarListing={loadingCarListing}
       />
     )
   }

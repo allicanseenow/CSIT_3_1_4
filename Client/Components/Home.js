@@ -94,7 +94,7 @@ export default class Home extends Component {
             {(context) => {
               return (
                 <Switch>
-                  <Route exact path="/" component={HomePage} />
+                  <PublicRoute exact path="/" component={HomePage} />
 
                   /*
                       Authentication

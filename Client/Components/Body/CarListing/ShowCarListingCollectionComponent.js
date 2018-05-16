@@ -5,6 +5,8 @@ import _                                                          from 'lodash';
 import { Grid, Col, Row, Button }                                 from 'react-bootstrap';
 import { Button as AntButton }                                    from 'antd';
 import ErrorNotificationBox                                       from '../../RecyclableComponents/ErrorNotificationBox';
+import Loading                                                    from '../../RecyclableComponents/Loading';
+
 
 export default class ShowCarListingCollectionComponent extends Component {
   static propTypes = {
@@ -81,7 +83,10 @@ export default class ShowCarListingCollectionComponent extends Component {
   };
 
   render() {
-    const { submitError } = this.props;
+    const { submitError, loading } = this.props;
+    if (loading) {
+      return <Loading/>
+    }
     return (
       <div className="display-car-listing-collection">
         { submitError && (

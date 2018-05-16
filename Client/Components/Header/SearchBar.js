@@ -132,7 +132,6 @@ class SearchBar extends Component {
       showDatePanel, showCapacityPanel, showCostPanel, showLocationPanel, showMoreFilter,
       time, capacity, cost, location, moreFilter
     } = this.state;
-    console.log("this state", this.state);
     return (
       <div className="search-bar">
         <ul>

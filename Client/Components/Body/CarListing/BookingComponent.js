@@ -1,16 +1,23 @@
 import React, { PureComponent }                     from 'react';
 import PropTypes                                    from 'prop-types';
-import { DatePicker, Modal }                              from 'antd';
+import { DatePicker, Modal }                        from 'antd';
 import _                                            from "lodash";
-import moment from "moment/moment";
+import moment                                       from "moment/moment";
+import Loading                                      from '../../RecyclableComponents/Loading';
 
 const { RangePicker } = DatePicker;
 
 export default class BookingComponent extends PureComponent {
   static propTypes = {
+    available: PropTypes.array,
     showBookingPanel: PropTypes.bool.isRequired,
     onOkBook: PropTypes.func.isRequired,
     onCancelBook: PropTypes.func.isRequired,
+    loadingListingData: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    loadingListingData: false,
   };
 
   state = {
@@ -68,7 +75,7 @@ export default class BookingComponent extends PureComponent {
   };
 
   render() {
-    const { showBookingPanel } = this.props;
+    const { showBookingPanel, loadingListingData } = this.props;
     return (
       <Modal
         title="Car booking request"
@@ -77,13 +84,19 @@ export default class BookingComponent extends PureComponent {
         onOk={this.onSubmit}
         animation={false}
       >
-        <div><label>Select a time period for booking</label></div>
-        <RangePicker
-          value={this.state.time}
-          onChange={this.onCalendarChange}
-          format="DD-MM-YYYY"
-          disabledDate={this.disabledDates}
-        />
+        { loadingListingData && (
+          <Loading/>
+        ) || (
+          <div>
+            <div><label>Select a time period for booking</label></div>
+            <RangePicker
+              value={this.state.time}
+              onChange={this.onCalendarChange}
+              format="DD-MM-YYYY"
+              disabledDate={this.disabledDates}
+            />
+          </div>
+        ) }
       </Modal>
     )
   }

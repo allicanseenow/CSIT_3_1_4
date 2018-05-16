@@ -22,8 +22,9 @@ export default function createAxiosInstance() {
 export function createRedirectAxiosInstance(currentURL) {
   const axiosInstance = createAxiosInstance();
   axiosInstance.interceptors.response.use(null, (err) => {
-    console.log("interceptor error is ", err);
-    createHistory.push("/login", { from: { pathname: currentURL } });
+    if (err.response.status === 400 || err.response.status === 401) {
+      createHistory.push("/login", { from: { pathname: currentURL } });
+    }
   });
   return axiosInstance;
 }

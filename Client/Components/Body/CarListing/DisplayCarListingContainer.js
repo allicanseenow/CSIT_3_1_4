@@ -55,7 +55,7 @@ export default class DisplayCarListingContainer extends Component {
   onOkBook = (e, time) => {
     const { redirectAxios, computedMatch, location } = this.props;
     const listingId = computedMatch.params.carListingId;
-    redirectAxios(location.pathname).get(`api/request`, {
+    redirectAxios(location.pathname).post(`api/request`, {
       listingNumber: listingId,
       from: time[0],
       to: time[1],

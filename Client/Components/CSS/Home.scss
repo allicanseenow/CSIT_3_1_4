@@ -110,3 +110,10 @@ hr {
 .no-transition {
   transition: none;
 }
+
+.centered-loading {
+  margin: auto;
+  width: 100%;
+  text-align: center;
+  padding: 30px;
+}
