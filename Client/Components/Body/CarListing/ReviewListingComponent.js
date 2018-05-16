@@ -1,6 +1,6 @@
 import React, { PureComponent }                                       from 'react';
 import PropTypes                                                      from 'prop-types';
-import { Input, Rate, Button }                                                      from 'antd';
+import { Input, Rate, Button }                                        from 'antd';
 
 const { TextArea } = Input;
 

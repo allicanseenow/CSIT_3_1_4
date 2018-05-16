@@ -4,10 +4,10 @@ import ShowCarListingCollectionComponent                          from "./ShowCa
 
 export default class ShowCarListingCollectionContainer extends Component {
   state = {
-
+    loading: true,
   };
 
-  componentWillMount() {
+  fetchNewListing = () => {
     const { axios } = this.props;
     axios().get('api/list')
       .then(({ data }) => {
@@ -18,12 +18,21 @@ export default class ShowCarListingCollectionContainer extends Component {
         const errorMsg = response && response.data && response.data.message;
         this.setState({ submitError: errorMsg });
       })
+      .finally(() => {
+        this.setState({ loading: false });
+      })
+  };
+
+  componentDidMount() {
+    this.fetchNewListing();
   }
 
   onDeleteListing = (listingNumb) => {
     const { axios } = this.props;
     axios().delete(`api/list/${listingNumb}`)
-      .then()
+      .then(() => {
+        this.fetchNewListing();
+      })
       .catch(({ response }) => {
         const errorMsg = response && response.data && response.data.message;
         this.setState({ submitError: errorMsg });
@@ -35,13 +44,14 @@ export default class ShowCarListingCollectionContainer extends Component {
   };
 
   render() {
-    const { carListings, submitError } = this.state;
+    const { carListings, submitError, loading } = this.state;
     return (
       <ShowCarListingCollectionComponent
         carListings={carListings}
         onDeleteListing={this.onDeleteListing}
         onUpdateListing={this.onUpdateListing}
         submitError={submitError}
+        loading={loading}
       />
     )
   }

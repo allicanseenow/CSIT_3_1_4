@@ -1,9 +1,21 @@
 import React, { Component }                 from 'react';
+import PropTypes                            from 'prop-types';
 import { Grid, Row, Col }                   from 'react-bootstrap';
 import { Link }                             from 'react-router-dom';
-import { Button, Rate }                           from 'antd';
+import { Button, Rate, Alert }                     from 'antd';
+import BookingComponent                     from '../../CarListing/BookingComponent';
 
 export default class SearchComponent extends Component {
+  static propTypes = {
+    onClickBook: PropTypes.func.isRequired,
+    onOkBook: PropTypes.func.isRequired,
+    onCancelBook: PropTypes.func.isRequired,
+    closeSuccessMessage: PropTypes.func.isRequired,
+    openBookingModal: PropTypes.bool.isRequired,
+    loadingListingData: PropTypes.bool.isRequired,
+    bookingSent: PropTypes.bool.isRequired,
+    available: PropTypes.array,
+  };
 
   renderImage = (imgLing, carListingNumber) => {
     return (
@@ -14,8 +26,9 @@ export default class SearchComponent extends Component {
   };
 
   renderCard = (listingDetail) => {
-    const { carListingNumber, price, rating, car } = listingDetail;
+    const { carListingNumber, price, rating, car, available } = listingDetail;
     const { rego, brand, location, model, transType, year, img, colour, capacity } = car;
+    const checkAvailability = !_.isEmpty(available);
     return (
       <div key={`listing-${carListingNumber}`}>
         <Col sm={1}/>
@@ -48,7 +61,7 @@ export default class SearchComponent extends Component {
                 </div>
               </Col>
               <Col xs={4} className="search-card-block_button_wrapper">
-                <Button type="primary" className="search-card-block_button">Book</Button>
+                <Button type="primary" className="search-card-block_button" onClick={() => { this.props.onClickBook(carListingNumber) }} disabled={!checkAvailability} >{checkAvailability ? 'Book' : 'Expired'}</Button>
                 <Link to={`display-car-listing/${carListingNumber}`}>
                   <Button className="search-card-block_button">Details</Button>
                 </Link>
@@ -59,8 +72,9 @@ export default class SearchComponent extends Component {
       </div>
     )
   };
+
   render() {
-    const { carListing } = this.props;
+    const { carListing, openBookingModal, loadingListingData, onOkBook, onCancelBook, available, bookingSent, closeSuccessMessage } = this.props;
     console.log('carlisting is ', carListing);
     if (!carListing) {
       return (
@@ -68,14 +82,33 @@ export default class SearchComponent extends Component {
       );
     }
     return (
-      <div className="search-container">
-        <Grid>
-          <Row>
-            { _.map(carListing, (eachListing) => {
-              return this.renderCard(eachListing);
-            })}
-          </Row>
-        </Grid>
+      <div>
+        <div className="search-container">
+          { bookingSent && (
+            <div style={{paddingBottom: "20px", position: "relative", bottom: 10 }}>
+              <Alert
+                message="Booking request sent"
+                type="success"
+                showIcon
+                onClose={closeSuccessMessage}
+              />
+            </div>
+          )}
+          <Grid>
+            <Row>
+              { _.map(carListing, (eachListing) => {
+                return this.renderCard(eachListing);
+              })}
+            </Row>
+          </Grid>
+          <BookingComponent
+            showBookingPanel={openBookingModal}
+            onOkBook={onOkBook}
+            onCancelBook={onCancelBook}
+            loadingListingData={loadingListingData}
+            available={available}
+          />
+        </div>
       </div>
     )
   }

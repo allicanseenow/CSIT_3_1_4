@@ -56,7 +56,7 @@ export default class Home extends Component {
               <AxiosConsumer>
                 {(context) => {
                   return (
-                    <Component {...innerProps}  {...rest} axios={context.axios}/>
+                    <Component {...innerProps}  {...rest} axios={context.axios} redirectAxios={context.redirectAxios} />
                   )
                 }}
               </AxiosConsumer>
@@ -75,7 +75,7 @@ export default class Home extends Component {
             <Route
               exact={exact}
               render={(innerProps) => {
-                return <Component {...innerProps} {...rest} axios={context.axios}/>
+                return <Component {...innerProps} {...rest} axios={context.axios} redirectAxios={context.redirectAxios} />
               }}
             />
           )
@@ -94,7 +94,7 @@ export default class Home extends Component {
             {(context) => {
               return (
                 <Switch>
-                  <Route exact path="/" component={HomePage} />
+                  <PublicRoute exact path="/" component={HomePage} />
 
                   /*
                       Authentication

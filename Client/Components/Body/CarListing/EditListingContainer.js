@@ -30,14 +30,29 @@ export default class EditListingContainer extends Component {
       });
   }
 
+  getAvailableDayArray = () => {
+    const { time } = this.state;
+    if (_.isEmpty(time)) return null;
+    const startDate = time[0];
+    const endDate = time[1];
+    const dateArray = [];
+    const currentDay = startDate.toDate();
+    const lastDay = endDate.toDate();
+    while (currentDay <= lastDay) {
+      dateArray.push(moment(currentDay).format("DD-MM-YYYY"));
+      currentDay.setDate(currentDay.getDate() + 1);
+    }
+    return dateArray;
+  };
+
   onSubmit = (event) => {
     event.preventDefault();
-    const { axios } = this.props;
+    const { axios, computedMatch } = this.props;
     const { rego, time, errors } = this.state;
     const validate = validateCreateCarListing({ rego, time });
     if (validate.isValid) {
       this.setState({ submitting: true }, () => {
-        axios().post('/api/list', {
+        axios().put(`api/list/${computedMatch.params.carListingId}`, {
           rego,
           availableDates: this.getAvailableDayArray(),
         })

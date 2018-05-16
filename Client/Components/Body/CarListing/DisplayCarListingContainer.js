@@ -4,6 +4,7 @@ import DisplayCarListingComponent                                 from './Displa
 export default class DisplayCarListingContainer extends Component {
   state = {
     showReviewPopup: false,
+    showBookingPanel: false,
   };
 
   getCarDetail = () => {
@@ -35,9 +36,9 @@ export default class DisplayCarListingContainer extends Component {
   };
 
   onSubmitReview = (review) => {
-    const { axios, computedMatch } = this.props;
+    const { redirectAxios, computedMatch, location } = this.props;
     const listingId = computedMatch.params.carListingId;
-    axios().post(`api/review/${listingId}`, {
+    redirectAxios(location.pathname).post(`api/review/${listingId}`, {
       ...review,
     })
     .then(({ data }) => {
@@ -47,13 +48,34 @@ export default class DisplayCarListingContainer extends Component {
     });
   };
 
+  onClickBook = (event) => {
+    this.setState({ showBookingPanel: true });
+  };
+
+  onOkBook = (e, time) => {
+    const { redirectAxios, computedMatch, location } = this.props;
+    const listingId = computedMatch.params.carListingId;
+    redirectAxios(location.pathname).post(`api/request`, {
+      listingNumber: listingId,
+      from: time[0],
+      to: time[1],
+    })
+    .then(({ data }) => {
+      this.setState({ bookingSent: true, showBookingPanel: false });
+    })
+  };
+
+  onCancelBook = (e) => {
+    this.setState({ showBookingPanel: false });
+  };
+
   render() {
     const {
-      brand, capacity, colour, img, carListingNumber, location, model, odometer, price, rating, rego, transType, year,
-      ratings,
-      showReviewPopup,
+      brand, capacity, colour, img, carListingNumber, location, model, odometer, price, rating, rego, transType, year, available,
+      ratings, bookingSent,
+      showReviewPopup, showBookingPanel,
     } = this.state;
-    console.log('stateh ere is ', this.state)
+    console.log('PROPS stateh ere is ', this.props)
     return (
       <DisplayCarListingComponent
         brand={brand}
@@ -70,9 +92,15 @@ export default class DisplayCarListingContainer extends Component {
         transType={transType}
         year={year}
         ratings={ratings}
+        available={available}
         onTogglePopup={this.onTogglePopup}
         showReviewPopup={showReviewPopup}
         onSubmitReview={this.onSubmitReview}
+        onClickBook={this.onClickBook}
+        showBookingPanel={showBookingPanel}
+        onOkBook={this.onOkBook}
+        onCancelBook={this.onCancelBook}
+        bookingSent={bookingSent}
       />
     )
   }
