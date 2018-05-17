@@ -7,6 +7,7 @@ import SignUp                                           from "./Body/Account/Sig
 import CreateListingContainer                           from './Body/CarListing/CreateListingContainer';
 import HomePage                                         from "./Body/HomePage/HomePage";
 import Profile                                          from "./Body/Account/Profile_Container";
+import UpgradeAccount                                   from "./Body/Account/UpgradeAccountContainer";
 import DisplayCarListingContainer                       from "./Body/CarListing/DisplayCarListingContainer";
 import ShowCarListingCollectionContainer                from "./Body/CarListing/ShowCarListingCollectionContainer";
 import CreateCarContainer                               from "./Body/Car/CreateCarContainer";
@@ -102,6 +103,7 @@ export default class Home extends Component {
                    */
                   <Route path="/login" component={Login_Container} />
                   <Route path="/register" component={SignUp} />
+                  <PrivateRoute path="/upgrade-account" component={UpgradeAccount} requireAuth={[ USER_TYPE.carRenter ]}/>
 
                   /*
                       Profile management

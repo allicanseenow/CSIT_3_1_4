@@ -4,7 +4,6 @@ import { Grid, Col, Row, Button }                                 from 'react-bo
 import { Button as AntButton, Alert, Rate }                       from 'antd';
 import UserReviewComponent                                        from '../../RecyclableComponents/UserReviewComponent';
 import ReviewListingComponent                                     from "./ReviewListingComponent";
-import ErrorNotificationBox                                       from '../../RecyclableComponents/ErrorNotificationBox';
 import BookingComponent from "./BookingComponent";
 
 
