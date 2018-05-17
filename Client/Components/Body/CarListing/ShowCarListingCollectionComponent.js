@@ -3,10 +3,21 @@ import PropTypes                                                  from 'prop-typ
 import { Link }                                                   from 'react-router-dom';
 import _                                                          from 'lodash';
 import { Grid, Col, Row, Button }                                 from 'react-bootstrap';
-import { Button as AntButton }                                    from 'antd';
+import { Button as AntButton, Dropdown, Icon, Menu }                                    from 'antd';
 import ErrorNotificationBox                                       from '../../RecyclableComponents/ErrorNotificationBox';
 import Loading                                                    from '../../RecyclableComponents/Loading';
 
+const menu = (listingId) => {
+  return (
+    <Menu>
+      <Menu.Item>
+        <Link to={`/review-applications/${listingId}`}>
+          <div>Review applications</div>
+        </Link>
+      </Menu.Item>
+    </Menu>
+  );
+};
 
 export default class ShowCarListingCollectionComponent extends Component {
   static propTypes = {
@@ -61,6 +72,15 @@ export default class ShowCarListingCollectionComponent extends Component {
             <Col xs={12} sm={6}><AntButton type="danger" onClick={() => onDeleteListing(carListingNumber)}>Delete</AntButton></Col>
           </Row>
         </Col>
+        <div className="display-car-listing-collection_dropdownButton">
+          <Dropdown
+            overlay={menu(carListingNumber)}
+            trigger={['click']}
+            placement="bottomRight"
+          >
+            <a><Icon type="ellipsis"/></a>
+          </Dropdown>
+        </div>
       </Row>
     )
   };

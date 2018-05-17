@@ -11,6 +11,7 @@ import DisplayCarListingContainer                       from "./Body/CarListing/
 import ShowCarListingCollectionContainer                from "./Body/CarListing/ShowCarListingCollectionContainer";
 import CreateCarContainer                               from "./Body/Car/CreateCarContainer";
 import EditListingContainer                             from "./Body/CarListing/EditListingContainer";
+import ReviewBookingApplicationContainer                from "./Body/CarListing/BookingRequest/ReviewBookingApplicationContainer";
 
 import './CSS/Home.scss';
 import './CSS/Login.scss';
@@ -116,6 +117,11 @@ export default class Home extends Component {
                   <PrivateRoute path="/create-car-listing" component={CreateListingContainer} axios={context.axios} requireAuth={[ USER_TYPE.carOwner ]} />
                   <PrivateRoute path="/create-car" component={CreateCarContainer} axios={context.axios} requireAuth={[ USER_TYPE.carOwner ]} />
                   <PrivateRoute path="/car-listings" component={ShowCarListingCollectionContainer} requireAuth={[ USER_TYPE.carOwner ]} />
+
+                  /*
+                      Review booking applications for car listings
+                   */
+                  <PrivateRoute path="/review-applications/:carListingId" component={ReviewBookingApplicationContainer} requireAuth={[ USER_TYPE.carOwner ]} />
                 </Switch>
               )
             }}
