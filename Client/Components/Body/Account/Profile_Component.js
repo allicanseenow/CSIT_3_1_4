@@ -24,6 +24,13 @@ export default class Profile_Component extends Component {
     bsb: '',
     accountNumber: '',
 
+    fullname:'',
+    dob:'',
+    creditcardLastThree:'',
+    billingAccount:'',
+
+    key:1,
+
     errors: {},
     submitPayError: null,
     submitBillError: null,
@@ -69,6 +76,34 @@ export default class Profile_Component extends Component {
     return isValid;
 
   };
+
+  handleSelect=(key)=>{
+    this.setState({ key });
+    if(key ==1)
+    {
+      this.onGetProfileOverview();
+    }
+  };
+
+  componentDidMount(){
+    this.onGetProfileOverview();
+  }
+
+
+  onGetProfileOverview = () => {
+    axios({
+      method: 'get',
+      url: 'http://localhost:9000/api/account',
+      headers: {'x-access-token': window.localStorage.localToken},
+    })
+    .then((res)=>{
+      console.log("account overview details:",res);
+      this.setState({dob: res.data.DOB});
+      this.setState({fullname: res.data.fullname});
+      this.setState({creditcardLastThree: res.data.creditCard});
+
+    })
+  }
   onSubmitChangePaymentDetail = (event) => {
     event.preventDefault();
 
@@ -180,11 +215,19 @@ export default class Profile_Component extends Component {
 
 
   renderOverview = () => {
-    return(
 
-      <div className="col-xs-4 col-md-3">
-      <h4>get info from api -fname, lname, DOB</h4>
+    const {creditcardLastThree, dob, fullname}=this.state;
+    return(
+      <div>
+
+      <div className="col-xs-12 col-md-3">
         <Image src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" rounded />
+      </div>
+      <div className="col-md-9">
+        <p><h4>Name:</h4> {fullname}</p>
+        <p><h4>Date of birth:</h4> {dob}</p>
+        <p><h4>Credit Card:</h4> xxxx-xxxx-xxxx-x{creditcardLastThree}</p>
+      </div>
       </div>
     )
   };
@@ -309,9 +352,15 @@ export default class Profile_Component extends Component {
       )
   };
 
+  renderTransactionDetail = () => {
+    return(
+      <h1>hi</h1>
+    )
+  };
+
   renderRenterProfile = () => {
     return(
-      <Tabs defaultActiveKey={1}  id="Pofile">
+      <Tabs activeKey={this.state.key} onSelect={this.handleSelect}>
         <Tab eventKey={1} title="Overview">
           {this.renderOverview()}
         </Tab>
@@ -321,13 +370,16 @@ export default class Profile_Component extends Component {
         <Tab eventKey={3} title="Password">
           {this.renderChangePassword()}
         </Tab>
+        <Tab eventKey={4} title="Transaction details">
+          {this.renderTransactionDetail()}
+        </Tab>
       </Tabs>
     )
   };
 
   renderOwnerProfile = () => {
     return(
-      <Tabs defaultActiveKey={1}  id="Pofile">
+      <Tabs activeKey={this.state.key} onSelect={this.handleSelect}>
         <Tab eventKey={1} title="Overview">
             {this.renderOverview()}
         </Tab>
@@ -339,6 +391,9 @@ export default class Profile_Component extends Component {
         </Tab>
         <Tab eventKey={4} title="Password">
             {this.renderChangePassword()}
+        </Tab>
+        <Tab eventKey={5} title="Transaction details">
+            {this.renderTransactionDetail()}
         </Tab>
       </Tabs>
     )
