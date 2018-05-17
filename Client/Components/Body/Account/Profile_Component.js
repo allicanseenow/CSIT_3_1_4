@@ -3,7 +3,7 @@ import { Tabs, Tab, Image, label, Button, form , input}           from 'react-bo
 import { LinkContainer }                                          from 'react-router-bootstrap';
 import { Redirect }                                               from 'react-router';
 import _                                                          from 'lodash';
-import { validateChangePassword,validateChangePaymentDetail, validateChangeBillingDetail }    from '../../Utility/Validator';
+import { validateChangePassword }    from '../../Utility/Validator';
 import TextFieldGroup                                             from '../../Utility/TextFieldGroup';
 import axios                                                      from 'axios'
 import ErrorNotificationBox                                       from '../../RecyclableComponents/ErrorNotificationBox';
@@ -32,6 +32,8 @@ export default class Profile_Component extends Component {
     key:1,
 
     errors: {},
+    isValid:false,
+
     submitPayError: null,
     submitBillError: null,
     submitPassError: null,
@@ -54,26 +56,30 @@ export default class Profile_Component extends Component {
     }
   };
 
+
   isValid = (tab) => {
-    const errors = null;
-    const isValid = true;
+    let isValidR = false;
+    let errorsR = null;
     if(tab == 2){
-      const { errors, isValid }  = validateChangePaymentDetail(this.state);
+      const { errors, isValid }  = validateChangePassword(this.state);
+      isValidR = isValid;
+      errorsR = errors;
     }
     else if(tab == 3){
-      const { errors, isValid } = validateChangeBillingDetail(this.state);
+      const { errors, isValid }  = validateChangePaymentDetail(this.state);
+      isValidR = isValid;
+      errorsR = errors;
     }
     else if(tab == 4){
-      const { errors, isValid } = validateChangePassword(this.state);
-    }
-    else{
-      const {errors, isValid } = validateChangePassword(this.state);
+      const { errors, isValid } = validateChangeBillingDetail(this.state);
+      isValidR = isValid;
+      errorsR = errors;
     }
 
-    if (!isValid) {
-      this.setState({ errors });
+    if (!isValidR) {
+      this.setState({errors: errorsR});
     }
-    return isValid;
+    return isValidR;
 
   };
 
@@ -97,7 +103,6 @@ export default class Profile_Component extends Component {
       headers: {'x-access-token': window.localStorage.localToken},
     })
     .then((res)=>{
-      console.log("account overview details:",res);
       this.setState({dob: res.data.DOB});
       this.setState({fullname: res.data.fullname});
       this.setState({creditcardLastThree: res.data.creditCard});
@@ -109,7 +114,7 @@ export default class Profile_Component extends Component {
 
     if (this.isValid(2)){
       const {cardHolderName, cardNumber, cardExpiryDate, cardCvv} = this.state;
-      console.log("submitChangePassword");
+      alert("submitChangePassword");
       axios({
         method: 'put',
         url: 'http://localhost:9000/api/account',
@@ -124,12 +129,10 @@ export default class Profile_Component extends Component {
         headers: {'x-access-token': window.localStorage.localToken}
       })
       .then((res) => {
-        console.log("payment res", res);
         this.setState({ submitPayError: null });
         this.setState({ submitPayConfirm: "Successfully changed payment detail" });
       })
       .catch(({ response }) => {
-        console.log("payment error", response);
         const errorMsg = response && response.data && response.data.message;
         this.setState({ submitPayConfirm: null});
         this.setState({ submitPayError: errorMsg }, () => {
@@ -159,10 +162,8 @@ export default class Profile_Component extends Component {
       .then((res) => {
         this.setState({ submitBillError: null });
         this.setState({ submitBillConfirm: "Successfully changed billing details" });
-        console.log("billing res", res);
       })
       .catch(({ response }) => {
-        console.log("error response", response);
         const errorMsg = response && response.data && response.data.message;
         this.setState({ submitBillConfirm: null});
         this.setState({ submitBillError: errorMsg }, () => {
@@ -177,7 +178,7 @@ export default class Profile_Component extends Component {
 
   onSubmitChangePassword = (event) => {
 	event.preventDefault();
-    if (this.isValid(4)){
+    if (this.isValid(2)){
       const {oldPassword, newPassword} = this.state;
       console.log("submitChangePassword");
       axios({
@@ -364,11 +365,11 @@ export default class Profile_Component extends Component {
         <Tab eventKey={1} title="Overview">
           {this.renderOverview()}
         </Tab>
-        <Tab eventKey={2} title="Payment Details">
-          {this.renderPaymentDetails()}
+        <Tab eventKey={2} title="Password" >
+            {this.renderChangePassword()}
         </Tab>
-        <Tab eventKey={3} title="Password">
-          {this.renderChangePassword()}
+        <Tab eventKey={3} title="Payment Details">
+            {this.renderPaymentDetails()}
         </Tab>
         <Tab eventKey={4} title="Transaction details">
           {this.renderTransactionDetail()}
@@ -383,14 +384,14 @@ export default class Profile_Component extends Component {
         <Tab eventKey={1} title="Overview">
             {this.renderOverview()}
         </Tab>
-        <Tab eventKey={2} title="Payment Details" >
+        <Tab eventKey={2} title="Password" >
+            {this.renderChangePassword()}
+        </Tab>
+        <Tab eventKey={3} title="Payment Details">
             {this.renderPaymentDetails()}
         </Tab>
-        <Tab eventKey={3} title="Billing Details">
+        <Tab eventKey={4} title="Billing Detail">
             {this.renderBillingDetails()}
-        </Tab>
-        <Tab eventKey={4} title="Password">
-            {this.renderChangePassword()}
         </Tab>
         <Tab eventKey={5} title="Transaction details">
             {this.renderTransactionDetail()}
@@ -401,11 +402,9 @@ export default class Profile_Component extends Component {
 
   render(){
 
-    console.log('Profile Component',this.props);
 
     const { username, type, loggedIn } = this.props;
     this.username = username;
-    console.log("username main", this.username);
     let profile = null;
     if (loggedIn) {
       switch (type) {

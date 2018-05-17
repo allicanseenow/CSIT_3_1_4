@@ -118,20 +118,20 @@ export function validateCreateListing(data) {
   };
 }
 
-//inside profile
 export function validateChangePassword(data){
   let errors = {};
   if (_.isEmpty(data.oldPassword)) {
-    errors.firstName = 'This field is required';
+    errors.oldPassword = 'This field is required';
   }
   if (_.isEmpty(data.newPassword)) {
-    errors.lastName = 'This field is required';
+    errors.newPassword = 'This field is required';
   }
   if (_.isEmpty(data.passwordConfirmation)) {
-    errors.licenseNumber = 'This field is required';
+    errors.passwordConfirmation = 'This field is required';
   }
   if (!Validator.equals(data.newPassword, data.passwordConfirmation)) {
     errors.passwordConfirmation = 'Passwords must match';
+
   }
   return {
     errors,
