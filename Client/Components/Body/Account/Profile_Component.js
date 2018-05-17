@@ -3,7 +3,7 @@ import { Tabs, Tab, Image, label, Button, form , input}           from 'react-bo
 import { LinkContainer }                                          from 'react-router-bootstrap';
 import { Redirect }                                               from 'react-router';
 import _                                                          from 'lodash';
-import { validateChangePassword }    from '../../Utility/Validator';
+import { validateChangePassword, validateChangePaymentDetail, validateChangeBillingDetail }    from '../../Utility/Validator';
 import TextFieldGroup                                             from '../../Utility/TextFieldGroup';
 import axios                                                      from 'axios'
 import ErrorNotificationBox                                       from '../../RecyclableComponents/ErrorNotificationBox';
@@ -84,6 +84,7 @@ export default class Profile_Component extends Component {
   };
 
   handleSelect=(key)=>{
+    this.clearNotification();
     this.setState({ key });
     if(key ==1)
     {
@@ -94,6 +95,43 @@ export default class Profile_Component extends Component {
   componentDidMount(){
     this.onGetProfileOverview();
   }
+  clearPasswordField=()=>{
+    this.setState({
+      oldPassword: '',
+      newPassword: '',
+      passwordConfirmation: ''
+    });
+  };
+
+  clearPaymentDetail=()=>{
+    this.setState({
+      cardHolderName: '',
+      cardNumber: '',
+      cardExpiryDate: '',
+      cardCvv: ''
+    });
+  };
+
+  clearBillingDetail=()=>{
+    this.setState({
+      accountName: '',
+      bsb: '',
+      accountNumber: ''
+    });
+  };
+
+
+  clearNotification=()=>{
+    this.setState({
+      submitPayError: null,
+      submitBillError: null,
+      submitPassError: null,
+      submitPayConfirm: null,
+      submitBillConfirm: null,
+      submitPassConfirm: null
+    })
+  }
+
 
 
   onGetProfileOverview = () => {
@@ -111,10 +149,9 @@ export default class Profile_Component extends Component {
   }
   onSubmitChangePaymentDetail = (event) => {
     event.preventDefault();
-
-    if (this.isValid(2)){
+    this.clearNotification();
+    if (this.isValid(3)){
       const {cardHolderName, cardNumber, cardExpiryDate, cardCvv} = this.state;
-      alert("submitChangePassword");
       axios({
         method: 'put',
         url: 'http://localhost:9000/api/account',
@@ -131,9 +168,11 @@ export default class Profile_Component extends Component {
       .then((res) => {
         this.setState({ submitPayError: null });
         this.setState({ submitPayConfirm: "Successfully changed payment detail" });
+        console.log("result"+res);
       })
       .catch(({ response }) => {
         const errorMsg = response && response.data && response.data.message;
+        console.log("error"+response);
         this.setState({ submitPayConfirm: null});
         this.setState({ submitPayError: errorMsg }, () => {
           window.scrollTo(0, 0);
@@ -143,12 +182,13 @@ export default class Profile_Component extends Component {
         this.setState({ isLoading: false });
       });
     }
-
+    this.clearPaymentDetail();
   };
 
   onSubmitChangeBillingDetail = (event) => {
 	event.preventDefault();
-    if (this.isValid(3)){
+  this.clearNotification();
+    if (this.isValid(4)){
       const {accountNumber, bsb} = this.state;
       axios({
         method: 'put',
@@ -174,10 +214,12 @@ export default class Profile_Component extends Component {
         this.setState({ isLoading: false });
       });
     }
+    this.clearBillingDetail();
   };
 
   onSubmitChangePassword = (event) => {
 	event.preventDefault();
+  this.clearNotification();
     if (this.isValid(2)){
       const {oldPassword, newPassword} = this.state;
       console.log("submitChangePassword");
@@ -205,6 +247,7 @@ export default class Profile_Component extends Component {
         this.setState({ isLoading: false });
       });
     }
+    this.clearPasswordField();
   };
 
 
