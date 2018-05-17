@@ -1,6 +1,5 @@
 import React, { Component }                 from 'react';
 import _                                    from 'lodash';
-import PropTypes                            from 'prop-types';
 import CreateCarComponent                   from './CreateCarComponent';
 import { validateCreateListing }            from '../../Utility/Validator';
 

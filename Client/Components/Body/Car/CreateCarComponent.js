@@ -32,9 +32,7 @@ export default class CreateCarComponent extends Component {
                   <h2 className="text-large inner-form-title">{title}</h2>
                 </div>
               </Col>
-              <Col lg={3} md={2}>
-
-              </Col>
+              <Col lg={3} md={2}/>
             </Row>
             <Row>
               <Col md={10} sm={10} xs={12}>
