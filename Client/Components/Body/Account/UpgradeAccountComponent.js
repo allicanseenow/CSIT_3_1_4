@@ -1,17 +1,20 @@
 import React, { Component }                 from 'react';
-import PropTypes                            from 'prop-types';
 import { Grid, Row, Col }                   from 'react-bootstrap';
-import { Button }                           from 'antd';
+import { Button, Modal }                    from 'antd';
 import TextFieldGroup                       from '../../Utility/TextFieldGroup';
-// import RangeCalendar                        from './RangeCalendar';
 import UploadImageComponent                 from '../CarListing/UploadImageComponent';
 import ErrorNotificationBox                 from '../../RecyclableComponents/ErrorNotificationBox';
+import Loading                              from '../../RecyclableComponents/Loading';
+import PropTypes from "prop-types";
 
-export default class CreateCarComponent extends Component {
+export default class UpgradeAccountComponent extends Component {
   static propTypes = {
-    carListingDetail: PropTypes.object.required,
-    // onCalendarChange: PropTypes.func.isRequired,
     submitError: PropTypes.string,
+  };
+
+  state = {
+    startLoading: false,
+    successMessage: false,
   };
 
   renderTextFieldGroup = (field, value, label, onChange, onBlur, error, placeholder, type) => {
@@ -45,8 +48,26 @@ export default class CreateCarComponent extends Component {
     )
   };
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.showSuccessBanner && !prevState.showSuccessBanner) {
+      return { startLoading: true };
+    }
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevState, prevContext) {
+    if (!prevState.startLoading && this.state.startLoading) {
+      window.setTimeout(() => {
+        this.setState({ successMessage: true }, () => {
+          window.setTimeout(() => window.location = "/", 4000);
+        });
+      }, 4000);
+    }
+  }
+
   render() {
-    const { carListingDetail, onChange, onBlur, onSubmit, errors, submitError, submitting, onImageChange } = this.props;
+    const { carListingDetail, onChange, onBlur, onSubmit, errors, submitError, submitting, onImageChange, showSuccessBanner } = this.props;
+    const { successMessage } = this.state;
     return (
       <div className="form-container">
         <Grid fluid>
@@ -61,11 +82,33 @@ export default class CreateCarComponent extends Component {
                           <span>{submitError}</span>
                         </ErrorNotificationBox>
                       )}
+                      { !submitError && showSuccessBanner && (
+                        <Modal
+                          visible={showSuccessBanner}
+                          title="Processing request"
+                          footer={null}
+                          closable={false}
+                        >
+                          { !successMessage && (
+                            <Loading/>)
+                          || (
+                            <div style={{ width: "100%", textAlign: "center" }}>
+                              <div
+                                style={{fontSize: "4em", color: "green"}}
+                              >
+                                <i className="far fa-check-circle"/>
+                              </div>
+                              <h3>Congratulations, you have become a car owner</h3>
+                              <div>Redirect to the home page in 4 seconds</div>
+                            </div>
+                          )}
+                        </Modal>
+                      )}
                     </Col>
                   </Row>
                 </div>
               </div>
-              { this.renderHeader(1, 'Car details') }
+              { this.renderHeader(1, 'Enter your car details') }
               <Col sm={8} xs={12} className="form-inner-col-field">
                 <div className="form_details_contents">
                   <div>
@@ -81,18 +124,6 @@ export default class CreateCarComponent extends Component {
                   </div>
                 </div>
               </Col>
-              {/* We skip the available dates for now */}
-              {/*{ this.renderHeader(2, 'Available dates') }*/}
-              {/*<Col sm={8} xs={12} className="form-inner-col-field">*/}
-              {/*<div className="form_details_contents">*/}
-              {/*<RangeCalendar*/}
-              {/*onChange={onCalendarChange}*/}
-              {/*startValue={carListingDetail.startAvailableDate}*/}
-              {/*endValue={carListingDetail.endAvailableDate}*/}
-              {/*showDateInput*/}
-              {/*/>*/}
-              {/*</div>*/}
-              {/*</Col>*/}
               { this.renderHeader(2, 'Car image') }
               <div className="form-inner-col-field">
                 <div className="form_image_contents">
@@ -102,6 +133,16 @@ export default class CreateCarComponent extends Component {
                   </div>
                 </div>
               </div>
+              { this.renderHeader(3, 'Enter your billing detail') }
+              <Col sm={8} xs={12} className="form-inner-col-field">
+                <div className="form-inner-col-field">
+                  <div className="form_details_contents">
+                    { this.renderTextFieldGroup('bsb', carListingDetail.bsb, 'BSB number', onChange, onBlur, errors.bsb) }
+                    { this.renderTextFieldGroup('accountNumber', carListingDetail.accountNumber, 'Bank account number', onChange, onBlur, errors.accountNumber) }
+                    { this.renderTextFieldGroup('bankAccountName', carListingDetail.bankAccountName, 'Bank account name', onChange, onBlur, errors.bankAccountName) }
+                  </div>
+                </div>
+              </Col>
               <Col smOffset={3} xsOffset={5} xs={2} className="form-inner-col-field">
                 <div className="form_details_contents">
                   <Button loading={submitting} htmlType="submit" type="primary">Submit</Button>

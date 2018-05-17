@@ -4,7 +4,6 @@ import { Grid, Col, Row, Button }                                 from 'react-bo
 import { Button as AntButton, Alert, Rate }                       from 'antd';
 import UserReviewComponent                                        from '../../RecyclableComponents/UserReviewComponent';
 import ReviewListingComponent                                     from "./ReviewListingComponent";
-import ErrorNotificationBox                                       from '../../RecyclableComponents/ErrorNotificationBox';
 import BookingComponent from "./BookingComponent";
 
 
@@ -86,7 +85,7 @@ export default class DisplayCarListingComponent extends Component {
                       <Col sm={7}>
                         <div>
                           <div className="car-content-panel-wrapper_averageReviewTitle"><h5>Average rating:</h5></div>
-                          <div className="car-content-panel-wrapper_averageReview"><Rate value={rating} disabled /></div>
+                          <div className="car-content-panel-wrapper_averageReview"><Rate allowHalf value={rating} disabled /></div>
                         </div>
                       </Col>
                       <Col sm={1}/>
