@@ -84,6 +84,7 @@ export default class Profile_Component extends Component {
   };
 
   handleSelect=(key)=>{
+    this.clearNotification();
     this.setState({ key });
     if(key ==1)
     {
@@ -119,13 +120,18 @@ export default class Profile_Component extends Component {
     });
   };
 
-/*
+
   clearNotification=()=>{
     this.setState({
-      errors:{}
+      submitPayError: null,
+      submitBillError: null,
+      submitPassError: null,
+      submitPayConfirm: null,
+      submitBillConfirm: null,
+      submitPassConfirm: null
     })
   }
-*/
+
 
 
   onGetProfileOverview = () => {
@@ -143,7 +149,7 @@ export default class Profile_Component extends Component {
   }
   onSubmitChangePaymentDetail = (event) => {
     event.preventDefault();
-
+    this.clearNotification();
     if (this.isValid(3)){
       const {cardHolderName, cardNumber, cardExpiryDate, cardCvv} = this.state;
       axios({
@@ -181,6 +187,7 @@ export default class Profile_Component extends Component {
 
   onSubmitChangeBillingDetail = (event) => {
 	event.preventDefault();
+  this.clearNotification();
     if (this.isValid(4)){
       const {accountNumber, bsb} = this.state;
       axios({
@@ -212,6 +219,7 @@ export default class Profile_Component extends Component {
 
   onSubmitChangePassword = (event) => {
 	event.preventDefault();
+  this.clearNotification();
     if (this.isValid(2)){
       const {oldPassword, newPassword} = this.state;
       console.log("submitChangePassword");
