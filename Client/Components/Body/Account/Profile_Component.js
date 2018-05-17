@@ -119,13 +119,13 @@ export default class Profile_Component extends Component {
     });
   };
 
-{/*
+/*
   clearNotification=()=>{
     this.setState({
       errors:{}
     })
   }
-*/}
+*/
 
 
   onGetProfileOverview = () => {
