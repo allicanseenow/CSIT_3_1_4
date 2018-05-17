@@ -125,3 +125,199 @@
   }
 }
 
+.display-car-listing {
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+
+  .image-car-listing {
+    position: relative;
+    width: 100%;
+    cursor: pointer !important;
+    padding: 0 24px;
+
+    .car-image {
+      background-size: contain !important;
+      height: 300px;
+      background-repeat: no-repeat;
+      background-position: 50% 50% !important;
+    }
+  }
+
+  .car-listing_body {
+    position: relative;
+    margin-top: 0px;
+    margin-bottom: 50px;
+    padding-top: 0;
+
+    .car-listing_body_content {
+      margin-left: auto !important;
+      margin-right: auto !important;
+      width: auto !important;
+
+      @media only screen and (min-width: 744px) {
+        padding: 0 24px !important;
+      }
+
+      .car-detail-panel-wrapper {
+        .car-title-panel-wrapper {
+          position: relative;
+          width: 100%;
+          padding: 20px 10px;
+          top: 3px;
+
+          .left-panel {
+            border-right-width: 1px;
+          }
+
+          .right-panel {
+
+          }
+        }
+
+        .car-content-panel-wrapper {
+          padding: 10px;
+          position: relative;
+          width: 100%;
+          top: 1px;
+
+          .car-content-panel-wrapper_averageReviewTitle {
+            display: inline-block;
+          }
+
+          .car-content-panel-wrapper_averageReview {
+            display: inline-block;
+            padding-left: 10px;
+            bottom: -2px;
+            position: relative;
+          }
+        }
+
+        .car-review-panel-wrapper {
+          position: relative;
+          padding: 10px;
+          width: 100%;
+          top: 1px;
+          border-top-width: 0;
+        }
+
+        .car-panel-float-right {
+          float: right;
+        }
+      }
+    }
+    //@media only screen and (min-width: 1080px) {
+    //  margin-top: 40px;
+    //}
+  }
+}
+
+.display-car-listing-collection {
+  max-width: 850px;
+  margin-left: auto;
+  margin-right: auto;
+
+  .display-car-listing-collection_img {
+    background-size: contain;
+    height: 100px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .display-car-listing-collection_block {
+    display: table;
+    width: 100%;
+    overflow: auto;
+
+    .display-car-listing-collection_block_cell {
+      display: table-cell;
+      vertical-align: middle;
+      float: none;
+    }
+  }
+
+  .display-car-listing-collection_header {
+    margin: 24px 0 !important;
+
+    .display-car-listing-collection_header_title {
+      display: table !important;
+      table-layout: fixed !important;
+      width: 100% !important;
+
+      .display-car-listing-collection_header_title_cell {
+        display: table-cell !important;
+        width: 100%;
+        vertical-align: baseline !important;
+
+        .display-car-listing-collection_header_title_cell_word {
+          margin-bottom: 8px !important;
+
+          .display-car-listing-collection_header_title_cell_word_h3 {
+            font-weight: 700 !important;
+            margin-bottom: 0 !important;
+            font-size: 28px !important;
+            line-height: 32px !important;
+            letter-spacing: -0.6px !important;
+            padding-top: 2px !important;
+            padding-bottom: 2px !important;
+            color: rgb(72, 72, 72) !important;
+          }
+        }
+      }
+    }
+
+    @media only screen  and (min-width: 744px) {
+      margin: 32px 0 !important;
+    }
+  }
+}
+
+.createListing_selectCar_wrapper {
+  width: 100%;
+
+  .createListing_selectCar {
+    display: table;
+    width: 100%;
+
+    .createListing_selectCar_content {
+      display: table-cell;
+    }
+  }
+}
+
+.review-box-component-wrapper {
+  display: table;
+
+  .review-box-component-wrapper_element_image {
+    display: table-cell;
+    vertical-align: middle !important;
+  }
+  .review-box-component-wrapper_element {
+    padding-left: 16px;
+    display: table-cell;
+  }
+}
+
+.review-box-component-content_wrapper {
+  .review-box-component-content_wrapper_msg {
+    margin-top: 10px;
+  }
+  .review-box-component-content_wrapper_star {
+    font-size: 14px;
+  }
+}
+
+.reviewListingComponent {
+  .reviewListingComponent_field {
+    margin: 10px 0;
+    label {
+      color: red;
+    }
+  }
+
+  .reviewListingComponent_button {
+    margin-top: 20px;
+  }
+}

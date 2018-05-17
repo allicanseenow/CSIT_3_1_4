@@ -1,22 +1,78 @@
 import React, { Component }                 from 'react';
 import PropTypes                            from 'prop-types';
 import { Grid, Row, Col }                   from 'react-bootstrap';
-import { Button }                           from 'antd';
+import { Link }                             from 'react-router-dom';
+import { Button, DatePicker, Radio }        from 'antd';
+import moment                               from 'moment';
 import TextFieldGroup                       from '../../Utility/TextFieldGroup';
-// import RangeCalendar                        from './RangeCalendar';
-import UploadImageComponent                 from './UploadImageComponent';
 import ErrorNotificationBox                 from '../../RecyclableComponents/ErrorNotificationBox';
+import SuccessNotificationBox               from '../../RecyclableComponents/SuccessNotificationBox';
+import Loading                              from '../../RecyclableComponents/Loading';
+
+const { RangePicker } = DatePicker;
+const RadioButton = Radio.Button;
+const RadioGroup = Radio.Group;
 
 export default class CreateListingComponent extends Component {
   static propTypes = {
     carListingDetail: PropTypes.object.required,
     onCalendarChange: PropTypes.func.isRequired,
     submitError: PropTypes.string,
+    defaultCalendarValue: PropTypes.object,
+    editCarMode: PropTypes.bool,
+    showSuccessBanner: PropTypes.bool,
+    loadingCarListing: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    defaultCalendarValue: null,
+    disableSelectCarFromList: false,
   };
 
   renderTextFieldGroup = (field, value, label, onChange, onBlur, error, placeholder, type) => {
     return (
       <TextFieldGroup key={`TextFieldGroup-${field}`} field={field} value={value} label={label} onChange={onChange} onBlur={onBlur} error={error} type={type} placeholder={placeholder}/>
+    )
+  };
+
+
+
+  renderCarSelection = (cars) => {
+    const { loadingCarListing } = this.props;
+    return (
+      <div>
+        <label className="control-label textField-label">Or select one from your car list</label>
+        { loadingCarListing && (
+          <Loading/>
+        ) || (
+          <RadioGroup onChange={this.props.onSelectCar} className="createListing_selectCar_wrapper" name="rego" value={this.props.selectedCar}>
+            { _.map(cars, (car) => {
+              const { brand, capacity, model, colour, img, rego, location, transType, year } = car;
+              return (
+                <div className="display-car-listing-collection createListing_selectCar" key={`car-listing-id-${rego}`}>
+                  <RadioButton value={rego} className="createListing_selectCar_content">
+                    <div>
+                      <Row className="display-car-listing-collection_block vertical-align">
+                        <Col xs={3} className="display-car-listing-collection_block_cell">
+                          <div className="display-car-listing-collection_img" style={{ backgroundImage: `url(api/${img})` }} />
+                        </Col>
+                        <Col xs={2}/>
+                        <Col xs={6} className="display-car-listing-collection_block_cell">
+                          <div style={{display: "table"}}>
+                            <div><b>Brand:</b> {brand}</div>
+                            <div><b>Model:</b> {model}</div>
+                            <div><b>Colour:</b> {colour}</div>
+                          </div>
+                        </Col>
+                      </Row>
+                    </div>
+                  </RadioButton>
+                </div>
+              )
+            })}
+          </RadioGroup>
+        ) }
+      </div>
     )
   };
 
@@ -47,8 +103,13 @@ export default class CreateListingComponent extends Component {
     )
   };
 
+  disabledDate = (current) => {
+    return current < moment().startOf('day');
+  };
+
   render() {
-    const { carListingDetail, onChange, onBlur, onSubmit, errors, submitError, submitting, onImageChange } = this.props;
+    const { carListingDetail, onChange, onBlur, onSubmit, errors, submitError, submitting, onCalendarChange, editCarMode, showSuccessBanner } = this.props;
+    const { time, rego, cars } = carListingDetail;
     return (
       <div className="form-container">
         <Grid fluid>
@@ -63,44 +124,45 @@ export default class CreateListingComponent extends Component {
                           <span>{submitError}</span>
                         </ErrorNotificationBox>
                       )}
+                      { !submitError && showSuccessBanner && (
+                        <SuccessNotificationBox>
+                          New car listing created
+                        </SuccessNotificationBox>
+                      )}
                     </Col>
                   </Row>
                 </div>
               </div>
-              { this.renderHeader(1, 'Car listing details') }
-              <Col sm={8} xs={12} className="form-inner-col-field">
-                <div className="form_details_contents">
-                  <div>
-                    { this.renderTextFieldGroup('brandName', carListingDetail.brandName, 'Brand name', onChange, onBlur, errors.brandName) }
-                    { this.renderTextFieldGroup('model', carListingDetail.model, 'Model', onChange, onBlur, errors.model) }
-                    { this.renderTextFieldGroup('transmission', carListingDetail.transmission, 'Transmission', onChange, onBlur, errors.transmission) }
-                    { this.renderTextFieldGroup('odometer', carListingDetail.odometer, 'Odometer', onChange, onBlur, errors.odometer) }
-                    { this.renderTextFieldGroup('year', carListingDetail.year, 'Year', onChange, onBlur, errors.year, 'YYYY') }
-                    { this.renderTextFieldGroup('rego', carListingDetail.rego, 'Rego', onChange, onBlur, errors.rego) }
-                    { this.renderTextFieldGroup('location', carListingDetail.location, 'Location', onChange, onBlur, errors.location) }
-                    { this.renderTextFieldGroup('colour', carListingDetail.colour, 'Colour', onChange, onBlur, errors.colour) }
-                    { this.renderTextFieldGroup('capacity', carListingDetail.capacity, 'Capacity', onChange, onBlur, errors.capacity) }
-                  </div>
+              { !editCarMode && (
+                <div>
+                  { this.renderHeader(1, 'Select a car') }
+                  <Col sm={8} xs={12} className="form-inner-col-field">
+                    <div className="form_details_contents">
+                      <div>
+                        { this.renderTextFieldGroup('rego', carListingDetail.rego, 'Enter the rego of the car', onChange, onBlur, errors.rego) }
+                        { this.renderCarSelection(cars) }
+                      </div>
+                    </div>
+                  </Col>
                 </div>
-              </Col>
-              {/* We skip the available dates for now */}
-              {/*{ this.renderHeader(2, 'Available dates') }*/}
-              {/*<Col sm={8} xs={12} className="form-inner-col-field">*/}
-                {/*<div className="form_details_contents">*/}
-                  {/*<RangeCalendar*/}
-                    {/*onChange={onCalendarChange}*/}
-                    {/*startValue={carListingDetail.startAvailableDate}*/}
-                    {/*endValue={carListingDetail.endAvailableDate}*/}
-                    {/*showDateInput*/}
-                  {/*/>*/}
-                {/*</div>*/}
-              {/*</Col>*/}
-              { this.renderHeader(2, 'Car image') }
+              )}
+              { this.renderHeader(!editCarMode ? 2 : 1, 'Available date range for the listing') }
               <div className="form-inner-col-field">
                 <div className="form_image_contents">
-                  <div className="has-error">
-                    <UploadImageComponent onChange={onImageChange} maximumImageAllowed={1}/>
-                    { errors && errors.fileList && <span className="help-block">{errors.fileList}</span> }
+                  <div className={`form-group ${errors && errors.time ? 'has-error': ''}`}>
+                    <label className="control-label textField-label">From - To</label>
+                    <div style={{display: "block"}}>
+                      <RangePicker
+                        format="DD-MM-YYYY"
+                        showTime
+                        value={time}
+                        onChange={onCalendarChange}
+                        disabledDate={this.disabledDate}
+                      />
+                    </div>
+                    <div>
+                      { errors && errors.time && <span className="help-block">{errors.time}</span> }
+                    </div>
                   </div>
                 </div>
               </div>
@@ -110,6 +172,15 @@ export default class CreateListingComponent extends Component {
                 </div>
               </Col>
             </form>
+          </Col>
+          <Col smOffset={1} sm={11}>
+            { editCarMode && (
+              <div>
+                <Link to="/car-listings">
+                  Return to the car listing page
+                </Link>
+              </div>
+            )}
           </Col>
         </Grid>
       </div>

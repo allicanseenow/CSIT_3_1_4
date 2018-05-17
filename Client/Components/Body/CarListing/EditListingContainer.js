@@ -2,9 +2,9 @@ import React, { Component }                 from 'react';
 import _                                    from 'lodash';
 import moment                               from 'moment';
 import CreateListingComponent               from './CreateListingComponent';
-import { validateCreateCarListing }         from '../../Utility/Validator';
+import {validateCreateCarListing} from "../../Utility/Validator";
 
-export default class CreateListingContainer extends Component {
+export default class EditListingContainer extends Component {
   state = {
     rego: '',
     time: [],
@@ -13,22 +13,21 @@ export default class CreateListingContainer extends Component {
     errors: {},
     submitError: null,
     submitting: false,
-    showSuccessBanner: false,
-    loadingCarListing: true,
   };
 
   componentDidMount() {
     const { axios } = this.props;
-    axios().get(`/api/car`)
-      .then(({ data })  => {
-        this.setState({ cars: data });
-      })
-      .catch(({ response }) => {
-        console.log('Errors with get(/api/car)')
-      })
-      .finally(() => {
-        this.setState({ loadingCarListing: false });
-      })
+    axios().get(`api/list/${this.props.computedMatch.params.carListingId}`)
+      .then(({ data }) => {
+        const { available, car } = data;
+        const { rego } = car;
+        const availableDates = _.sortBy(_.map(available, (t) => {
+          const { year, month, day } = t;
+          return moment(`${year}-${month}-${day}`, "YYYY-MM-DD");
+        }));
+        const time = availableDates && [availableDates[0], availableDates[availableDates.length - 1]];
+        this.setState({ rego, availableDates, time });
+      });
   }
 
   getAvailableDayArray = () => {
@@ -48,30 +47,28 @@ export default class CreateListingContainer extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    const { axios } = this.props;
+    const { axios, computedMatch } = this.props;
     const { rego, time, errors } = this.state;
     const validate = validateCreateCarListing({ rego, time });
     if (validate.isValid) {
       this.setState({ submitting: true }, () => {
-        axios().post('/api/list', {
+        axios().put(`api/list/${computedMatch.params.carListingId}`, {
           rego,
           availableDates: this.getAvailableDayArray(),
         })
-        .then(({ response }) => {
-          this.setState({ submitError: null, showSuccessBanner: true }, () => {
-            window.scrollTo(0, 0);
-          });
-        })
-        .catch(({ response }) => {
-          console.log("errors while creating a new car list", response.data.message);
-          const errorMsg = response && response.data && response.data.message;
-          this.setState({ submitError: errorMsg }, () => {
-            window.scrollTo(0, 0);
-          });
-        })
-        .finally(() => {
-          this.setState({ errors: validate.errors, submitting: false });
-        })
+          .then(({ response }) => {
+            this.setState({ submitError: null, })
+          })
+          .catch(({ response }) => {
+            console.log("errors while creating a new car list", response.data.message);
+            const errorMsg = response && response.data && response.data.message;
+            this.setState({ submitError: errorMsg }, () => {
+              window.scrollTo(0, 0);
+            });
+          })
+          .finally(() => {
+            this.setState({ errors: validate.errors, submitting: false });
+          })
       });
     }
     else {
@@ -107,11 +104,10 @@ export default class CreateListingContainer extends Component {
   };
 
   render() {
-    const carListingDetail = this.state;
-    const { errors, submitError, submitting, selectedCar, showSuccessBanner, loadingCarListing } = this.state;
+    const { errors, submitError, submitting, selectedCar, availableDates } = this.state;
     return (
       <CreateListingComponent
-        carListingDetail={carListingDetail}
+        carListingDetail={this.state}
         onChange={this.onChange}
         onBlur={this.onBlur}
         onSubmit={this.onSubmit}
@@ -121,8 +117,7 @@ export default class CreateListingContainer extends Component {
         onCalendarChange={this.onCalendarChange}
         onSelectCar={this.onSelectCar}
         selectedCar={selectedCar}
-        showSuccessBanner={showSuccessBanner}
-        loadingCarListing={loadingCarListing}
+        editCarMode
       />
     )
   }

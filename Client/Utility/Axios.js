@@ -1,9 +1,9 @@
-import axios      from 'axios';
-import createHistory from "history/createBrowserHistory"
+import axios                          from 'axios';
+import { history as createHistory }   from '../app';
 
 export default function createAxiosInstance() {
   let config = {
-    baseURL: 'http://localhost:8080/',
+    baseURL: 'http://localhost:9000/',
     // timeout: 5000,
     headers: {
       accept: 'application/json'
@@ -19,13 +19,12 @@ export default function createAxiosInstance() {
 }
 
 // Use this axios instance for request that requires authentication. If not authenticated, user will be ridrected to "/login"
-export function createRedirectAxiosInstance() {
+export function createRedirectAxiosInstance(currentURL) {
   const axiosInstance = createAxiosInstance();
-  axiosInstance.interceptors.response.use((res) => {
-    console.log("interceptor response is ", res);
-  }, (err) => {
-    console.log("interceptor error is ", err);
-    createHistory().push("/login");
+  axiosInstance.interceptors.response.use(null, (err) => {
+    if (err.response.status === 400 || err.response.status === 401) {
+      createHistory.push("/login", { from: { pathname: currentURL } });
+    }
   });
   return axiosInstance;
 }
