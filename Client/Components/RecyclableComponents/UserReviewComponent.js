@@ -25,7 +25,7 @@ export default class UserReviewComponent extends PureComponent {
         </div>
         <div className="review-box-component-content_wrapper">
           <div>
-            <Rate defaultValue={rating} disabled className="review-box-component-content_wrapper_star"/>
+            <Rate allowHalf defaultValue={rating} disabled className="review-box-component-content_wrapper_star"/>
           </div>
           <div className="review-box-component-content_wrapper_msg">
             { reviewMessage }

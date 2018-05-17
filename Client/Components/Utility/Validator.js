@@ -107,11 +107,25 @@ export function validateLoginForm(data) {
   return true;
 }
 
-export function validateCreateListing(data) {
+/**
+ * validate when an owner creates a new car, or a renter creates a new one when trying to make a request to become an owner
+ * @param data Data to validate
+ * @param isUpgrading If this is the case when a retner requests to become an owner, isUpgrading === true. Otherwise, it is false
+ * @returns {{errors, isValid: boolean}}
+ */
+export function validateCreateListing(data, isUpgrading) {
   let errors = {};
   _.forEach(data, (value, key) => {
     if (_.isEmpty(value)) errors[key] = 'This field is required';
   });
+  if (isUpgrading) {
+    if (data.bsb.toString().length !== 6) {
+      errors.bsb = 'BSB number needs to have 6 digits';
+    }
+    else if (data.accountNumber.toString().length < 9 || data.accountNumber.toString().length > 13) {
+      errors.accountNumber= 'Invalid account number';
+    }
+  }
   return {
     errors,
     isValid: _.isEmpty(errors),
