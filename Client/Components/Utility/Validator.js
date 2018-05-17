@@ -200,10 +200,9 @@ export function validateChangeBillingDetail(data){
   if (_.isEmpty(data.accountNumber)) {
     errors.accountNumber = 'This field is required';
   }
-  if (_.isEmpty(data.accountName)) {
+  if (_.isEmpty(data.accountHolder)) {
     errors.accountName = 'This field is required';
   }
-  alert("val error", errors)
   return {
     errors,
     isValid: _.isEmpty(errors)
