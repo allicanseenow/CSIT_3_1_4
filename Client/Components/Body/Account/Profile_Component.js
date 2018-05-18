@@ -20,7 +20,7 @@ export default class Profile_Component extends Component {
     cardExpiryDate: '',
     cardCvv: '',
 
-    accountName: '',
+    accountHolder: '',
     bsb: '',
     accountNumber: '',
 
@@ -114,7 +114,7 @@ export default class Profile_Component extends Component {
 
   clearBillingDetail=()=>{
     this.setState({
-      accountName: '',
+      accountHolder: '',
       bsb: '',
       accountNumber: ''
     });
@@ -343,7 +343,7 @@ export default class Profile_Component extends Component {
               <div className ="form-group">
                 <div className="row">
                   <div className="col-sm-12">
-                    {this.renderTextFieldGroup("accountHolder", accountHolder, "Name of account holder", this.onChange, this.onBlur, errors.accountName) }
+                    {this.renderTextFieldGroup("accountHolder", accountHolder, "Name of account holder", this.onChange, this.onBlur, errors.accountHolder,"Account holder") }
                   </div>
                 </div>
                 <div className="row">
