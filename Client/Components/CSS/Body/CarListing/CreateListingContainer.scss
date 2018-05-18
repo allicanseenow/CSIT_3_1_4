@@ -240,6 +240,10 @@
       vertical-align: middle;
       float: none;
     }
+
+    .display-car-listing-collection_block_cell.review-booking-request{
+      line-height: 25px;
+    }
   }
 
   .display-car-listing-collection_header {
@@ -324,4 +328,9 @@
   .reviewListingComponent_button {
     margin-top: 20px;
   }
+}
+
+.scrollable-div {
+  max-height: 700px;
+  overflow-y: auto;
 }
