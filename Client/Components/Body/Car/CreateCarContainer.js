@@ -21,6 +21,23 @@ export default class CreateCarContainer extends Component {
     submitting: false,
   };
 
+  componentWillMount() {
+    this.setState({
+      brandName: 'Audi',
+      model: 'model',
+      transmission: 'auto',
+      odometer: '100',
+      year: '1998',
+      rego: '',
+      location: 'Sydney',
+      colour: 'Red',
+      capacity: '4',
+      bsb: '123456',
+      accountNumber: '',
+      bankAccountName: '1234AjO',
+    })
+  }
+
   onSubmit = (event) => {
     event.preventDefault();
     const { axios } = this.props;

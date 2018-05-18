@@ -99,7 +99,7 @@ export default class UpgradeAccountContainer extends Component {
 
   componentWillMount() {
     this.setState({
-      brandName: 'audi',
+      brandName: 'Audi',
       model: 'model',
       transmission: 'auto',
       odometer: '100',
