@@ -1,5 +1,6 @@
 import React, { PureComponent }                                       from 'react';
 import PropTypes                                                      from 'prop-types';
+import { Link }                                                       from 'react-router-dom';
 import Message                                                        from './Message';
 
 export default class ChatComponent extends PureComponent {
@@ -12,6 +13,11 @@ export default class ChatComponent extends PureComponent {
     messages: PropTypes.array.isRequired,
     handlePostMessage: PropTypes.func.isRequired,
     onChangeText: PropTypes.func.isRequired,
+    previousListing: PropTypes.string,
+  };
+
+  static defaultProps = {
+    previousListing: null
   };
 
   msgs = [];
@@ -44,27 +50,34 @@ export default class ChatComponent extends PureComponent {
 
   componentDidUpdate(prevProps) {
     if (prevProps.messages.length !== this.props.messages.length && this.props.messages.length) {
-      console.log('reach here prevProps.messages',prevProps.messages)
-      console.log('reach here this.props.messages', this.props.messages)
       const ul = this.ul;
       ul.scrollTop = ul.scrollHeight;
     }
   }
 
   render() {
-    const { recipient, typingText, onChangeText } = this.props;
+    const { recipient, typingText, onChangeText, previousListing } = this.props;
     return (
-      <div className="chat-container">
-        <div className="chat-container_chatroom">
-          <h3>{recipient}</h3>
-          <ul className="chat-container_chatroom_chats" ref={(ul) => this.ul = ul }>
-            { this.renderMessage() }
-          </ul>
-          <div className="chat-container_chatroom_input_container">
-            <form className="chat-container_chatroom_input" onSubmit={this.sendMessage}>
-              <input type="text" value={typingText} onChange={onChangeText} />
-              <input type="submit" value="Submit" />
-            </form>
+      <div>
+        { previousListing && (
+          <div style={{ paddingBottom: "15px"}}>
+            <Link to={`/display-car-listing/${previousListing}`}>
+              Back to the car listing
+            </Link>
+          </div>
+        )}
+        <div className="chat-container">
+          <div className="chat-container_chatroom">
+            <h3>{recipient}</h3>
+            <ul className="chat-container_chatroom_chats" ref={(ul) => this.ul = ul }>
+              { this.renderMessage() }
+            </ul>
+            <div className="chat-container_chatroom_input_container">
+              <form className="chat-container_chatroom_input" onSubmit={this.sendMessage}>
+                <input type="text" value={typingText} onChange={onChangeText} />
+                <input type="submit" value="Submit" />
+              </form>
+            </div>
           </div>
         </div>
       </div>

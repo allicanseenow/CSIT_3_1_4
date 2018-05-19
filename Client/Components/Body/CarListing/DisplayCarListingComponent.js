@@ -1,6 +1,7 @@
 import React, { Component }                                       from 'react';
 import PropTypes                                                  from 'prop-types';
 import { Grid, Col, Row, Button }                                 from 'react-bootstrap';
+import { Link }                                                   from 'react-router-dom';
 import { Button as AntButton, Alert, Rate }                       from 'antd';
 import UserReviewComponent                                        from '../../RecyclableComponents/UserReviewComponent';
 import ReviewListingComponent                                     from "./ReviewListingComponent";
@@ -24,11 +25,10 @@ export default class DisplayCarListingComponent extends Component {
 
   render() {
     const {
-      brand, capacity, colour, img, listingNumber, location, model, odometer, price, rating, rego, transType, year, ratings, available,
+      brand, capacity, colour, img, listingNumber, location, model, odometer, price, rating, rego, transType, year, ratings, available, owner,
       onTogglePopup, showReviewPopup, onSubmitReview, onClickBook, showBookingPanel, onOkBook, onCancelBook, bookingSent,
     } = this.props;
     const { reviews } = this.state;
-    console.log('this.props ', this.props.available)
     return (
       <div>
         { bookingSent && (
@@ -63,6 +63,7 @@ export default class DisplayCarListingComponent extends Component {
                       <Col sm={1} xsHidden/>
                       <Col sm={4} xs={4} xsOffset={2} smOffset={0}>
                         <Button bsStyle="success" onClick={onClickBook} disabled={bookingSent}>{bookingSent ? 'Booking request sent' : 'Book'}</Button>
+                        <Link to={{ pathname: `/chat/${owner}`, state: { previousListing: listingNumber }} }><Button bsStyle="info" style={{ marginLeft: "10px" }}>Chat with owner</Button></Link>
                         <BookingComponent
                           showBookingPanel={showBookingPanel}
                           onOkBook={onOkBook}

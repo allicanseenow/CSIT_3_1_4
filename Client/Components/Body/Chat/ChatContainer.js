@@ -1,9 +1,19 @@
 import React, { PureComponent }                                   from 'react';
 import moment                                                     from 'moment';
+import PropTypes                                                  from 'prop-types';
 import Loading                                                    from '../../RecyclableComponents/Loading';
 import ChatComponent                                              from './ChatComponent';
 
 export default class ChatContainer extends PureComponent {
+  static propTypes = {
+    // The listing that the user uses to go to this chat box
+    previousListing: PropTypes.string,
+  };
+
+  static defaultProps = {
+    previousListing: null,
+  };
+
   state = {
     typingText: '',
     sender: this.props.auth.username,
@@ -67,6 +77,8 @@ export default class ChatContainer extends PureComponent {
 
   render() {
     const { loading, messages, sender, recipient, typingText } = this.state;
+    const { location } = this.props;
+    const previousListing = location && location.state && location.state.previousListing || null;
     if (loading) {
       return <Loading/>
     }
@@ -78,6 +90,7 @@ export default class ChatContainer extends PureComponent {
         handlePostMessage={this.handlePostMessage}
         typingText={typingText}
         onChangeText={this.onChangeText}
+        previousListing={previousListing}
       />
     );
   }

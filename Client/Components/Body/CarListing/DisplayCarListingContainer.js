@@ -71,11 +71,10 @@ export default class DisplayCarListingContainer extends Component {
 
   render() {
     const {
-      brand, capacity, colour, img, carListingNumber, location, model, odometer, price, rating, rego, transType, year, available,
+      brand, capacity, colour, img, carListingNumber, location, model, odometer, price, rating, rego, transType, year, available, owner,
       ratings, bookingSent,
       showReviewPopup, showBookingPanel,
     } = this.state;
-    console.log('PROPS stateh ere is ', this.props)
     return (
       <DisplayCarListingComponent
         brand={brand}
@@ -93,6 +92,7 @@ export default class DisplayCarListingContainer extends Component {
         year={year}
         ratings={ratings}
         available={available}
+        owner={owner}
         onTogglePopup={this.onTogglePopup}
         showReviewPopup={showReviewPopup}
         onSubmitReview={this.onSubmitReview}
