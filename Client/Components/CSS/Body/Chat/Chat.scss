@@ -12,14 +12,14 @@
     width: 100%;
     max-width: 650px;
     height: 600px;
-    background-color: rgba(218, 209, 209, 0.7);;
+    background-color: floralwhite;
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 0 0 8px 0 rgba(0,0,0, 0.3);
 
     h3 {
       font-family: 'Pacifico', cursive;
-      background-color: rgba(30, 228, 148, 0.7);
+      background-color: #ff6666;
       color: #FFF;
       margin: 0;
       height: 40px;
@@ -83,14 +83,14 @@
 
         a {
           text-decoration: none;
-          color:#3498DB;
+          color:#ff6666;
         }
       }
 
       .chat-container_chatroom_chats_chat.right {
         float: right;
         clear: both;
-        background-color: rgba(69, 139, 230, 0.7);
+        background-color: rgba(15, 123, 245, 0.89);
         color: white;
       }
 
@@ -98,13 +98,14 @@
         float: left;
         clear: both;
         color: black;
+        background-color: rgba(218, 209, 209, 0.7);
       }
     }
 
     .chat-container_chatroom_input_container {
       height: 40px;
       width: 100%;
-      background: rgba(30, 228, 148, 0.7);
+      background: #ff6666;
       float: right;
     }
 
@@ -133,7 +134,7 @@
     .chat-container_chatroom_input input[type="submit"] {
       background-color: #f8ed0e;
       border: 1px solid #f8ed0e;
-      border-left-color: rgba(30, 228, 148, 0.7);
+      border-left-color: #f8e065;
       height: 30px;
       width: 70px;
       font-size: 14px;
@@ -145,7 +146,7 @@
     }
 
     .chat-container_chatroom_input input[type="submit"]:hover {
-      background: #1EE494;
+      background: #ff6666;
       color: #FFF;
     }
   }

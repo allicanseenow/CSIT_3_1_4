@@ -22,7 +22,12 @@ export default class ChatComponent extends PureComponent {
 
   renderMessage = () => {
     const { messages } = this.props;
-    return _.map((messages), (aMessage, index) => {
+    // Get the latest 100 messages if length > 100;
+    let latestMessages = messages;
+    if (latestMessages.length > 100) {
+      latestMessages = latestMessages.slice(-100);
+    }
+    return _.map((latestMessages), (aMessage, index) => {
       const { sender, receiver, message, tstamp } = aMessage;
       let focusTabIndex = 0;
       if (index === messages.length - 1) {
@@ -38,7 +43,9 @@ export default class ChatComponent extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.messages !== this.props.messages && this.props.messages.length) {
+    if (prevProps.messages.length !== this.props.messages.length && this.props.messages.length) {
+      console.log('reach here prevProps.messages',prevProps.messages)
+      console.log('reach here this.props.messages', this.props.messages)
       const ul = this.ul;
       ul.scrollTop = ul.scrollHeight;
     }
