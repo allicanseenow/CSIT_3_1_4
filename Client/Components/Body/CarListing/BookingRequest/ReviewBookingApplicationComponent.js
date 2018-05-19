@@ -113,7 +113,7 @@ export default class ReviewBookingApplicationComponent extends PureComponent {
           statusTitle = 'reject';
           action = handleReject;
         }
-        bookingConfirmTitle = `Do you want to ${statusTitle.toUpperCase()} the booking request from user "${chosenListing.renter}"?`
+        bookingConfirmTitle = `Do you want to ${statusTitle.toUpperCase()} the booking request from user "${chosenListing.renter}"?`;
         confirm({
           title: bookingConfirmTitle,
           content: null,
