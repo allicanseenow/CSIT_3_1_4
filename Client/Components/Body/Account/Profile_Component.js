@@ -1,5 +1,5 @@
 import React, { Component }                                       from 'react';
-import { Tabs, Tab, Image, label, Button, form , input}           from 'react-bootstrap';
+import { Tabs, Tab, Image, label, Button, form , input, Table, tr, td, th}           from 'react-bootstrap';
 import { LinkContainer }                                          from 'react-router-bootstrap';
 import { Redirect }                                               from 'react-router';
 import _                                                          from 'lodash';
@@ -24,10 +24,13 @@ export default class Profile_Component extends Component {
     bsb: '',
     accountNumber: '',
 
+    username:'',
     fullname:'',
     dob:'',
     creditcardLastThree:'',
     billingAccount:'',
+
+    transactions: [],
 
     key:1,
 
@@ -60,17 +63,17 @@ export default class Profile_Component extends Component {
   isValid = (tab) => {
     let isValidR = false;
     let errorsR = null;
-    if(tab == 2){
+    if(tab == 3){
       const { errors, isValid }  = validateChangePassword(this.state);
       isValidR = isValid;
       errorsR = errors;
     }
-    else if(tab == 3){
+    else if(tab == 4){
       const { errors, isValid }  = validateChangePaymentDetail(this.state);
       isValidR = isValid;
       errorsR = errors;
     }
-    else if(tab == 4){
+    else if(tab == 5){
       const { errors, isValid } = validateChangeBillingDetail(this.state);
       isValidR = isValid;
       errorsR = errors;
@@ -90,10 +93,13 @@ export default class Profile_Component extends Component {
     {
       this.onGetProfileOverview();
     }
+
   };
 
   componentDidMount(){
     this.onGetProfileOverview();
+    this.onGetTransactionDetail();
+
   }
   clearPasswordField=()=>{
     this.setState({
@@ -133,6 +139,38 @@ export default class Profile_Component extends Component {
   }
 
 
+ onGetTransactionDetail = () => {
+   const{username,transactions} = this.state;
+   axios({
+     method: 'get',
+     url: 'http://localhost:9000/api/transactions',
+     headers: {'x-access-token': window.localStorage.localToken},
+   })
+   .then((res)=>{
+     console.log("success");
+     console.log(res);
+     for(var i = 0; i< res.data.length; i++)
+     {
+
+      const sender = res.data[i].sender;
+      const receiver = res.data[i].receiver;
+      const amount = res.data[i].amount;
+      const listingNum = res.data[i].listingNum;
+      const toDate = res.data[i].to.day + "-" + res.data[i].to.month + "-"+ res.data[i].to.year;
+      const fromDate = res.data[i].from.day + "-" + res.data[i].from.month + "-"+ res.data[i].from.year;
+
+      var transaction = {listingNum:listingNum, sender:sender, receiver:receiver, amount:amount, toDate:toDate, fromDate:fromDate};
+      transactions.push(transaction);
+     }
+
+   })
+   .catch(({ response }) => {
+     console.log("error");
+     console.log(response);
+   });
+
+   this.renderTransactionDetail();
+ }
 
   onGetProfileOverview = () => {
     axios({
@@ -141,6 +179,7 @@ export default class Profile_Component extends Component {
       headers: {'x-access-token': window.localStorage.localToken},
     })
     .then((res)=>{
+      this.setState({username: res.data.username});
       this.setState({dob: res.data.DOB});
       this.setState({fullname: res.data.fullname});
       this.setState({creditcardLastThree: res.data.creditCard});
@@ -150,7 +189,7 @@ export default class Profile_Component extends Component {
   onSubmitChangePaymentDetail = (event) => {
     event.preventDefault();
     this.clearNotification();
-    if (this.isValid(3)){
+    if (this.isValid(4)){
       const {cardHolderName, cardNumber, cardExpiryDate, cardCvv} = this.state;
       axios({
         method: 'put',
@@ -188,7 +227,7 @@ export default class Profile_Component extends Component {
   onSubmitChangeBillingDetail = (event) => {
 	event.preventDefault();
   this.clearNotification();
-    if (this.isValid(4)){
+    if (this.isValid(5)){
       const {accountNumber, bsb} = this.state;
       axios({
         method: 'put',
@@ -220,7 +259,7 @@ export default class Profile_Component extends Component {
   onSubmitChangePassword = (event) => {
 	event.preventDefault();
   this.clearNotification();
-    if (this.isValid(2)){
+    if (this.isValid(3)){
       const {oldPassword, newPassword} = this.state;
       console.log("submitChangePassword");
       axios({
@@ -250,6 +289,21 @@ export default class Profile_Component extends Component {
     this.clearPasswordField();
   };
 
+  renderTransactionRows =() => {
+    const{transactions} = this.state;
+    return(
+      transactions.map((row,i) =>
+          <tr key={i}>
+            <td>{row.listingNum}</td>
+            <td>${row.amount}</td>
+            <td>{row.sender}</td>
+            <td>{row.receiver}</td>
+            <td>{row.toDate}</td>
+            <td>{row.fromDate}</td>
+          </tr>
+      )
+    );
+  };
 
   renderTextFieldGroup = (field, value, label, onChange, onBlur, error, placeholder, type) => {
     return (
@@ -268,9 +322,9 @@ export default class Profile_Component extends Component {
         <Image src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" rounded />
       </div>
       <div className="col-md-9">
-        <p><h4>Name:</h4> {fullname}</p>
-        <p><h4>Date of birth:</h4> {dob}</p>
-        <p><h4>Credit Card:</h4> xxxx-xxxx-xxxx-x{creditcardLastThree}</p>
+        <h4>Name:</h4><p>{fullname}</p>
+        <h4>Date of birth:</h4><p>{dob}</p>
+        <h4>Credit Card:</h4><p>xxxx-xxxx-xxxx-x{creditcardLastThree}</p>
       </div>
       </div>
     )
@@ -396,48 +450,66 @@ export default class Profile_Component extends Component {
       )
   };
 
+
+
   renderTransactionDetail = () => {
-    return(
-      <h1>hi</h1>
-    )
+
+    return (
+      <Table>
+        <thead>
+          <tr>
+            <th>Linsting no</th>
+            <th>Amount</th>
+            <th>Sender</th>
+            <th>Reciever</th>
+            <th>From</th>
+            <th>To</th>
+          </tr>
+        </thead>
+        <tbody>
+        {this.renderTransactionRows()}
+        </tbody>
+      </Table>
+    );
   };
 
   renderRenterProfile = () => {
     return(
-      <Tabs activeKey={this.state.key} onSelect={this.handleSelect}>
+      <Tabs activeKey={this.state.key} onSelect={this.handleSelect} id="ProfileForm">
         <Tab eventKey={1} title="Overview">
           {this.renderOverview()}
         </Tab>
-        <Tab eventKey={2} title="Password" >
-            {this.renderChangePassword()}
-        </Tab>
-        <Tab eventKey={3} title="Payment Details">
-            {this.renderPaymentDetails()}
-        </Tab>
-        <Tab eventKey={4} title="Transaction details">
+        <Tab eventKey={2} title="Transaction details">
           {this.renderTransactionDetail()}
         </Tab>
+        <Tab eventKey={3} title="Password" >
+            {this.renderChangePassword()}
+        </Tab>
+        <Tab eventKey={4} title="Payment Details">
+            {this.renderPaymentDetails()}
+        </Tab>
+
       </Tabs>
     )
   };
 
   renderOwnerProfile = () => {
     return(
-      <Tabs activeKey={this.state.key} onSelect={this.handleSelect}>
+      <Tabs activeKey={this.state.key} onSelect={this.handleSelect} id="ProfileForm">
         <Tab eventKey={1} title="Overview">
             {this.renderOverview()}
         </Tab>
-        <Tab eventKey={2} title="Password" >
+        <Tab eventKey={2} title="Transaction details">
+            {this.renderTransactionDetail()}
+        </Tab>
+        <Tab eventKey={3} title="Password" >
             {this.renderChangePassword()}
         </Tab>
-        <Tab eventKey={3} title="Payment Details">
+        <Tab eventKey={4} title="Payment Details">
             {this.renderPaymentDetails()}
         </Tab>
-        <Tab eventKey={4} title="Billing Detail">
+        <Tab eventKey={5} title="Billing Detail">
             {this.renderBillingDetails()}
-        </Tab>
-        <Tab eventKey={5} title="Transaction details">
-            {this.renderTransactionDetail()}
         </Tab>
       </Tabs>
     )
