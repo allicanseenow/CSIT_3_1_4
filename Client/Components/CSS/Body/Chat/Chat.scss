@@ -4,6 +4,14 @@
   justify-content: center;
   margin-top: 15px;
 
+  .chat-container_history {
+    width: 300px;
+
+    h3 {
+      font-weight: 700;
+    }
+  }
+
   .chat-container_list {
     border-style: none;
   }

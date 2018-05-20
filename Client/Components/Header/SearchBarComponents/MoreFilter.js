@@ -7,7 +7,7 @@ export default class MoreFilter extends Component {
   state = {
     brand: '',
     model: '',
-    transType: '',
+    transmission: '',
     odometer: '',
     year: '',
     rego: '',
@@ -73,7 +73,7 @@ export default class MoreFilter extends Component {
   }
 
   render() {
-    const { brand, model, transType, odometer, year, rego, colour } = this.state;
+    const { brand, model, transmission , odometer, year, rego, colour } = this.state;
     const { onChange } = this;
     return (
       <div className="pop-up" onClick={this.onClickOutside} ref={(input) => this.putt = input}>
@@ -82,7 +82,7 @@ export default class MoreFilter extends Component {
             <div>
               { this.renderTextFieldGroup('brand', brand, 'Brand name', onChange) }
               { this.renderTextFieldGroup('model', model, 'Model', onChange) }
-              { this.renderTextFieldGroup('transType', transType, 'Transmission', onChange) }
+              { this.renderTextFieldGroup('transmission ', transmission , 'Transmission', onChange) }
               { this.renderTextFieldGroup('odometer', odometer, 'Odometer', onChange) }
               { this.renderTextFieldGroup('year', year, 'Year', onChange, null, null, 'YYYY') }
               { this.renderTextFieldGroup('rego', rego, 'Rego', onChange) }
