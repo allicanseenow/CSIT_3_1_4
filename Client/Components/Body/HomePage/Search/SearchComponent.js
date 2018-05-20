@@ -57,7 +57,7 @@ export default class SearchComponent extends Component {
                   <span>${price} AUD/day</span>
                 </div>
                 <div>
-                  <Rate allowHalf disabled defaultValue={rating}/>
+                  <Rate disabled defaultValue={rating}/>
                 </div>
               </Col>
               <Col xs={4} className="search-card-block_button_wrapper">

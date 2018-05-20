@@ -142,6 +142,22 @@
       height: 300px;
       background-repeat: no-repeat;
       background-position: 50% 50% !important;
+
+      .car-listing_share-button-container {
+        float: right;
+        position: relative;
+        right: 35px;
+        box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.14);
+        border-radius: 4px;
+
+        .car-listing_share-button {
+          text-align: center;
+          border-radius: 4px;
+          border-width: 1px;
+          border-style: solid;
+          border-color: transparent;
+        }
+      }
     }
   }
 
@@ -210,6 +226,64 @@
     //@media only screen and (min-width: 1080px) {
     //  margin-top: 40px;
     //}
+  }
+}
+
+.car-listing_share-button_popup {
+  padding: 40px 55px;
+
+  .car-listing_share-button_popup_content {
+    padding-top: 20px;
+
+    .car-listing_share-button_popup_content_header {
+      padding-bottom: 24px;
+      
+      .car-listing_share-button_popup_content_header_title {
+        font-weight: 700;
+        word-wrap: break-word;
+        font-size: 25px;
+        line-height: 30px;
+        letter-spacing: normal;
+        padding: 2px 0;
+        color: #484848;
+
+        h1 {
+          color: inherit;
+          font-size: 1em;
+          font-weight: inherit;
+        }
+      }
+    }
+
+    .car-listing_share-button_popup_content_first {
+      padding: 24px 0;
+      border-bottom: 1px solid rgb(219, 219, 219);
+      border-top: 1px solid rgb(219, 219, 219);
+      display: table;
+      width: 100%;
+    }
+
+    .car-listing_share-button_popup_content_next {
+      padding: 24px 0;
+      border-bottom: 1px solid rgb(219, 219, 219);
+      display: table;
+      width: 100%;
+    }
+
+    .car-listing_share-button_popup_content_first .car-listing_share-button_popup_content_first_img,
+    .car-listing_share-button_popup_content_next .car-listing_share-button_popup_content_next_img {
+      display: table-cell;
+      vertical-align: middle;
+      width: 20%;
+    }
+
+    .car-listing_share-button_popup_content_first .car-listing_share-button_popup_content_first_txt,
+    .car-listing_share-button_popup_content_next .car-listing_share-button_popup_content_next_txt {
+      display: table-cell;
+      vertical-align: middle;
+      width: 80%;
+      padding-left: 20px;
+    }
   }
 }
 

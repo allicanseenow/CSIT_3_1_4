@@ -66,7 +66,7 @@ export default class ReviewListingComponent extends PureComponent {
           <div className="pop-up_inner_content reviewListingComponent">
             <div>Write a review:</div>
             <div className="reviewListingComponent_field">
-              <Rate allowHalf onChange={this.onChangeRate} value={rating} allowClear={false}/>
+              <Rate onChange={this.onChangeRate} value={rating} allowClear={false}/>
             </div>
             <div className="reviewListingComponent_field">
               <TextArea

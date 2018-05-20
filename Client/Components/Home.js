@@ -13,11 +13,13 @@ import ShowCarListingCollectionContainer                from "./Body/CarListing/
 import CreateCarContainer                               from "./Body/Car/CreateCarContainer";
 import EditListingContainer                             from "./Body/CarListing/EditListingContainer";
 import ReviewBookingApplicationContainer                from "./Body/CarListing/BookingRequest/ReviewBookingApplicationContainer";
+import ChatContainer                                    from "./Body/Chat/ChatContainer";
 
 import './CSS/Home.scss';
 import './CSS/Login.scss';
 import './CSS/Footer.scss';
 import './CSS/Body/CarListing/CreateListingContainer.scss';
+import './CSS/Body/Chat/Chat.scss';
 import './CSS/Profile.scss';
 import './CSS/Body/HomePage/HomePage.scss';
 import './CSS/RecyclableComponents/SteppingDot.scss';
@@ -43,7 +45,8 @@ export default class Home extends Component {
       <Route
         exact={exact}
         render={(innerProps) => {
-          const { loggedIn, type } = this.props.auth;
+          const { auth } = this.props;
+          const { loggedIn, type } = auth;
           // If user is logged in but doesn't have the right auth level, access to the page is rejected
           if (loggedIn && requireAuth && !requireAuth.includes(type)) {
             return (
@@ -58,7 +61,7 @@ export default class Home extends Component {
               <AxiosConsumer>
                 {(context) => {
                   return (
-                    <Component {...innerProps}  {...rest} axios={context.axios} redirectAxios={context.redirectAxios} />
+                    <Component {...innerProps}  {...rest} axios={context.axios} redirectAxios={context.redirectAxios} auth={auth} />
                   )
                 }}
               </AxiosConsumer>
@@ -124,6 +127,11 @@ export default class Home extends Component {
                       Review booking applications for car listings
                    */
                   <PrivateRoute path="/review-applications/:carListingId" component={ReviewBookingApplicationContainer} requireAuth={[ USER_TYPE.carOwner ]} />
+
+                  /*
+                      Message a carOwner, by selecting the owner from one of their car listing
+                   */
+                  <PrivateRoute path="/chat/:recipient" component={ChatContainer} requireAuth={[ USER_TYPE.carOwner, USER_TYPE.carRenter ]} />
                 </Switch>
               )
             }}
