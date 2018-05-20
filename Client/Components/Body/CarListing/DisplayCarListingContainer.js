@@ -69,10 +69,14 @@ export default class DisplayCarListingContainer extends Component {
     this.setState({ showBookingPanel: false });
   };
 
+  handleOpenShareButtonModal = (status) => {
+    this.setState({ openShareButtonModal: status });
+  };
+
   render() {
     const {
       brand, capacity, colour, img, carListingNumber, location, model, odometer, price, rating, rego, transType, year, available, owner,
-      ratings, bookingSent,
+      ratings, bookingSent, openShareButtonModal,
       showReviewPopup, showBookingPanel,
     } = this.state;
     return (
@@ -101,6 +105,8 @@ export default class DisplayCarListingContainer extends Component {
         onOkBook={this.onOkBook}
         onCancelBook={this.onCancelBook}
         bookingSent={bookingSent}
+        handleOpenShareButtonModal={this.handleOpenShareButtonModal}
+        openShareButtonModal={openShareButtonModal}
       />
     )
   }
