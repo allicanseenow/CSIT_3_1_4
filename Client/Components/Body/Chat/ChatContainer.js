@@ -1,5 +1,4 @@
 import React, { PureComponent }                                   from 'react';
-import moment                                                     from 'moment';
 import PropTypes                                                  from 'prop-types';
 import Loading                                                    from '../../RecyclableComponents/Loading';
 import ChatComponent                                              from './ChatComponent';

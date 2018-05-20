@@ -205,7 +205,7 @@ export default class DisplayCarListingComponent extends Component {
                   </Grid>
                 </div>
                 <div>
-                  {(!_.isEmpty(ratings) && _.map(ratings.slice(0).reverse(), (rating) => {
+                  {(!_.isEmpty(ratings) && _.map(ratings, (rating) => {
                     return (
                       <div className="car-review-panel-wrapper listing-panel" key={`rating-review-${rating.reviewer}-${rating.tstamp}`}>
                         <Grid fluid>

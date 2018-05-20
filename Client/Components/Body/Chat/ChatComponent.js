@@ -1,6 +1,7 @@
 import React, { PureComponent }                                       from 'react';
 import PropTypes                                                      from 'prop-types';
 import { Link }                                                       from 'react-router-dom';
+import { Button, Icon }                                               from 'antd';
 import Message                                                        from './Message';
 
 export default class ChatComponent extends PureComponent {
@@ -59,13 +60,23 @@ export default class ChatComponent extends PureComponent {
     const { recipient, typingText, onChangeText, previousListing } = this.props;
     return (
       <div>
-        { previousListing && (
-          <div style={{ paddingBottom: "15px"}}>
-            <Link to={`/display-car-listing/${previousListing}`}>
-              Back to the car listing
-            </Link>
-          </div>
-        )}
+        <div style={{ paddingTop: "15px", paddingLeft: "15px", paddingBottom: "20px" }}>
+          <Link to="/chat">
+            <Button
+              type="primary"
+            >
+              <Icon type="left"/>
+              <span>Conversation list</span>
+            </Button>
+          </Link>
+          { previousListing && (
+            <div style={{ paddingBottom: "15px"}}>
+              <Link to={`/display-car-listing/${previousListing}`}>
+                Back to the car listing
+              </Link>
+            </div>
+          )}
+        </div>
         <div className="chat-container">
           <div className="chat-container_chatroom">
             <h3>{recipient}</h3>

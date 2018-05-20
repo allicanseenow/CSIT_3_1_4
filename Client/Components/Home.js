@@ -14,6 +14,7 @@ import CreateCarContainer                               from "./Body/Car/CreateC
 import EditListingContainer                             from "./Body/CarListing/EditListingContainer";
 import ReviewBookingApplicationContainer                from "./Body/CarListing/BookingRequest/ReviewBookingApplicationContainer";
 import ChatContainer                                    from "./Body/Chat/ChatContainer";
+import ChatHistoryContainer                             from "./Body/Chat/ChatHistoryContainer";
 
 import './CSS/Home.scss';
 import './CSS/Login.scss';
@@ -131,6 +132,7 @@ export default class Home extends Component {
                   /*
                       Message a carOwner, by selecting the owner from one of their car listing
                    */
+                  <PrivateRoute exact path="/chat" component={ChatHistoryContainer} requireAuth={[ USER_TYPE.carOwner, USER_TYPE.carRenter ]} />
                   <PrivateRoute path="/chat/:recipient" component={ChatContainer} requireAuth={[ USER_TYPE.carOwner, USER_TYPE.carRenter ]} />
                 </Switch>
               )
