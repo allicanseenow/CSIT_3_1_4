@@ -104,7 +104,7 @@ class CustomNavBar extends Component {
       <Navbar className="navbar-custom" inverse collapseOnSelect fluid>
         <Navbar.Header>
           <Navbar.Brand>
-            <LinkContainer className="link-container" to="/"><span>Platform</span></LinkContainer>
+            <LinkContainer className="link-container" to="/"><span>Car Express</span></LinkContainer>
           </Navbar.Brand>
           <Switch>
             <Route exact path="/">
