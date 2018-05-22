@@ -1,5 +1,5 @@
 import React, { Component }                                       from 'react';
-import { Link, Switch, Route }                                                   from 'react-router-dom';
+import { Switch, Route }                                          from 'react-router-dom';
 import { NavDropdown, Navbar, Nav, MenuItem, NavItem, Badge }     from 'react-bootstrap'
 import { LinkContainer }                                          from 'react-router-bootstrap';
 import { withRouter }                                             from 'react-router-dom';
@@ -35,6 +35,7 @@ class CustomNavBar extends Component {
       <Nav key="Profile">
         <NavDropdown title={this.props.username} id="basic-nav-dropdown">
           <LinkContainer to="/profile"><MenuItem>My profile</MenuItem></LinkContainer>
+          <LinkContainer to="/chat"><MenuItem>Chat history</MenuItem></LinkContainer>
           <LinkContainer to="/upgrade-account"><MenuItem>Upgrade Account</MenuItem></LinkContainer>
           <MenuItem onSelect={this.logOutAction}>Logout</MenuItem>
         </NavDropdown>
@@ -50,6 +51,7 @@ class CustomNavBar extends Component {
           <LinkContainer to="/create-car"><MenuItem>Add new car</MenuItem></LinkContainer>
           <LinkContainer to="/create-car-listing"><MenuItem>Create new car listing</MenuItem></LinkContainer>
           <LinkContainer to="/car-listings"><MenuItem>My car listing</MenuItem></LinkContainer>
+          <LinkContainer to="/chat"><MenuItem>Chat history</MenuItem></LinkContainer>
           <MenuItem onSelect={this.logOutAction}>Logout</MenuItem>
         </NavDropdown>
       </Nav>
@@ -102,7 +104,7 @@ class CustomNavBar extends Component {
       <Navbar className="navbar-custom" inverse collapseOnSelect fluid>
         <Navbar.Header>
           <Navbar.Brand>
-            <LinkContainer className="link-container" to="/"><span>Platform</span></LinkContainer>
+            <LinkContainer className="link-container" to="/"><span>Car Express</span></LinkContainer>
           </Navbar.Brand>
           <Switch>
             <Route exact path="/">

@@ -4,7 +4,7 @@ import PropTypes                            from 'prop-types';
 import SearchComponent                      from './SearchComponent';
 
 class SearchContainer extends Component {
-  static defaultProps = {
+  static propTypes = {
     carListing: PropTypes.object.isRequired,
   };
 
