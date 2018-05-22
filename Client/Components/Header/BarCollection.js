@@ -14,7 +14,6 @@ export default class BarCollection extends Component {
           return (
             <Consumer>
               { context => {
-                console.log("context is ", context);
                 return <SearchBar {...this.props} {...context} />
               }}
             </Consumer>
