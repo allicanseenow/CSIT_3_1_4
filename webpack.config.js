@@ -13,7 +13,7 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js'
   },
-  devtool: 'cheap-source-map',
+  devtool: process.env.NODE_ENV !== 'production' ? 'cheap-source-map': 'source-map',
   module: {
     rules: [
       {

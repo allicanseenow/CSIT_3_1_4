@@ -75,7 +75,6 @@ export default class SearchComponent extends Component {
 
   render() {
     const { carListing, openBookingModal, loadingListingData, onOkBook, onCancelBook, available, bookingSent, closeSuccessMessage } = this.props;
-    console.log('carlisting is ', carListing);
     if (!carListing) {
       return (
         <div>There is no car found</div>
