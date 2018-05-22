@@ -154,10 +154,19 @@ export default class Profile_Component extends Component {
 
       const sender = res.data[i].sender;
       const receiver = res.data[i].receiver;
-      const amount = res.data[i].amount;
+      let amountTemp = res.data[i].amount;
       const listingNum = res.data[i].listingNum;
       const toDate = res.data[i].to.day + "-" + res.data[i].to.month + "-"+ res.data[i].to.year;
       const fromDate = res.data[i].from.day + "-" + res.data[i].from.month + "-"+ res.data[i].from.year;
+
+      let sign;
+      if(username == "sender"){
+         sign = "-$";
+      }
+      else {
+         sign = "+$";
+      }
+      const amount = sign + amountTemp;
 
       var transaction = {listingNum:listingNum, sender:sender, receiver:receiver, amount:amount, toDate:toDate, fromDate:fromDate};
       transactions.push(transaction);
@@ -295,11 +304,11 @@ export default class Profile_Component extends Component {
       transactions.map((row,i) =>
           <tr key={i}>
             <td>{row.listingNum}</td>
-            <td>${row.amount}</td>
+            <td>{row.amount}</td>
             <td>{row.sender}</td>
             <td>{row.receiver}</td>
-            <td>{row.toDate}</td>
             <td>{row.fromDate}</td>
+            <td>{row.toDate}</td>
           </tr>
       )
     );
@@ -458,10 +467,10 @@ export default class Profile_Component extends Component {
       <Table>
         <thead>
           <tr>
-            <th>Linsting no</th>
+            <th>Listing no</th>
             <th>Amount</th>
             <th>Sender</th>
-            <th>Reciever</th>
+            <th>Receiver</th>
             <th>From</th>
             <th>To</th>
           </tr>
