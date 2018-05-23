@@ -1,6 +1,7 @@
 import React, { Component }                 from 'react';
 import { connect }                          from 'react-redux';
 import _                                    from 'lodash';
+import moment                               from 'moment';
 import { fetchCarListing }                  from '../../Actions/MainPage';
 import DateBar                              from './SearchBarComponents/DateBar';
 import CapacityBar                          from "./SearchBarComponents/CapacityBar";
@@ -126,6 +127,23 @@ class SearchBar extends Component {
       }
     }
   };
+
+  componentDidMount() {
+    if (this.props.state.mainPage && this.props.state.mainPage.listing && !_.isEmpty(this.props.state.mainPage.listing)) return;
+    const  { time, capacity, cost, location, moreFilter } = this.state;
+    const { hasMoreFilter, ...rest } = moreFilter;
+    const from = moment().add(1, 'months').startOf('month').add(4, 'days');
+    const to = from.clone().add(1, 'days');
+    const query = {
+      from: from.format("DD-MM-YYYY"),
+      to: to.format("DD-MM-YYYY"),
+      capacity: null,
+      location: null,
+      ...rest,
+      // price: cost,
+    };
+    this.props.fetchCarListing(query);
+  }
 
   render() {
     const {

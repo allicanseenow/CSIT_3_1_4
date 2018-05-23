@@ -126,6 +126,9 @@ export function validateCreateListing(data, isUpgrading) {
       errors.accountNumber= 'Invalid account number';
     }
   }
+  if (data && data.rego && data.rego.length !== 6) {
+    errors['rego'] = 'Rego needs to have 6 characters';
+  }
   return {
     errors,
     isValid: _.isEmpty(errors),

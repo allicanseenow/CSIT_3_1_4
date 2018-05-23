@@ -59,7 +59,7 @@ export default class DisplayCarListingComponent extends Component {
         <div className="car-listing_share-button_popup_content_header">
           <div className="car-listing_share-button_popup_content_header_title">
             <h1>Share</h1>
-            <h5>Share this event on social media</h5>
+            <h5>Share this car listing on social media</h5>
           </div>
         </div>
         <div className="car-listing_share-button_popup_content_first">

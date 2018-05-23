@@ -22,11 +22,14 @@ export default class CreateListingComponent extends Component {
     editCarMode: PropTypes.bool,
     showSuccessBanner: PropTypes.bool,
     loadingCarListing: PropTypes.bool,
+    // This is ony for editting car listing
+    editSubmitSuccess: PropTypes.bool,
   };
 
   static defaultProps = {
     defaultCalendarValue: null,
     disableSelectCarFromList: false,
+    editSubmitSuccess: false,
   };
 
   renderTextFieldGroup = (field, value, label, onChange, onBlur, error, placeholder, type) => {
@@ -45,32 +48,34 @@ export default class CreateListingComponent extends Component {
         { loadingCarListing && (
           <Loading/>
         ) || (
-          <RadioGroup onChange={this.props.onSelectCar} className="createListing_selectCar_wrapper" name="rego" value={this.props.selectedCar}>
-            { _.map(cars, (car) => {
-              const { brand, capacity, model, colour, img, rego, location, transType, year } = car;
-              return (
-                <div className="display-car-listing-collection createListing_selectCar" key={`car-listing-id-${rego}`}>
-                  <RadioButton value={rego} className="createListing_selectCar_content">
-                    <div>
-                      <Row className="display-car-listing-collection_block vertical-align">
-                        <Col xs={3} className="display-car-listing-collection_block_cell">
-                          <div className="display-car-listing-collection_img" style={{ backgroundImage: `url(api/${img})` }} />
-                        </Col>
-                        <Col xs={2}/>
-                        <Col xs={6} className="display-car-listing-collection_block_cell">
-                          <div style={{display: "table"}}>
-                            <div><b>Brand:</b> {brand}</div>
-                            <div><b>Model:</b> {model}</div>
-                            <div><b>Colour:</b> {colour}</div>
-                          </div>
-                        </Col>
-                      </Row>
-                    </div>
-                  </RadioButton>
-                </div>
-              )
-            })}
-          </RadioGroup>
+          <div className="overflow_createListing_selectCar_wrapper">
+            <RadioGroup onChange={this.props.onSelectCar} className="createListing_selectCar_wrapper" name="rego" value={this.props.selectedCar}>
+              { _.map(cars, (car) => {
+                const { brand, capacity, model, colour, img, rego, location, transType, year } = car;
+                return (
+                  <div className="display-car-listing-collection createListing_selectCar" key={`car-listing-id-${rego}`}>
+                    <RadioButton value={rego} className="createListing_selectCar_content">
+                      <div>
+                        <Row className="display-car-listing-collection_block vertical-align">
+                          <Col xs={3} className="display-car-listing-collection_block_cell">
+                            <div className="display-car-listing-collection_img" style={{ backgroundImage: `url(api/${img})` }} />
+                          </Col>
+                          <Col xs={2}/>
+                          <Col xs={6} className="display-car-listing-collection_block_cell">
+                            <div style={{display: "table"}}>
+                              <div><b>Brand:</b> {brand}</div>
+                              <div><b>Model:</b> {model}</div>
+                              <div><b>Colour:</b> {colour}</div>
+                            </div>
+                          </Col>
+                        </Row>
+                      </div>
+                    </RadioButton>
+                  </div>
+                )
+              })}
+            </RadioGroup>
+          </div>
         ) }
       </div>
     )
@@ -108,7 +113,7 @@ export default class CreateListingComponent extends Component {
   };
 
   render() {
-    const { carListingDetail, onChange, onBlur, onSubmit, errors, submitError, submitting, onCalendarChange, editCarMode, showSuccessBanner } = this.props;
+    const { carListingDetail, onChange, onBlur, onSubmit, errors, submitError, submitting, onCalendarChange, editCarMode, showSuccessBanner, editSubmitSuccess } = this.props;
     const { time, rego, cars } = carListingDetail;
     return (
       <div className="form-container">
@@ -127,6 +132,11 @@ export default class CreateListingComponent extends Component {
                       { !submitError && showSuccessBanner && (
                         <SuccessNotificationBox>
                           New car listing created
+                        </SuccessNotificationBox>
+                      )}
+                      { !submitError && editSubmitSuccess && (
+                        <SuccessNotificationBox>
+                          Car listing successfully edited
                         </SuccessNotificationBox>
                       )}
                     </Col>

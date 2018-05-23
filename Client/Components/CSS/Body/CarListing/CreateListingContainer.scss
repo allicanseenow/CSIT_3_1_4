@@ -356,6 +356,13 @@
   }
 }
 
+.overflow_createListing_selectCar_wrapper {
+  max-height: 400px;
+  overflow-y: auto;
+  border-top: solid 0.5px #a7a6a1;
+  border-bottom: solid 0.5px #a7a6a1;
+}
+
 .createListing_selectCar_wrapper {
   width: 100%;
 

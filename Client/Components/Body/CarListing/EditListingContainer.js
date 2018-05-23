@@ -13,6 +13,7 @@ export default class EditListingContainer extends Component {
     errors: {},
     submitError: null,
     submitting: false,
+    submitSuccess: false,
   };
 
   componentDidMount() {
@@ -56,19 +57,19 @@ export default class EditListingContainer extends Component {
           rego,
           availableDates: this.getAvailableDayArray(),
         })
-          .then(({ response }) => {
-            this.setState({ submitError: null, })
-          })
-          .catch(({ response }) => {
-            console.log("errors while creating a new car list", response.data.message);
-            const errorMsg = response && response.data && response.data.message;
-            this.setState({ submitError: errorMsg }, () => {
-              window.scrollTo(0, 0);
-            });
-          })
-          .finally(() => {
-            this.setState({ errors: validate.errors, submitting: false });
-          })
+        .then(({ response }) => {
+          this.setState({ submitError: null, submitSuccess: true })
+        })
+        .catch(({ response }) => {
+          console.log("errors while creating a new car list", response.data.message);
+          const errorMsg = response && response.data && response.data.message;
+          this.setState({ submitError: errorMsg }, () => {
+            window.scrollTo(0, 0);
+          });
+        })
+        .finally(() => {
+          this.setState({ errors: validate.errors, submitting: false });
+        })
       });
     }
     else {
@@ -104,7 +105,7 @@ export default class EditListingContainer extends Component {
   };
 
   render() {
-    const { errors, submitError, submitting, selectedCar, availableDates } = this.state;
+    const { errors, submitError, submitting, selectedCar, submitSuccess, availableDates } = this.state;
     return (
       <CreateListingComponent
         carListingDetail={this.state}
@@ -114,6 +115,7 @@ export default class EditListingContainer extends Component {
         errors={errors}
         submitError={submitError}
         submitting={submitting}
+        editSubmitSuccess={submitSuccess}
         onCalendarChange={this.onCalendarChange}
         onSelectCar={this.onSelectCar}
         selectedCar={selectedCar}
